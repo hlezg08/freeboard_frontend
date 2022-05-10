@@ -1,21 +1,23 @@
 import styled from "@emotion/styled";
 export const App = styled.div`
+  margin: 50px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   width: 800px;
   height: 100%;
 `;
-export const Title = styled.h1`
+export const Header = styled.h1`
   display: flex;
   justify-content: center;
 `;
-export const Wrapper = styled.div`
+export const Body = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px 30px;
 `;
 
-export const UserInfo = styled.div`
+export const WriterGroup = styled.div`
   display: flex;
   flex-direction: row;
 `;
@@ -29,37 +31,37 @@ export const Group = styled.div`
 
 export const Label = styled.span`
   font-size: 13pt;
-  margin: 10px 0px;
+  padding: 10px 0px;
 `;
 export const Text = styled.input`
   width: 100%;
   height: 45px;
-  margin-bottom: 20px;
-  padding: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
 `;
-export const TextLarge = styled.input`
-  height: 400px;
-  margin-bottom: 20px;
-  padding: 5px;
+export const TextLarge = styled.textarea`
+  height: 300px;
+  padding: 10px;
+  margin-bottom: 10px;
 `;
 export const PostCode = styled.input`
   width: 80px;
   height: 45px;
-  margin-bottom: 20px;
-  padding: 5px;
+  text-align: center;
 `;
 export const PostCodeGroup = styled.div`
   display: flex;
+  padding-bottom: 10px;
 `;
 export const SearchBtn = styled.button`
   background-color: black;
   color: white;
+  width: 95px;
   height: 45px;
   margin-left: 20px;
 `;
 export const PhotoGroup = styled.div`
   display: flex;
-  margin-bottom: 20px;
 `;
 export const Photo = styled.div`
   width: 78px;
@@ -75,7 +77,6 @@ export const Photo = styled.div`
 
 export const RadioGroup = styled.div`
   display: flex;
-  margin-bottom: 20px;
   align-items: center;
 `;
 export const RadioInput = styled.input`
@@ -90,6 +91,7 @@ export const SubmitGroup = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 15px 0px;
 `;
 export const SubmitBtn = styled.button`
   align-items: center;
@@ -98,4 +100,9 @@ export const SubmitBtn = styled.button`
   width: 180px;
   height: 50px;
   font-size: 15px;
+`;
+
+export const ErrorMsg = styled.div`
+  color: red;
+  font-size: 13px;
 `;
