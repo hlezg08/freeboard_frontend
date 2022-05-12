@@ -102,7 +102,7 @@ export const SubmitBtn = styled.button`
   font-size: 15px;
 `;
 
-export const ErrorMsg = styled.div`
+export const Error = styled.div`
   color: red;
   font-size: 13px;
 `;
