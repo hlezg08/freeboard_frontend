@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
+
 export const App = styled.div`
   margin: 50px;
-  padding: 20px;
+  padding: 50px;
   display: flex;
   flex-direction: column;
-  width: 800px;
+  width: 80%;
   height: 100%;
+  border: none;
+  box-shadow: 0px 0px 10px gray;
 `;
 export const Header = styled.h1`
   display: flex;
@@ -14,19 +17,20 @@ export const Header = styled.h1`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px 30px;
 `;
 
 export const WriterGroup = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const Group = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0px 10px;
+  padding: 10px;
 `;
 
 export const Label = styled.span`
@@ -37,7 +41,6 @@ export const Text = styled.input`
   width: 100%;
   height: 45px;
   padding: 10px;
-  margin-bottom: 10px;
 `;
 export const TextLarge = styled.textarea`
   height: 300px;
@@ -95,11 +98,17 @@ export const SubmitGroup = styled.div`
 `;
 export const SubmitBtn = styled.button`
   align-items: center;
-  background-color: #ffd600;
   border: none;
   width: 180px;
   height: 50px;
   font-size: 15px;
+  background-color: #ffd600;
+  &:disabled {
+    background-color: lightgray;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Error = styled.div`
