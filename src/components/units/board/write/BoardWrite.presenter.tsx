@@ -1,15 +1,17 @@
-import * as S from "./BoardComponent.styles";
-export default function BoardComponentUI(props) {
+import * as S from "./BoardWrite.styles";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <S.App>
-      <S.Header>게시물 {props.isEdit ? "수정" : "등록"}</S.Header>
       <S.Body>
+        <S.Header>{props.isEdit ? "게시물 수정" : "게시물 등록"}</S.Header>
         <S.WriterGroup>
           <S.Group>
             <S.Label>작성자</S.Label>
             <S.Text
               type="text"
               onChange={props.onChangeWriter}
+              defaultValue={props.data?.fetchBoard.writer}
               placeholder="이름을 적어주세요."
             />
             <S.Error>{props.errorWriter}</S.Error>
@@ -30,6 +32,7 @@ export default function BoardComponentUI(props) {
           <S.Text
             type="text"
             onChange={props.onChangeTitle}
+            defaultValue={props.data?.fetchBoard.title}
             placeholder="제목을 작성해주세요."
           />
           <S.Error>{props.errorTitle}</S.Error>
@@ -37,8 +40,8 @@ export default function BoardComponentUI(props) {
         <S.Group>
           <S.Label>내용</S.Label>
           <S.TextLarge
-            type="text"
             onChange={props.onChangeContents}
+            defaultValue={props.data?.fetchBoard.contents}
             placeholder="내용을 작성해주세요."
           />
           <S.Error>{props.errorContents}</S.Error>
@@ -56,7 +59,12 @@ export default function BoardComponentUI(props) {
 
         <S.Group>
           <S.Label>유튜브</S.Label>
-          <S.Text type="text" placeholder="링크를 복사해주세요." />
+          <S.Text
+            onChange={props.onChangeYoutubeUrl}
+            defaultValue={props.data?.fetchBoard.youtubeUrl}
+            type="text"
+            placeholder="링크를 복사해주세요."
+          />
         </S.Group>
 
         <S.Group>
@@ -78,12 +86,14 @@ export default function BoardComponentUI(props) {
           </S.RadioGroup>
         </S.Group>
         <S.SubmitGroup>
-          <S.SubmitBtn
-            onClick={props.isEdit ? props.onClickUpdate : props.onClickCreate}
-            disabled={props.btnState}
+          <S.SubmitButton
+            onClick={
+              props.isEdit ? props.onClickUpdateBoard : props.onClickCreateBoard
+            }
+            isActive={props.isEdit ? true : props.isActive}
           >
             {props.isEdit ? "수정" : "등록"}하기
-          </S.SubmitBtn>
+          </S.SubmitButton>
         </S.SubmitGroup>
       </S.Body>
     </S.App>

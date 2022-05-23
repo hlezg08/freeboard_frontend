@@ -1,6 +1,9 @@
 import "../styles/globals.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-function MyApp({ Component, pageProps }) {
+import { AppProps } from "next/app";
+import "antd/dist/antd.css";
+
+function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({
     uri: "http://backend07.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache(),

@@ -25,15 +25,32 @@ export const Column = styled.td`
   height: 40px;
   border-top: 1px solid lightgray;
 `;
-
+export const ColumnTitle = styled.td`
+  text-align: center;
+  height: 40px;
+  border-top: 1px solid lightgray;
+  :hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;
+export const Footer = styled.div`
+  width: 80%;
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+`;
 export const Button = styled.button`
+  width: 80px;
+  height: 45px;
   margin: 5px;
   padding: 10px;
-  background-color: white;
-  border: 1px solid lightgray;
-  color: red;
+  background-color: #e7f9eb;
+  color: #009f47;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
   :hover {
-    background-color: yellow;
     cursor: pointer;
   }
 `;

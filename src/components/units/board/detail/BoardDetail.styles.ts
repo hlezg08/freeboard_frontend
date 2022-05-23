@@ -1,14 +1,18 @@
 import styled from "@emotion/styled";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
-export const DetailHeader = styled.div`
+export const DetailWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 10px 0px;
+  height: 100%;
 `;
 
 export const WriterWrapper = styled.div`
   display: flex;
+  align-items: center;
+  padding: 10px 0px;
 `;
 
 export const WriterText = styled.div`
@@ -16,6 +20,7 @@ export const WriterText = styled.div`
   flex-direction: column;
   padding-left: 15px;
 `;
+
 export const WriterName = styled.span`
   font-size: 24px;
 `;
@@ -30,14 +35,18 @@ export const IconWrapper = styled.div`
   justify-content: space-around;
 `;
 export const Icon = styled.img``;
+
 export const Hr = styled.hr`
   width: 100%;
-  color: lightgray;
 `;
 
 export const DetailBody = styled.div`
   display: flex;
   flex-direction: column;
+  width: 80%;
+  margin: 30px 0px;
+  padding: 30px;
+  border: 1px solid lightgray;
 `;
 export const Title = styled.h1`
   display: flex;
@@ -45,7 +54,7 @@ export const Title = styled.h1`
 `;
 export const ImgWrapper = styled.img`
   width: 100%;
-  height: 500px;
+  height: 400px;
 `;
 
 export const Contents = styled.p`
@@ -54,14 +63,9 @@ export const Contents = styled.p`
 `;
 
 export const YoutubeWrapper = styled.div`
-  height: 240px;
   margin: 20px 0px;
   display: flex;
   justify-content: center;
-`;
-export const Youtube = styled.iframe`
-  width: 480px;
-  border: none;
 `;
 
 export const ThumbWrapper = styled.div`
@@ -89,19 +93,29 @@ export const ThumbUpText = styled.span`
 export const ThumbDownText = styled.span`
   color: #828282;
 `;
-
+export const LikeIcon = styled(LikeOutlined)`
+  font-size: 24px;
+  color: #ffd600;
+`;
+export const DisLikeIcon = styled(DislikeOutlined)`
+  font-size: 24px;
+  color: #828282;
+`;
 export const ButtonWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  margin: 30px 0px;
 `;
 export const Button = styled.button`
-  width: 180px;
+  width: 80px;
   height: 45px;
-  background: #ffffff;
-  border: 1px solid #bdbdbd;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border: none;
   margin: 10px;
-  &:hover {
+  font-size: 16px;
+  :hover {
     cursor: pointer;
   }
 `;

@@ -1,14 +1,11 @@
 import styled from "@emotion/styled";
-
+import { ISubmitBtnProps } from "./BoardWrite.types";
 export const App = styled.div`
-  margin: 50px;
-  padding: 50px;
   display: flex;
   flex-direction: column;
-  width: 80%;
+  align-items: center;
+  width: 100%;
   height: 100%;
-  border: none;
-  box-shadow: 0px 0px 10px gray;
 `;
 export const Header = styled.h1`
   display: flex;
@@ -17,6 +14,10 @@ export const Header = styled.h1`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
+  width: 80%;
+  margin: 30px 0px;
+  padding: 30px;
+  border: 1px solid lightgray;
 `;
 
 export const WriterGroup = styled.div`
@@ -96,17 +97,17 @@ export const SubmitGroup = styled.div`
   justify-content: center;
   padding: 15px 0px;
 `;
-export const SubmitBtn = styled.button`
+export const SubmitButton = styled.button`
   align-items: center;
   border: none;
-  width: 180px;
-  height: 50px;
-  font-size: 15px;
-  background-color: #ffd600;
-  &:disabled {
-    background-color: lightgray;
-  }
-  &:hover {
+  width: 150px;
+  height: 45px;
+  font-size: 16px;
+  background-color: ${(props: ISubmitBtnProps) =>
+    props.isActive ? "#e7f9eb" : "#f9f9f9"};
+  border-radius: 5px;
+  color: ${(props: ISubmitBtnProps) => (props.isActive ? "#009f47" : "gray")};
+  :hover {
     cursor: pointer;
   }
 `;
