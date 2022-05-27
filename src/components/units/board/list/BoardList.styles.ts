@@ -5,8 +5,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
 `;
 export const TableWrapper = styled.table`
   width: 80%;
@@ -36,7 +34,7 @@ export const ColumnTitle = styled.td`
 `;
 export const Footer = styled.div`
   width: 80%;
-  padding-top: 20px;
+  padding: 10px 0px;
   display: flex;
   justify-content: flex-end;
 `;
@@ -45,8 +43,8 @@ export const Button = styled.button`
   height: 45px;
   margin: 5px;
   padding: 10px;
-  background-color: #e7f9eb;
-  color: #009f47;
+  background-color: #e7dafc;
+  color: #8a4af3;
   font-size: 16px;
   border: none;
   border-radius: 5px;

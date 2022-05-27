@@ -88,14 +88,14 @@ export const ThumbDownWrapper = styled.div`
 `;
 
 export const ThumbUpText = styled.span`
-  color: #ffd600;
+  color: #009f47;
 `;
 export const ThumbDownText = styled.span`
   color: #828282;
 `;
 export const LikeIcon = styled(LikeOutlined)`
   font-size: 24px;
-  color: #ffd600;
+  color: #009f47;
 `;
 export const DisLikeIcon = styled(DislikeOutlined)`
   font-size: 24px;
@@ -105,7 +105,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  margin: 30px 0px;
+  margin: 10px 0px;
 `;
 export const Button = styled.button`
   width: 80px;

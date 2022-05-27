@@ -42,16 +42,17 @@ export const Text = styled.input`
   width: 100%;
   height: 45px;
   padding: 10px;
+  border-width: 1px;
 `;
-export const TextLarge = styled.textarea`
+export const TextArea = styled.textarea`
   height: 300px;
   padding: 10px;
-  margin-bottom: 10px;
 `;
 export const PostCode = styled.input`
   width: 80px;
   height: 45px;
   text-align: center;
+  border-width: 1px;
 `;
 export const PostCodeGroup = styled.div`
   display: flex;
@@ -60,9 +61,11 @@ export const PostCodeGroup = styled.div`
 export const SearchBtn = styled.button`
   background-color: black;
   color: white;
-  width: 95px;
+  width: 100px;
   height: 45px;
   margin-left: 20px;
+  border: none;
+  border-radius: 5px;
 `;
 export const PhotoGroup = styled.div`
   display: flex;
@@ -104,9 +107,9 @@ export const SubmitButton = styled.button`
   height: 45px;
   font-size: 16px;
   background-color: ${(props: ISubmitBtnProps) =>
-    props.isActive ? "#e7f9eb" : "#f9f9f9"};
+    props.isActive ? "#e7dafc" : "#f9f9f9"};
   border-radius: 5px;
-  color: ${(props: ISubmitBtnProps) => (props.isActive ? "#009f47" : "gray")};
+  color: ${(props: ISubmitBtnProps) => (props.isActive ? "#8a4af3" : "gray")};
   :hover {
     cursor: pointer;
   }

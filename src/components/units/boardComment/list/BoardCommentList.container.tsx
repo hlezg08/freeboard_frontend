@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { MouseEvent } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import { DELETE_BOARD_COMMENT } from "./BoardCommentList.queries";
 import { FETCH_BOARD_COMMENTS } from "../write/BoardCommentWrite.queries";
 import BoardCommentListUI from "./BoardCommentList.presenter";
@@ -10,14 +10,29 @@ export default function BoardCommentList() {
   const { data } = useQuery(FETCH_BOARD_COMMENTS, {
     variables: { boardId: router.query.boardId },
   });
-
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
 
-  const onClickDeleteComment = async (event: MouseEvent<HTMLButtonElement>) => {
-    const password = prompt("비밀번호를 입력하세요");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [id, setId] = useState("");
+  const [commentPassword, setCommentPassword] = useState("");
+
+  const showModal = (event: MouseEvent<HTMLButtonElement>) => {
+    setIsModalVisible((prev) => !prev);
+    setId(event.currentTarget.id);
+  };
+
+  const onChangeCommentPassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setCommentPassword(event.target.value);
+  };
+
+  const onClickDeleteComment = async () => {
+    console.log(id);
     try {
       await deleteBoardComment({
-        variables: { password, boardCommentId: event.target.id },
+        variables: {
+          password: commentPassword,
+          boardCommentId: id,
+        },
         refetchQueries: [
           {
             query: FETCH_BOARD_COMMENTS,
@@ -25,14 +40,20 @@ export default function BoardCommentList() {
           },
         ],
       });
+      setIsModalVisible(false);
     } catch (error) {
       alert(error.message);
+      setIsModalVisible(false);
     }
   };
+
   return (
     <BoardCommentListUI
       data={data}
+      isModalVisible={isModalVisible}
       onClickDeleteComment={onClickDeleteComment}
+      showModal={showModal}
+      onChangeCommentPassword={onChangeCommentPassword}
     ></BoardCommentListUI>
   );
 }

@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 
 export interface IBoardCommentWriteUIProps {
+  isEdit: boolean;
   length: number;
   rating: number;
   setRating: any;
@@ -8,4 +9,5 @@ export interface IBoardCommentWriteUIProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onClickCreateComment: () => void;
+  onClickUpdateComment: () => void;
 }

@@ -1,25 +1,29 @@
-import BoardListUI from "./BoardList.presenter";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { FETCH_BOARDS } from "./BoardList.queries";
 import { MouseEvent } from "react";
+import BoardListUI from "./BoardList.presenter";
+import BoardPagination from "../pagination/BoardPagination.container";
 
 export default function BoardList() {
   const router = useRouter();
-  const { data } = useQuery(FETCH_BOARDS);
-
+  const { data, refetch } = useQuery(FETCH_BOARDS);
   const onClickMoveToNew = () => {
     router.push(`/boards/new`);
   };
   const onClickMoveToDetail = (event: MouseEvent<HTMLElement>) => {
-    console.log((event.target as HTMLElement).id);
-    router.push(`/boards/${(event.target as HTMLElement).id}`);
+    if (event.target instanceof Element)
+      router.push(`/boards/${event.target.id}`);
   };
+
   return (
-    <BoardListUI
-      onClickMoveToNew={onClickMoveToNew}
-      onClickMoveToDetail={onClickMoveToDetail}
-      data={data}
-    ></BoardListUI>
+    <>
+      <BoardListUI
+        data={data}
+        onClickMoveToNew={onClickMoveToNew}
+        onClickMoveToDetail={onClickMoveToDetail}
+      ></BoardListUI>
+      <BoardPagination data={data} refetch={refetch} />
+    </>
   );
 }

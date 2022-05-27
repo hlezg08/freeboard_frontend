@@ -4,10 +4,9 @@ import { IBoardCommentWriteUIProps } from "./BoardCommentWrite.types";
 
 export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
   return (
-    <>
+    <D.Wrapper>
       <D.CommentWrapper>
-        <D.Hr></D.Hr>
-        <h2>댓글</h2>
+        <h3>댓글</h3>
         <D.CommentNotMemberWrapper>
           <D.CommentNotMemberInput
             type="text"
@@ -32,11 +31,17 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
         ></D.CommentTextarea>
         <D.CommentAttach>
           <span>{props.length}/100</span>
-          <D.CommentButton onClick={props.onClickCreateComment}>
-            등록
+          <D.CommentButton
+            onClick={
+              props.isEdit
+                ? props.onClickUpdateComment
+                : props.onClickCreateComment
+            }
+          >
+            {props.isEdit ? "수정" : "등록"}
           </D.CommentButton>
         </D.CommentAttach>
       </D.CommentWrapper>
-    </>
+    </D.Wrapper>
   );
 }

@@ -1,6 +1,7 @@
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardDetailUI from "./BoardDetail.presenter";
+import { Modal } from "antd";
 import {
   FETCH_BOARD,
   DELETE_BOARD,
@@ -29,15 +30,17 @@ export default function BoardDetail() {
 
   const onClickDeleteBoard = async () => {
     try {
-      if (confirm("정말 삭제하시겠습니까?")) {
-        await deleteBoard({
-          variables: { boardId: router.query.boardId },
-        });
-        alert("삭제되었습니다.");
-        router.push(`/boards/`);
-      }
+      await deleteBoard({
+        variables: { boardId: router.query.boardId },
+      });
+      Modal.success({
+        content: "게시물을 삭제했습니다!",
+      });
+      router.push(`/boards/`);
     } catch (error) {
-      alert(error.message);
+      Modal.error({
+        content: error.message,
+      });
     }
   };
 

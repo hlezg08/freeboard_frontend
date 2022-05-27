@@ -1,5 +1,8 @@
 import * as S from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
+import { Modal } from "antd";
+import DaumPostcode from "react-daum-postcode";
+
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <S.App>
@@ -39,7 +42,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </S.Group>
         <S.Group>
           <S.Label>내용</S.Label>
-          <S.TextLarge
+          <S.TextArea
             onChange={props.onChangeContents}
             defaultValue={props.data?.fetchBoard.contents}
             placeholder="내용을 작성해주세요."
@@ -50,11 +53,42 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <S.Group>
           <S.Label>주소</S.Label>
           <S.PostCodeGroup>
-            <S.PostCode type="text" placeholder="07250" />
-            <S.SearchBtn>우편번호 검색</S.SearchBtn>
+            <S.PostCode
+              type="text"
+              placeholder="07250"
+              value={
+                props.zipcode
+                  ? props.zipcode
+                  : props.data?.fetchBoard.boardAddress?.zipcode
+              }
+            />
+            <S.SearchBtn onClick={props.onClickModal}>
+              우편번호 검색
+            </S.SearchBtn>
+            {props.isModalVisible && (
+              <Modal
+                visible={true}
+                onOk={props.onClickModal}
+                onCancel={props.onClickModal}
+              >
+                <DaumPostcode onComplete={props.onCompleteModal} />
+              </Modal>
+            )}
           </S.PostCodeGroup>
-          <S.Text readOnly type="text" />
-          <S.Text type="text" />
+          <S.Text
+            readOnly
+            type="text"
+            value={
+              props.address
+                ? props.address
+                : props.data?.fetchBoard.boardAddress?.address
+            }
+          />
+          <S.Text
+            defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
+            onChange={props.onChangeAddressDetail}
+            type="text"
+          />
         </S.Group>
 
         <S.Group>

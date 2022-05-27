@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { IBoardWriteProps, IUpdateBoardInput } from "./BoardWrite.types";
+import { Modal } from "antd";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
@@ -16,12 +17,17 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [contents, setContents] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
 
+  const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
+
   const [errorWriter, setErrorWriter] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [errorTitle, setErrorTitle] = useState("");
   const [errorContents, setErrorContents] = useState("");
 
   const [isActive, setIsActive] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
@@ -70,6 +76,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
     setYoutubeUrl(event.target.value);
   };
+  const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
+  };
 
   const onClickCreateBoard = async () => {
     if (!writer) {
@@ -94,17 +103,25 @@ export default function BoardWrite(props: IBoardWriteProps) {
               title,
               contents,
               youtubeUrl,
+              boardAddress: {
+                zipcode,
+                address,
+                addressDetail,
+              },
             },
           },
         });
-        alert("게시글이 등록되었습니다.");
+        Modal.success({
+          content: "게시물 등록에 성공했습니다!",
+        });
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
-        alert(error.message);
+        Modal.error({
+          content: error.message,
+        });
       }
     }
   };
-
   const onClickUpdateBoard = async () => {
     try {
       const updateBoardInput: IUpdateBoardInput = {};
@@ -113,6 +130,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (contents) updateBoardInput.contents = contents;
       if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
 
+      if (zipcode || address || addressDetail) {
+        updateBoardInput.boardAddress = {};
+        if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
+        if (address) updateBoardInput.boardAddress.address = address;
+        if (addressDetail)
+          updateBoardInput.boardAddress.addressDetail = addressDetail;
+      }
+
       const result = await updateBoard({
         variables: {
           boardId: router.query.boardId,
@@ -120,13 +145,28 @@ export default function BoardWrite(props: IBoardWriteProps) {
           updateBoardInput,
         },
       });
-
-      alert("게시글이 수정되었습니다.");
+      Modal.success({
+        content: "게시물 수정에 성공했습니다!",
+      });
       router.push(`/boards/${result.data.updateBoard._id}`);
     } catch (error) {
-      alert(error.message);
+      Modal.error({
+        content: error.message,
+      });
     }
   };
+
+  const onClickModal = () => {
+    setIsModalVisible((prev) => !prev);
+  };
+
+  const onCompleteModal = (data: any) => {
+    setZipcode(data.zonecode);
+    setAddress(data.address);
+
+    setIsModalVisible((prev) => !prev);
+  };
+
   return (
     <BoardWriteUI
       errorWriter={errorWriter}
@@ -138,11 +178,18 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
       onChangeYoutubeUrl={onChangeYoutubeUrl}
+      onChangeAddressDetail={onChangeAddressDetail}
       onClickCreateBoard={onClickCreateBoard}
       onClickUpdateBoard={onClickUpdateBoard}
+      data={props.data}
       isEdit={props.isEdit}
       isActive={isActive}
-      data={props.data}
+      isModalVisible={isModalVisible}
+      onClickModal={onClickModal}
+      onCompleteModal={onCompleteModal}
+      zipcode={zipcode}
+      address={address}
+      addressDetail={addressDetail}
     />
   );
 }

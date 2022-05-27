@@ -1,10 +1,17 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+
 export const Icon = styled.img``;
+export const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
 export const CommentWrapper = styled.div`
   display: flex;
+  width: 80%;
   flex-direction: column;
-  margin: 30px;
 `;
 export const CommentComponent = styled.div`
   width: 100%;
@@ -22,27 +29,30 @@ export const CommentTextWrapper = styled.div`
 `;
 export const CommentWriterWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
+`;
+export const CommentWriter = styled.span`
+  font-weight: bold;
+  font-size: 16px;
+  padding-right: 10px;
 `;
 export const CommentContentsWrapper = styled.div`
   height: 55px;
 `;
 export const CommentRate = styled(Rate)`
   font-size: 16px;
-  margin-left: 10px;
 `;
 export const CommentDate = styled.span`
   color: #bdbdbd;
   font-size: 12px;
 `;
-export const CommentButton = styled.button`
-  width: 50px;
-  height: 35px;
-  background-color: #f9f9f9;
-  :hover {
-    cursor: pointer;
-  }
-  border-radius: 5px;
-  border: none;
-  margin-left: 5px;
+export const CommentButtonWrapper = styled.div``;
+export const CommentEditButton = styled(EditOutlined)`
+  font-size: 18px;
+  color: #bdbdbd;
+`;
+export const CommentDeleteButton = styled(DeleteOutlined)`
+  font-size: 18px;
+  color: #bdbdbd;
 `;

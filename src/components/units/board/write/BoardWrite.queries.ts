@@ -8,6 +8,11 @@ export const CREATE_BOARD = gql`
       contents
       youtubeUrl
       images
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
@@ -28,6 +33,11 @@ export const UPDATE_BOARD = gql`
       contents
       youtubeUrl
       images
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;

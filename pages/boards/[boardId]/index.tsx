@@ -5,7 +5,7 @@ export default function BoardsBoardIdPage() {
   return (
     <>
       <BoardDetail></BoardDetail>
-      <BoardCommentWrite></BoardCommentWrite>
+      <BoardCommentWrite isEdit={false}></BoardCommentWrite>
       <BoardCommentList></BoardCommentList>
     </>
   );
