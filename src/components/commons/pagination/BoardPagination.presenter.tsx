@@ -1,14 +1,17 @@
-import { PageButton, LeftIcon, RightIcon } from "./BoardPagination.styles";
-interface IBoardPaginationUIProps {
-  startPage: number;
-  lastPage: number;
-  onClickPage: (event: MouseEvent<HTMLButtonElement>) => void;
-  onClickPrevPage: () => void;
-  onClickNextPage: () => void;
-}
+import {
+  PaginationWrapper,
+  PageButton,
+  LeftIcon,
+  RightIcon,
+  DoubleLeftIcon,
+  DoubleRightIcon,
+} from "./BoardPagination.styles";
+import { IBoardPaginationUIProps } from "./BoardPagination.types";
+
 export default function BoardPaginationUI(props: IBoardPaginationUIProps) {
   return (
-    <>
+    <PaginationWrapper>
+      <DoubleLeftIcon onClick={props.onClickFirstPage} />
       <LeftIcon
         disabled={props.startPage === 1}
         onClick={props.onClickPrevPage}
@@ -22,6 +25,7 @@ export default function BoardPaginationUI(props: IBoardPaginationUIProps) {
               key={index + props.startPage}
               id={String(index + props.startPage)}
               onClick={props.onClickPage}
+              isActive={index + props.startPage === props.activedPage}
             >
               {index + props.startPage}
             </PageButton>
@@ -34,6 +38,7 @@ export default function BoardPaginationUI(props: IBoardPaginationUIProps) {
       >
         다음
       </RightIcon>
-    </>
+      <DoubleRightIcon onClick={props.onClickLastPage} />
+    </PaginationWrapper>
   );
 }

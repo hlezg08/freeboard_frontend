@@ -5,3 +5,14 @@ export const DELETE_BOARD_COMMENT = gql`
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
   }
 `;
+export const FETCH_BOARD_COMMENTS = gql`
+  query fetchBoardComments($page: Int, $boardId: ID!) {
+    fetchBoardComments(page: $page, boardId: $boardId) {
+      _id
+      writer
+      contents
+      rating
+      createdAt
+    }
+  }
+`;

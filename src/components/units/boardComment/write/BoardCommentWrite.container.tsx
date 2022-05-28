@@ -3,12 +3,16 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
 import {
-  FETCH_BOARD_COMMENTS,
   CREATE_BOARD_COMMENT,
   UPDATE_BOARD_COMMENT,
 } from "./BoardCommentWrite.queries";
-
-export default function BoardCommentWrite(props) {
+import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.queries";
+import { Modal } from "antd";
+import {
+  IBoardCommentWriteProps,
+  IUpdateBoardCommentInput,
+} from "./BoardCommentWrite.types";
+export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   const router = useRouter();
 
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
@@ -51,20 +55,23 @@ export default function BoardCommentWrite(props) {
         ],
       });
     } catch (error) {
-      alert(error.message);
+      Modal.error({
+        content: error.message,
+      });
     }
   };
 
   const onClickUpdateComment = async () => {
     try {
+      const updateBoardCommentInput: IUpdateBoardCommentInput = {};
+      if (contents) updateBoardCommentInput.contents = contents;
+      if (rating) updateBoardCommentInput.rating = rating;
+
       await updateBoardComment({
         variables: {
           boardCommentId: props.el._id,
           password,
-          updateBoardCommentInput: {
-            contents,
-            rating,
-          },
+          updateBoardCommentInput,
         },
         refetchQueries: [
           {
@@ -75,12 +82,18 @@ export default function BoardCommentWrite(props) {
       });
       props.setIsEdit(false);
     } catch (error) {
-      alert(error.message);
+      Modal.error({
+        content: error.message,
+      });
     }
   };
+
   return (
     <BoardCommentWriteUI
+      el={props.el}
+      data={props.data}
       isEdit={props.isEdit}
+      setIsEdit={props.setIsEdit}
       length={length}
       rating={rating}
       setRating={setRating}

@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 30px 0px;
 `;
 export const TableWrapper = styled.table`
   width: 80%;
@@ -33,16 +34,18 @@ export const ColumnTitle = styled.td`
   }
 `;
 export const Footer = styled.div`
-  width: 80%;
-  padding: 10px 0px;
-  display: flex;
-  justify-content: flex-end;
+  width: 100%;
+  padding-top: 30px;
+  display: inline-block;
+  position: relative;
 `;
+
 export const Button = styled.button`
+  position: absolute;
+  top: 30px;
+  right: 10%;
   width: 80px;
-  height: 45px;
-  margin: 5px;
-  padding: 10px;
+  height: 40px;
   background-color: #e7dafc;
   color: #8a4af3;
   font-size: 16px;

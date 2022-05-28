@@ -9,7 +9,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
       <D.DetailWrapper>
         <D.DetailBody>
           <D.WriterWrapper>
-            <D.Icon src="../../profile.svg"></D.Icon>
+            <D.Icon src="../../img/profile.svg"></D.Icon>
             <D.WriterText>
               <D.WriterName>{props.data?.fetchBoard.writer}</D.WriterName>
               <D.Date>
@@ -19,16 +19,20 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </D.WriterWrapper>
           <D.Hr></D.Hr>
           <D.Title>{props.data?.fetchBoard.title}</D.Title>
-          <D.ImgWrapper src={props.data?.fetchBoard.images}></D.ImgWrapper>
+          {!props.data?.fetchBoard.images && (
+            <D.ImgWrapper src={props.data?.fetchBoard.images}></D.ImgWrapper>
+          )}
           <D.Contents>{props.data?.fetchBoard.contents}</D.Contents>
-          <D.YoutubeWrapper>
-            <ReactPlayer
-              width="480px"
-              height="240px"
-              muted
-              url={props.data?.fetchBoard.youtubeUrl}
-            />
-          </D.YoutubeWrapper>
+          {props.data?.fetchBoard.youtubeUrl && (
+            <D.YoutubeWrapper>
+              <ReactPlayer
+                width="480px"
+                height="240px"
+                muted
+                url={props.data?.fetchBoard.youtubeUrl}
+              />
+            </D.YoutubeWrapper>
+          )}
           <D.ThumbWrapper>
             <D.ThumbUpWrapper>
               <D.LikeIcon onClick={props.onClickLikeBoard} />

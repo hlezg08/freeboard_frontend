@@ -44,7 +44,7 @@ export const DetailBody = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin: 30px 0px;
+  margin-top: 30px;
   padding: 30px;
   border: 1px solid lightgray;
 `;
@@ -88,14 +88,14 @@ export const ThumbDownWrapper = styled.div`
 `;
 
 export const ThumbUpText = styled.span`
-  color: #009f47;
+  color: #8a4af3;
 `;
 export const ThumbDownText = styled.span`
   color: #828282;
 `;
 export const LikeIcon = styled(LikeOutlined)`
   font-size: 24px;
-  color: #009f47;
+  color: #8a4af3;
 `;
 export const DisLikeIcon = styled(DislikeOutlined)`
   font-size: 24px;
@@ -105,7 +105,6 @@ export const ButtonWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  margin: 10px 0px;
 `;
 export const Button = styled.button`
   width: 80px;

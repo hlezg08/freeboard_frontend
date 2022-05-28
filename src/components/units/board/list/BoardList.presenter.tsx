@@ -1,6 +1,7 @@
 import * as B from "./BoardList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";
+import BoardPagination from "../../../commons/pagination/BoardPagination.container";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
@@ -34,6 +35,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
           </tbody>
         </B.TableWrapper>
         <B.Footer>
+          <BoardPagination refetch={props.refetch} />
           <B.Button onClick={props.onClickMoveToNew}>글쓰기</B.Button>
         </B.Footer>
       </B.Wrapper>

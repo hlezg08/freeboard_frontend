@@ -5,6 +5,7 @@ export interface IBoardCommentListUIProps {
   showModal: (event: MouseEvent<HTMLButtonElement>) => void;
   onClickDeleteComment: (event: MouseEvent<HTMLButtonElement>) => void;
   onChangeCommentPassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  loadComment: () => void;
 }
 export interface IBoardCommentListUIItemProps {
   key: string;

@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { FETCH_BOARDS } from "./BoardList.queries";
 import { MouseEvent } from "react";
 import BoardListUI from "./BoardList.presenter";
-import BoardPagination from "../pagination/BoardPagination.container";
 
 export default function BoardList() {
   const router = useRouter();
@@ -20,10 +19,10 @@ export default function BoardList() {
     <>
       <BoardListUI
         data={data}
+        refetch={refetch}
         onClickMoveToNew={onClickMoveToNew}
         onClickMoveToDetail={onClickMoveToDetail}
       ></BoardListUI>
-      <BoardPagination data={data} refetch={refetch} />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import LayoutBanner from "./banner";
@@ -10,7 +11,9 @@ interface ILayoutProps {
 }
 
 //const HIDDEN_HEADERS = ["/12-04-state-prev", "/12-05-modal-refactoring"];
-
+const LayoutBody = styled.div`
+  background-color: transparent;
+`;
 export default function Layout(props: ILayoutProps) {
   const router = useRouter();
 
@@ -20,7 +23,7 @@ export default function Layout(props: ILayoutProps) {
       <LayoutHeader />
       <LayoutBanner />
       <LayoutNavigation />
-      <div>{props.children}</div>
+      <LayoutBody>{props.children}</LayoutBody>
       <LayoutFooter />
     </>
   );
