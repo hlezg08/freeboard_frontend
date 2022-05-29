@@ -19,11 +19,11 @@ export interface IBoardWriteUIProps {
   errorContents: string;
   errorPassword: string;
   errorTitle: string;
-  onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+  // onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
+  // onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  // onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
+  // onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (event: ChangeEvent<HTMLElement>) => void;
   onChangeAddressDetail: (event: any) => void;
   onClickCreateBoard: () => void;
   onClickUpdateBoard: () => void;

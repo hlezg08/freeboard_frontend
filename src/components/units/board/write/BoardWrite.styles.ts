@@ -19,21 +19,18 @@ export const Body = styled.div`
   padding: 30px;
   border: 1px solid lightgray;
 `;
-
 export const WriterGroup = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
-
 export const Group = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 10px;
 `;
-
 export const Label = styled.span`
   font-size: 13pt;
   padding: 10px 0px;
@@ -44,17 +41,24 @@ export const Text = styled.input`
   padding: 10px;
   border-width: 1px;
 `;
+export const AddressText = styled.input`
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  border-width: 1px;
+  margin-bottom: 10px;
+`;
 export const TextArea = styled.textarea`
   height: 300px;
   padding: 10px;
 `;
-export const PostCode = styled.input`
+export const ZipCode = styled.input`
   width: 80px;
   height: 45px;
   text-align: center;
   border-width: 1px;
 `;
-export const PostCodeGroup = styled.div`
+export const ZipCodeGroup = styled.div`
   display: flex;
   padding-bottom: 10px;
 `;

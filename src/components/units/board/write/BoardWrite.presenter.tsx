@@ -12,8 +12,9 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <S.Group>
             <S.Label>작성자</S.Label>
             <S.Text
+              name="writer"
               type="text"
-              onChange={props.onChangeWriter}
+              onChange={props.onChange}
               defaultValue={props.data?.fetchBoard.writer}
               placeholder="이름을 적어주세요."
             />
@@ -22,8 +23,9 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <S.Group>
             <S.Label>비밀번호</S.Label>
             <S.Text
+              name="password"
               type="password"
-              onChange={props.onChangePassword}
+              onChange={props.onChange}
               placeholder="비밀번호를 입력해주세요."
             />
             <S.Error>{props.errorPassword}</S.Error>
@@ -33,8 +35,9 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <S.Group>
           <S.Label>제목</S.Label>
           <S.Text
+            name="title"
             type="text"
-            onChange={props.onChangeTitle}
+            onChange={props.onChange}
             defaultValue={props.data?.fetchBoard.title}
             placeholder="제목을 작성해주세요."
           />
@@ -43,7 +46,8 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <S.Group>
           <S.Label>내용</S.Label>
           <S.TextArea
-            onChange={props.onChangeContents}
+            name="contents"
+            onChange={props.onChange}
             defaultValue={props.data?.fetchBoard.contents}
             placeholder="내용을 작성해주세요."
           />
@@ -52,8 +56,8 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
 
         <S.Group>
           <S.Label>주소</S.Label>
-          <S.PostCodeGroup>
-            <S.PostCode
+          <S.ZipCodeGroup>
+            <S.ZipCode
               type="text"
               placeholder="07250"
               value={
@@ -74,8 +78,8 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
                 <DaumPostcode onComplete={props.onCompleteModal} />
               </Modal>
             )}
-          </S.PostCodeGroup>
-          <S.Text
+          </S.ZipCodeGroup>
+          <S.AddressText
             readOnly
             type="text"
             value={
@@ -84,7 +88,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
                 : props.data?.fetchBoard.boardAddress?.address
             }
           />
-          <S.Text
+          <S.AddressText
             defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
             onChange={props.onChangeAddressDetail}
             type="text"
@@ -94,7 +98,8 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <S.Group>
           <S.Label>유튜브</S.Label>
           <S.Text
-            onChange={props.onChangeYoutubeUrl}
+            name="youtubeUrl"
+            onChange={props.onChange}
             defaultValue={props.data?.fetchBoard.youtubeUrl}
             type="text"
             placeholder="링크를 복사해주세요."

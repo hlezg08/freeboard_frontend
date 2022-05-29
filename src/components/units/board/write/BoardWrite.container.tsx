@@ -11,15 +11,32 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const [writer, setWriter] = useState("");
-  const [password, setPassword] = useState("");
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
-  const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [inputs, setInputs] = useState({
+    writer: "",
+    password: "",
+    title: "",
+    contents: "",
+    youtubeUrl: "",
+  });
+  const { writer, password, title, contents, youtubeUrl } = inputs;
+
+  // const [writer, setWriter] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [contents, setContents] = useState("");
+  // const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+
+  // const [errors, setErrors] = useState({
+  //   writer: "",
+  //   password: "",
+  //   title: "",
+  //   contents: "",
+  // });
+  // const { errorWriter, errorPassword, errorTitle, errorContents } = errors;
 
   const [errorWriter, setErrorWriter] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
@@ -29,53 +46,73 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [isActive, setIsActive] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
-    setWriter(event.target.value);
-    if (event.target.value !== "") {
-      setErrorWriter("");
+  const onChange = (event: ChangeEvent<HTMLElement>) => {
+    const { value, name } = event.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+    if (value !== "") {
+      if (name === "writer") setErrorWriter("");
+      if (name === "password") setErrorPassword("");
+      if (name === "title") setErrorTitle("");
+      if (name === "contents") setErrorContents("");
     }
-    if (event.target.value && password && title && contents) {
+    //한 글자만 들어와도 true로 변하도록 보완하기
+    if (writer && password && title && contents) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
   };
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    if (event.target.value !== "") {
-      setErrorPassword("");
-    }
-    if (writer && event.target.value && title && contents) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
-  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
-    if (event.target.value !== "") {
-      setErrorTitle("");
-    }
-    if (writer && password && event.target.value && contents) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
-  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setContents(event.target.value);
-    if (event.target.value !== "") {
-      setErrorContents("");
-    }
-    if (writer && password && title && event.target.value) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
-  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
-    setYoutubeUrl(event.target.value);
-  };
+
+  // const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setWriter(event.target.value);
+  //   if (event.target.value !== "") {
+  //     setErrorWriter("");
+  //   }
+  //   if (event.target.value && password && title && contents) {
+  //     setIsActive(true);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // };
+  // const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setPassword(event.target.value);
+  //   if (event.target.value !== "") {
+  //     setErrorPassword("");
+  //   }
+  //   if (writer && event.target.value && title && contents) {
+  //     setIsActive(true);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // };
+  // const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setTitle(event.target.value);
+  //   if (event.target.value !== "") {
+  //     setErrorTitle("");
+  //   }
+  //   if (writer && password && event.target.value && contents) {
+  //     setIsActive(true);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // };
+  // const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  //   setContents(event.target.value);
+  //   if (event.target.value !== "") {
+  //     setErrorContents("");
+  //   }
+  //   if (writer && password && title && event.target.value) {
+  //     setIsActive(true);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // };
+  // const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setYoutubeUrl(event.target.value);
+  // };
   const onChangeAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
     setAddressDetail(event.target.value);
   };
@@ -170,14 +207,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
   return (
     <BoardWriteUI
       errorWriter={errorWriter}
-      errorContents={errorContents}
       errorPassword={errorPassword}
       errorTitle={errorTitle}
-      onChangeWriter={onChangeWriter}
-      onChangePassword={onChangePassword}
-      onChangeTitle={onChangeTitle}
-      onChangeContents={onChangeContents}
-      onChangeYoutubeUrl={onChangeYoutubeUrl}
+      errorContents={errorContents}
+      onChange={onChange}
       onChangeAddressDetail={onChangeAddressDetail}
       onClickCreateBoard={onClickCreateBoard}
       onClickUpdateBoard={onClickUpdateBoard}
