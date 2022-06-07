@@ -9,7 +9,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
       <D.DetailWrapper>
         <D.DetailBody>
           <D.WriterWrapper>
-            <D.Icon src="../../img/profile.svg"></D.Icon>
+            <D.Icon src="../../icons/ic-profile.svg"></D.Icon>
             <D.WriterText>
               <D.WriterName>{props.data?.fetchBoard.writer}</D.WriterName>
               <D.Date>
@@ -19,10 +19,22 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </D.WriterWrapper>
           <D.Hr></D.Hr>
           <D.Title>{props.data?.fetchBoard.title}</D.Title>
-          {!props.data?.fetchBoard.images && (
-            <D.ImgWrapper src={props.data?.fetchBoard.images}></D.ImgWrapper>
-          )}
           <D.Contents>{props.data?.fetchBoard.contents}</D.Contents>
+
+          <D.ImgWrapper>
+            {props.data?.fetchBoard.images.map((el: any, index: number) => {
+              return (
+                // 배열 요소 중 빈값이 아니면 이미지 보여주기
+                el && (
+                  <D.Img
+                    key={index}
+                    src={`https://storage.googleapis.com/${el}`}
+                  />
+                )
+              );
+            })}
+          </D.ImgWrapper>
+
           {props.data?.fetchBoard.youtubeUrl && (
             <D.YoutubeWrapper>
               <ReactPlayer
@@ -33,6 +45,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
               />
             </D.YoutubeWrapper>
           )}
+
           <D.ThumbWrapper>
             <D.ThumbUpWrapper>
               <D.LikeIcon onClick={props.onClickLikeBoard} />

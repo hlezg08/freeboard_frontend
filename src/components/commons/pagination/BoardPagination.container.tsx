@@ -41,6 +41,7 @@ export default function BoardPagination(props: IBoardPaginationProps) {
     props.refetch({ page: lastPage });
     setActivedPage(lastPage);
   };
+
   return (
     <BoardPaginationUI
       activedPage={activedPage}

@@ -59,9 +59,11 @@ export default function LayoutBanner() {
     dots: true,
     fade: true,
     infinite: true,
-    speed: 2000,
+    speed: 1500,
     slidesTsoShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoSpeed: 1500,
     prevArrow: <Prev />,
     nextArrow: <Next />,
   };
@@ -69,16 +71,16 @@ export default function LayoutBanner() {
     <Wrapper>
       <MySlider {...settings}>
         <div>
-          <SliderImg src={"./img/carousel-01.png"} />
+          <SliderImg src={"../../images/carousel-01.png"} />
         </div>
         <div>
-          <SliderImg src={"./img/carousel-02.png"} />
+          <SliderImg src={"../../images/carousel-02.png"} />
         </div>
         <div>
-          <SliderImg src={"./img/carousel-03.png"} />
+          <SliderImg src={"../../images/carousel-03.png"} />
         </div>
         <div>
-          <SliderImg src={"./img/carousel-04.png"} />
+          <SliderImg src={"../../images/carousel-04.png"} />
         </div>
       </MySlider>
     </Wrapper>

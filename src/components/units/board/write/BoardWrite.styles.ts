@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { ISubmitBtnProps } from "./BoardWrite.types";
-export const App = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,13 +19,13 @@ export const Body = styled.div`
   padding: 30px;
   border: 1px solid lightgray;
 `;
-export const WriterGroup = styled.div`
+export const WriterWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
-export const Group = styled.div`
+export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -35,22 +35,23 @@ export const Label = styled.span`
   font-size: 13pt;
   padding: 10px 0px;
 `;
-export const Text = styled.input`
+export const Input = styled.input`
   width: 100%;
   height: 45px;
   padding: 10px;
   border-width: 1px;
 `;
-export const AddressText = styled.input`
+export const AddressInput = styled.input`
   width: 100%;
   height: 45px;
   padding: 10px;
   border-width: 1px;
   margin-bottom: 10px;
 `;
-export const TextArea = styled.textarea`
+export const ContentsInput = styled.textarea`
   height: 300px;
   padding: 10px;
+  resize: none;
 `;
 export const ZipCode = styled.input`
   width: 80px;
@@ -58,11 +59,11 @@ export const ZipCode = styled.input`
   text-align: center;
   border-width: 1px;
 `;
-export const ZipCodeGroup = styled.div`
+export const ZipCodeWrapper = styled.div`
   display: flex;
   padding-bottom: 10px;
 `;
-export const SearchBtn = styled.button`
+export const SearchButton = styled.button`
   background-color: black;
   color: white;
   width: 100px;
@@ -71,22 +72,10 @@ export const SearchBtn = styled.button`
   border: none;
   border-radius: 5px;
 `;
-export const PhotoGroup = styled.div`
+export const ImageWrapper = styled.div`
   display: flex;
 `;
-export const Photo = styled.div`
-  width: 78px;
-  height: 78px;
-  background-color: lightgray;
-  border: none;
-  margin-right: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-`;
-
-export const RadioGroup = styled.div`
+export const RadioWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -98,7 +87,7 @@ export const RadioLabel = styled.label`
   font-size: 13pt;
   padding: 0px 5px;
 `;
-export const SubmitGroup = styled.div`
+export const SubmitWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -111,9 +100,9 @@ export const SubmitButton = styled.button`
   height: 45px;
   font-size: 16px;
   background-color: ${(props: ISubmitBtnProps) =>
-    props.isActive ? "#e7dafc" : "#f9f9f9"};
+    props.isActive ? "#faeae7" : "#f9f9f9"};
   border-radius: 5px;
-  color: ${(props: ISubmitBtnProps) => (props.isActive ? "#8a4af3" : "gray")};
+  color: ${(props: ISubmitBtnProps) => (props.isActive ? "#e9998a" : "gray")};
   :hover {
     cursor: pointer;
   }

@@ -16,7 +16,7 @@ export const PageButton = styled.button`
   border: none;
   border-radius: 50%;
   background-color: transparent;
-  color: ${(props) => props.isActive && "#8a4af3"};
+  color: ${(props) => props.isActive && "#e9998a"};
   font-weight: ${(props) => props.isActive && "bold"};
   :hover {
     cursor: pointer;
@@ -27,22 +27,22 @@ export const DoubleLeftIcon = styled(DoubleLeftOutlined)`
   font-size: 18px;
   border-radius: 50%;
   padding: 10px;
-  color: #8a4af3;
+  color: #e9998a;
   :hover {
     cursor: pointer;
   }
-  background-color: ${(props) => (props.disabled ? "lightgray" : "#e7dafc")};
+  background-color: ${(props) => (props.disabled ? "lightgray" : "#faeae7")};
 `;
 export const LeftIcon = styled(LeftOutlined)`
   font-size: 18px;
   border-radius: 50%;
   padding: 10px;
   margin: 0px 10px;
-  color: #8a4af3;
+  color: #e9998a;
   :hover {
     cursor: pointer;
   }
-  background-color: ${(props) => (props.disabled ? "lightgray" : "#e7dafc")};
+  background-color: ${(props) => (props.disabled ? "#e2dbda" : "#faeae7")};
 `;
 
 export const RightIcon = styled(RightOutlined)`
@@ -50,19 +50,19 @@ export const RightIcon = styled(RightOutlined)`
   border-radius: 50%;
   padding: 10px;
   margin: 0px 10px;
-  color: #8a4af3;
+  color: #e9998a;
   :hover {
     cursor: pointer;
   }
-  background-color: ${(props) => (props.disabled ? "lightgray" : "#e7dafc")};
+  background-color: ${(props) => (props.disabled ? "#e2dbda" : "#faeae7")};
 `;
 export const DoubleRightIcon = styled(DoubleRightOutlined)`
   font-size: 18px;
   border-radius: 50%;
   padding: 10px;
-  color: #8a4af3;
+  color: #e9998a;
   :hover {
     cursor: pointer;
   }
-  background-color: ${(props) => (props.disabled ? "lightgray" : "#e7dafc")};
+  background-color: ${(props) => (props.disabled ? "lightgray" : "#faeae7")};
 `;

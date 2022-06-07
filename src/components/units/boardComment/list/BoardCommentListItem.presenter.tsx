@@ -1,5 +1,5 @@
 import { getDateTime } from "../../../../commons/libraries/utils";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
 import BoardCommentWrite from "../write/BoardCommentWrite.container";
 import * as I from "./BoardCommentListItem.styles";
@@ -13,11 +13,19 @@ export default function BoardCommentListUIItem(
     setIsEdit(true);
   };
 
+  const inputRef = useRef(null);
+
+  // 한번 focus 됐다가 사라진다..
+  useEffect(() => {
+    inputRef.current?.focus();
+    console.log(inputRef.current);
+  });
+
   return (
     <>
       {!isEdit && (
         <I.CommentItemWrapper>
-          <I.Icon src="../../img/profile.svg" />
+          <I.Icon src="../../icons/ic-profile.svg" />
           <I.CommentTextWrapper>
             <I.CommentWriterWrapper>
               {/* 댓글 작성자, 별점 */}
@@ -41,22 +49,22 @@ export default function BoardCommentListUIItem(
                   onClick={props.showModal}
                 ></I.CommentDeleteButton>
               </I.CommentButtonWrapper>
-
-              {/* 비밀번호 입력 모달창 */}
-              {props.isModalVisible && (
-                <Modal
-                  visible={true}
-                  onOk={props.onClickDeleteComment}
-                  onCancel={props.showModal}
-                >
-                  비밀번호 입력:
-                  <input
-                    type="password"
-                    onChange={props.onChangeCommentPassword}
-                  />
-                </Modal>
-              )}
             </I.CommentWriterWrapper>
+
+            {props.isModalVisible && (
+              <Modal
+                visible={true}
+                onOk={props.onClickDeleteComment}
+                onCancel={props.showModal}
+              >
+                비밀번호 입력:
+                <input
+                  ref={inputRef}
+                  type="password"
+                  onChange={props.onChangeCommentPassword}
+                />
+              </Modal>
+            )}
 
             {/* 댓글 내용, 작성 날짜 */}
             <I.CommentContentsWrapper>
@@ -68,7 +76,6 @@ export default function BoardCommentListUIItem(
       )}
       {isEdit && (
         <BoardCommentWrite
-          data={props.data}
           isEdit={true}
           setIsEdit={setIsEdit}
           el={props.el}

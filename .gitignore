@@ -30,3 +30,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# weather including API KEY
+src/components/units/weather

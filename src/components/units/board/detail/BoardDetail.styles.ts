@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import { style } from "@mui/system";
 
 export const DetailWrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ export const DetailWrapper = styled.div`
 export const WriterWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px 0px;
+  padding: 15px 0px;
 `;
 
 export const WriterText = styled.div`
@@ -20,13 +21,12 @@ export const WriterText = styled.div`
   flex-direction: column;
   padding-left: 15px;
 `;
-
 export const WriterName = styled.span`
   font-size: 24px;
 `;
 
 export const Date = styled.span`
-  font-size: 16px;
+  font-size: 14px;
   color: #828282;
 `;
 export const IconWrapper = styled.div`
@@ -36,8 +36,10 @@ export const IconWrapper = styled.div`
 `;
 export const Icon = styled.img``;
 
-export const Hr = styled.hr`
+export const Hr = styled.div`
   width: 100%;
+  height: 1px;
+  border-top: 1px solid lightgray;
 `;
 
 export const DetailBody = styled.div`
@@ -45,21 +47,27 @@ export const DetailBody = styled.div`
   flex-direction: column;
   width: 80%;
   margin-top: 30px;
-  padding: 30px;
-  border: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 `;
 export const Title = styled.h1`
   display: flex;
   padding-top: 30px;
 `;
-export const ImgWrapper = styled.img`
+export const ImgWrapper = styled.div`
   width: 100%;
-  height: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+`;
+export const Img = styled.img`
+  width: 100%;
+  height: auto;
 `;
 
 export const Contents = styled.p`
   width: 100%;
-  height: 240px;
+  height: auto;
 `;
 
 export const YoutubeWrapper = styled.div`
@@ -88,14 +96,14 @@ export const ThumbDownWrapper = styled.div`
 `;
 
 export const ThumbUpText = styled.span`
-  color: #8a4af3;
+  color: #e99988;
 `;
 export const ThumbDownText = styled.span`
   color: #828282;
 `;
 export const LikeIcon = styled(LikeOutlined)`
   font-size: 24px;
-  color: #8a4af3;
+  color: #e99988;
 `;
 export const DisLikeIcon = styled(DislikeOutlined)`
   font-size: 24px;
@@ -105,13 +113,13 @@ export const ButtonWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  padding-top: 20px;
 `;
 export const Button = styled.button`
   width: 80px;
   height: 45px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  border: none;
+  background-color: white;
+  border: 1px solid lightgray;
   margin: 10px;
   font-size: 16px;
   :hover {

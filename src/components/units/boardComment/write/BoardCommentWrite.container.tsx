@@ -62,6 +62,12 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   };
 
   const onClickUpdateComment = async () => {
+    if (!password) {
+      Modal.error({
+        content: "비밀번호를 입력해주세요.",
+      });
+      return;
+    }
     try {
       const updateBoardCommentInput: IUpdateBoardCommentInput = {};
       if (contents) updateBoardCommentInput.contents = contents;
@@ -91,7 +97,6 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   return (
     <BoardCommentWriteUI
       el={props.el}
-      data={props.data}
       isEdit={props.isEdit}
       setIsEdit={props.setIsEdit}
       length={length}

@@ -10,19 +10,24 @@ interface ILayoutProps {
   children: ReactNode;
 }
 
-//const HIDDEN_HEADERS = ["/12-04-state-prev", "/12-05-modal-refactoring"];
+const HIDDEN_HEADERS = ["/"];
 const LayoutBody = styled.div`
-  background-color: transparent;
+  width: 100%;
+  background-color: white;
 `;
+
 export default function Layout(props: ILayoutProps) {
   const router = useRouter();
-
-  //const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
+  const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
   return (
     <>
       <LayoutHeader />
-      <LayoutBanner />
-      <LayoutNavigation />
+      {!isHiddenHeader && (
+        <div>
+          <LayoutBanner />
+          <LayoutNavigation />
+        </div>
+      )}
       <LayoutBody>{props.children}</LayoutBody>
       <LayoutFooter />
     </>

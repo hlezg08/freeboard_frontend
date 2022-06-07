@@ -4,7 +4,6 @@ export interface IBoardWriteProps {
   data?: any;
 }
 export interface IUpdateBoardInput {
-  writer?: string;
   title?: string;
   contents?: string;
   youtubeUrl?: string;
@@ -13,29 +12,28 @@ export interface IUpdateBoardInput {
     address?: string;
     addressDetail?: string;
   };
+  images?: Array<string>;
 }
 export interface IBoardWriteUIProps {
+  imageUrls: Array<string>;
   errorWriter: string;
   errorContents: string;
   errorPassword: string;
   errorTitle: string;
-  // onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
-  // onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  // onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
-  // onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  onChange: (event: ChangeEvent<HTMLElement>) => void;
-  onChangeAddressDetail: (event: any) => void;
+  onChangeInputs: (event: ChangeEvent<HTMLElement>) => void;
+  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeFiles: (fileUrl: string, index: number) => void;
   onClickCreateBoard: () => void;
   onClickUpdateBoard: () => void;
+  onClickSearchAddress: () => void;
+  onCompleteSearchAddress: (data: any) => void;
   data?: any;
   isEdit: boolean;
   isActive: boolean;
   isModalVisible: boolean;
-  onClickModal: () => void;
-  onCompleteModal: (data: any) => void;
-  zipcode: string;
-  address: string;
-  addressDetail: string;
+  zipcode?: string;
+  address?: string;
+  addressDetail?: string;
 }
 
 export interface ISubmitBtnProps {
