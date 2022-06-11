@@ -2,6 +2,7 @@ import { getDateTime } from "../../../../commons/libraries/utils";
 import ReactPlayer from "react-player";
 import * as D from "./BoardDetail.styles";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
+import ButtonWhite from "../../../commons/buttons/white";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
@@ -27,6 +28,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
                 // 배열 요소 중 빈값이 아니면 이미지 보여주기
                 el && (
                   <D.Img
+                    onError={(event) => (event.target.style.display = "none")}
                     key={index}
                     src={`https://storage.googleapis.com/${el}`}
                   />
@@ -35,14 +37,17 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
             })}
           </D.ImgWrapper>
 
+          {/* youtubeUrl이 비어있지 않고 재생 가능하면 컴포넌트 보이기 */}
           {props.data?.fetchBoard.youtubeUrl && (
             <D.YoutubeWrapper>
-              <ReactPlayer
-                width="480px"
-                height="240px"
-                muted
-                url={props.data?.fetchBoard.youtubeUrl}
-              />
+              {ReactPlayer.canPlay(props.data?.fetchBoard.youtubeUrl) && (
+                <ReactPlayer
+                  width="480px"
+                  height="240px"
+                  muted
+                  url={props.data?.fetchBoard.youtubeUrl}
+                />
+              )}
             </D.YoutubeWrapper>
           )}
 
@@ -62,9 +67,9 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
       </D.DetailWrapper>
 
       <D.ButtonWrapper>
-        <D.Button onClick={props.onClickListBoard}>목록</D.Button>
-        <D.Button onClick={props.onClickUpdateBoard}>수정</D.Button>
-        <D.Button onClick={props.onClickDeleteBoard}>삭제</D.Button>
+        <ButtonWhite title="목록" onClick={props.onClickListBoard} />
+        <ButtonWhite title="수정" onClick={props.onClickUpdateBoard} />
+        <ButtonWhite title="삭제" onClick={props.onClickDeleteBoard} />
       </D.ButtonWrapper>
     </>
   );

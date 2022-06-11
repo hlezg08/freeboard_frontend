@@ -3,20 +3,18 @@ import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";
 import BoardPagination from "../../../commons/pagination/BoardPagination.container";
 import { v4 as uuidv4 } from "uuid";
+import Searchbar from "../../../commons/searchbar/Searchbar.container";
+import ButtonPink from "../../../commons/buttons/pink";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <>
       <B.Wrapper>
-        <B.SearchWrapper>
-          <B.SearchIcon src="../../icons/ic-search.svg" />
-          <B.SearchInput
-            type="text"
-            onChange={props.onChangeSearch}
-            placeholder="제목을 검색해주세요."
-          />
-        </B.SearchWrapper>
-        <h1>리뷰게시판</h1>
+        <Searchbar
+          refetch={props.refetch}
+          refetchBoardsCount={props.refetchBoardsCount}
+          onChangeKeyword={props.onChangeKeyword}
+        />
         <B.TableWrapper>
           <B.TableHead>
             <B.Row>
@@ -29,7 +27,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
           <B.TableBody>
             {props.data?.fetchBoards.map((e: any, idx: number) => (
               <B.Row key={e._id}>
-                <B.Column width="10%">{idx + 1}</B.Column>
+                <B.Column width="10%">{e._id.slice(-4)}</B.Column>
                 <B.ColumnTitle
                   id={e._id}
                   width="50%"
@@ -54,8 +52,10 @@ export default function BoardListUI(props: IBoardListUIProps) {
           </B.TableBody>
         </B.TableWrapper>
         <B.Footer>
-          <BoardPagination refetch={props.refetch} />
-          <B.Button onClick={props.onClickMoveToNew}>글쓰기</B.Button>
+          <BoardPagination refetch={props.refetch} count={props.count} />
+          <B.ButtonWrapper>
+            <ButtonPink title="글쓰기" onClick={props.onClickMoveToNew} />
+          </B.ButtonWrapper>
         </B.Footer>
       </B.Wrapper>
     </>

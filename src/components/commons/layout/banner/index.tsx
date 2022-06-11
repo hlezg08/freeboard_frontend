@@ -1,86 +1,31 @@
-import styled from "@emotion/styled";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-
-const Wrapper = styled.div`
-  height: 350px;
-  display: flex;
-  justify-content: center;
-`;
-const MySlider = styled(Slider)`
-  width: 90%;
-  height: 320px;
-`;
-const SliderImg = styled.img`
-  width: 100%;
-  height: 350px;
-`;
-function Prev(props) {
-  const { onClick } = props;
-  return (
-    <LeftOutlined
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "-40px",
-        display: "block",
-        fontSize: "40px",
-        background: "transparent",
-        cursor: "pointer",
-        transition: "200ms ease-in-out",
-      }}
-      onClick={onClick}
-    />
-  );
-}
-function Next(props) {
-  const { onClick } = props;
-  return (
-    <RightOutlined
-      style={{
-        position: "absolute",
-        top: "50%",
-        right: "-40px",
-        display: "block",
-        fontSize: "40px",
-        background: "transparent",
-        cursor: "pointer",
-        transition: "200ms ease-in-out",
-      }}
-      onClick={onClick}
-    />
-  );
-}
+import { Wrapper, MySlider, SliderImg } from "./LayoutBanner.styles";
 
 export default function LayoutBanner() {
   const settings = {
     dots: true,
-    fade: true,
     infinite: true,
-    speed: 1500,
-    slidesTsoShow: 1,
+    speed: 500,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoSpeed: 1500,
-    prevArrow: <Prev />,
-    nextArrow: <Next />,
+    autoSpeed: 2000,
   };
   return (
     <Wrapper>
       <MySlider {...settings}>
         <div>
-          <SliderImg src={"../../images/carousel-01.png"} />
+          <SliderImg src={"../../images/carousel-cat-01.jpeg"} />
         </div>
         <div>
-          <SliderImg src={"../../images/carousel-02.png"} />
+          <SliderImg src={"../../images/carousel-cat-02.jpeg"} />
         </div>
         <div>
-          <SliderImg src={"../../images/carousel-03.png"} />
+          <SliderImg src={"../../images/carousel-cat-03.jpeg"} />
         </div>
         <div>
-          <SliderImg src={"../../images/carousel-04.png"} />
+          <SliderImg src={"../../images/carousel-cat-04.jpeg"} />
         </div>
       </MySlider>
     </Wrapper>

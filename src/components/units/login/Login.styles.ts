@@ -7,37 +7,16 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const LoginHeader = styled.h1``;
-export const LoginBody = styled.div`
+export const Header = styled.h1``;
+export const Form = styled.form`
   width: 500px;
-  height: 550px;
+  height: auto;
 `;
-export const LoginInputWrapper = styled.div`
+export const InputWrapper = styled.div`
   padding: 10px 0px;
 `;
-export const LoginTitle = styled.span``;
-export const LoginInput = styled.input`
-  border: none;
-  width: 100%;
-  height: 45px;
-  margin-top: 5px;
-  border-bottom: 1px solid lightgray;
-  :focus {
-    outline: none;
-  }
-`;
+export const InputTitle = styled.span``;
 
-export const SubmitButton = styled.button`
-  width: 100%;
-  height: 45px;
-  border: none;
-  background-color: #333333;
-  color: white;
-  margin-top: 30px;
-  :hover {
-    cursor: pointer;
-  }
-`;
 export const Checkbox = styled.input`
   width: 20px;
   height: 20px;
@@ -48,8 +27,13 @@ export const LoginStatusWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-export const LoginItemWrapper = styled.div`
+export const LoginFooterWrapper = styled.div`
   padding: 15px 0px;
+  display: flex;
+  justify-content: center;
+`;
+export const ButtonWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
 `;

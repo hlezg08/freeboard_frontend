@@ -3,7 +3,9 @@ export interface IBoardListUIProps {
   keyword?: string;
   data?: any;
   refetch?: any;
-  onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+  refetchBoardsCount?: any;
+  count?: any;
+  onChangeKeyword: (value: string) => void;
   onClickMoveToNew: () => void;
   onClickMoveToDetail: (event: MouseEvent<HTMLElement>) => void;
 }

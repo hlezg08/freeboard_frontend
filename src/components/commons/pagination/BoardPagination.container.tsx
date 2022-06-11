@@ -1,14 +1,10 @@
 import BoardPaginationUI from "./BoardPagination.presenter";
-import { useQuery } from "@apollo/client";
 import { useState, MouseEvent } from "react";
-import { FETCH_BOARDS_COUNT } from "./BoardPagination.queries";
 import { IBoardPaginationProps } from "./BoardPagination.types";
 
 export default function BoardPagination(props: IBoardPaginationProps) {
-  const { data: countData } = useQuery(FETCH_BOARDS_COUNT);
-
   const [startPage, setStartPage] = useState(1);
-  const lastPage = Math.ceil(countData?.fetchBoardsCount / 10);
+  const lastPage = props.count ? Math.ceil(props.count / 10) : 0;
   const [activedPage, setActivedPage] = useState(1);
 
   const onClickPage = (event: MouseEvent<HTMLButtonElement>) => {

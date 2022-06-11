@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
-import { style } from "@mui/system";
 
 export const DetailWrapper = styled.div`
   display: flex;
@@ -79,8 +78,7 @@ export const YoutubeWrapper = styled.div`
 export const ThumbWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 60px;
-  padding-bottom: 30px;
+  padding: 30px 0px;
 `;
 export const ThumbUpWrapper = styled.div`
   display: flex;
@@ -114,15 +112,4 @@ export const ButtonWrapper = styled.div`
   width: 100%;
   justify-content: center;
   padding-top: 20px;
-`;
-export const Button = styled.button`
-  width: 80px;
-  height: 45px;
-  background-color: white;
-  border: 1px solid lightgray;
-  margin: 10px;
-  font-size: 16px;
-  :hover {
-    cursor: pointer;
-  }
 `;

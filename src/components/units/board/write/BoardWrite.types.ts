@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react";
 export interface IBoardWriteProps {
   isEdit: boolean;
   data?: any;
@@ -15,16 +14,13 @@ export interface IUpdateBoardInput {
   images?: Array<string>;
 }
 export interface IBoardWriteUIProps {
+  register?: any;
+  handleSubmit?: any;
+  formState?: any;
   imageUrls: Array<string>;
-  errorWriter: string;
-  errorContents: string;
-  errorPassword: string;
-  errorTitle: string;
-  onChangeInputs: (event: ChangeEvent<HTMLElement>) => void;
-  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeFiles: (fileUrl: string, index: number) => void;
-  onClickCreateBoard: () => void;
-  onClickUpdateBoard: () => void;
+  onClickCreateBoard: (data: any) => void;
+  onClickUpdateBoard: (data: any) => void;
   onClickSearchAddress: () => void;
   onCompleteSearchAddress: (data: any) => void;
   data?: any;
@@ -34,8 +30,4 @@ export interface IBoardWriteUIProps {
   zipcode?: string;
   address?: string;
   addressDetail?: string;
-}
-
-export interface ISubmitBtnProps {
-  isActive: boolean;
 }

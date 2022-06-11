@@ -25,18 +25,7 @@ export const SubTitle = styled.span`
   font-size: 16px;
   padding: 10px 0px;
 `;
-export const ClickBoardsButton = styled.button`
-  width: 100px;
-  height: 45px;
-  font-size: 18px;
-  border: none;
-  background-color: #e9998a;
-  color: white;
-  border-radius: 10px;
-  :hover {
-    cursor: pointer;
-  }
-`;
+
 export const ImageWrapper = styled.div`
   width: 60%;
   margin: 0 auto;

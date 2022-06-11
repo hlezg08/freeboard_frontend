@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
-import WeatherPage from "../../src/components/units/weather/Weather";
+import OpenApiPage from "../../src/components/units/openapi/OpenApi";
 import { MyMenuWrapper } from "./styles";
+
 export default function MyMenuPage() {
   const url = "https://cataas.com/cat/cute";
   // useEffect(() => {
@@ -10,7 +10,7 @@ export default function MyMenuPage() {
   // });
   return (
     <MyMenuWrapper url={url}>
-      <WeatherPage />
+      <OpenApiPage />
     </MyMenuWrapper>
   );
 }

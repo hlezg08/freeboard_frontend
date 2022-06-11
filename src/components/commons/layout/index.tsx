@@ -11,6 +11,7 @@ interface ILayoutProps {
 }
 
 const HIDDEN_HEADERS = ["/"];
+const HIDDEN_BANNERS = ["/", "/login"];
 const LayoutBody = styled.div`
   width: 100%;
   background-color: white;

@@ -11,7 +11,10 @@ import { IBoardPaginationUIProps } from "./BoardPagination.types";
 export default function BoardPaginationUI(props: IBoardPaginationUIProps) {
   return (
     <PaginationWrapper>
-      <DoubleLeftIcon onClick={props.onClickFirstPage} />
+      <DoubleLeftIcon
+        disabled={props.startPage === 1}
+        onClick={props.onClickFirstPage}
+      />
       <LeftIcon
         disabled={props.startPage === 1}
         onClick={props.onClickPrevPage}
@@ -38,7 +41,10 @@ export default function BoardPaginationUI(props: IBoardPaginationUIProps) {
       >
         다음
       </RightIcon>
-      <DoubleRightIcon onClick={props.onClickLastPage} />
+      <DoubleRightIcon
+        disabled={props.activedPage === props.lastPage}
+        onClick={props.onClickLastPage}
+      />
     </PaginationWrapper>
   );
 }
