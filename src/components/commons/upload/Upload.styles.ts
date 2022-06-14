@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 export const ImageInput = styled.input`
   display: none;
 `;
-export const ImageSelectButton = styled.div`
+export const ImageSelectButton = styled.button`
   width: 78px;
   height: 78px;
   background-color: lightgray;

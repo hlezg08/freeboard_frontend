@@ -20,14 +20,7 @@ export default function BoardDetail() {
   const [likeBoard] = useMutation(LIKE_BOARD);
   const [dislikeBoard] = useMutation(DISLIKE_BOARD);
 
-  const onClickListBoard = () => {
-    router.push(`/boards/`);
-  };
-
-  const onClickUpdateBoard = () => {
-    router.push(`${router.query.boardId}/edit`);
-  };
-
+  // 게시글 삭제는 custom hooks로 안바꾸고 냅둠
   const onClickDeleteBoard = async () => {
     try {
       await deleteBoard({
@@ -71,8 +64,6 @@ export default function BoardDetail() {
   return (
     <BoardDetailUI
       data={data}
-      onClickListBoard={onClickListBoard}
-      onClickUpdateBoard={onClickUpdateBoard}
       onClickDeleteBoard={onClickDeleteBoard}
       onClickLikeBoard={onClickLikeBoard}
       onClickDislikeBoard={onClickDislikeBoard}

@@ -3,8 +3,10 @@ import ReactPlayer from "react-player";
 import * as D from "./BoardDetail.styles";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
 import ButtonWhite from "../../../commons/buttons/white";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
+  const { onClickMoveToPage, router } = useMoveToPage();
   return (
     <>
       <D.DetailWrapper>
@@ -67,8 +69,11 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
       </D.DetailWrapper>
 
       <D.ButtonWrapper>
-        <ButtonWhite title="목록" onClick={props.onClickListBoard} />
-        <ButtonWhite title="수정" onClick={props.onClickUpdateBoard} />
+        <ButtonWhite title="목록" onClick={onClickMoveToPage(`/boards/`)} />
+        <ButtonWhite
+          title="수정"
+          onClick={onClickMoveToPage(`${router.query.boardId}/edit`)}
+        />
         <ButtonWhite title="삭제" onClick={props.onClickDeleteBoard} />
       </D.ButtonWrapper>
     </>

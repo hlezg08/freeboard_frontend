@@ -25,7 +25,9 @@ export const SubTitle = styled.span`
   font-size: 16px;
   padding: 10px 0px;
 `;
-
+export const ButtonWrapper = styled.div`
+  margin-top: 20px;
+`;
 export const ImageWrapper = styled.div`
   width: 60%;
   margin: 0 auto;

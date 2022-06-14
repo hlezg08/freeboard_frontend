@@ -41,7 +41,7 @@ export default function Signup() {
 
   const onClickSubmit = async (data) => {
     try {
-      const result = await createUser({
+      await createUser({
         variables: {
           createUserInput: {
             email: data.email,
@@ -53,9 +53,10 @@ export default function Signup() {
       Modal.success({
         content: "회원가입을 축하합니다",
       });
-      console.log(result.data.createUser._id);
-      router.push(`/boards`);
+
+      router.push(`/login`);
     } catch (error) {
+      console.log({ ...data });
       Modal.error({
         content: error.message,
       });

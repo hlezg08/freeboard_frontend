@@ -23,6 +23,7 @@ export default function ApolloSetting(props) {
       Authorization: `Bearer ${accessToken}`,
     },
   });
+
   const client = new ApolloClient({
     link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),

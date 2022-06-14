@@ -5,8 +5,11 @@ import BoardPagination from "../../../commons/pagination/BoardPagination.contain
 import { v4 as uuidv4 } from "uuid";
 import Searchbar from "../../../commons/searchbar/Searchbar.container";
 import ButtonPink from "../../../commons/buttons/pink";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 
 export default function BoardListUI(props: IBoardListUIProps) {
+  const { onClickMoveToPage } = useMoveToPage();
+
   return (
     <>
       <B.Wrapper>
@@ -31,7 +34,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
                 <B.ColumnTitle
                   id={e._id}
                   width="50%"
-                  onClick={props.onClickMoveToDetail}
+                  onClick={onClickMoveToPage(`/boards/${e._id}`)}
                 >
                   {e.title
                     .replace(props.keyword, `#$%${props.keyword}#$%`)
@@ -54,7 +57,10 @@ export default function BoardListUI(props: IBoardListUIProps) {
         <B.Footer>
           <BoardPagination refetch={props.refetch} count={props.count} />
           <B.ButtonWrapper>
-            <ButtonPink title="글쓰기" onClick={props.onClickMoveToNew} />
+            <ButtonPink
+              title="글쓰기"
+              onClick={onClickMoveToPage("/boards/new")}
+            />
           </B.ButtonWrapper>
         </B.Footer>
       </B.Wrapper>

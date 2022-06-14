@@ -41,7 +41,9 @@ export default function Upload(props: IUploadProps) {
           onClick={onClickFile}
         />
       ) : (
-        <S.ImageSelectButton onClick={onClickFile}>Upload</S.ImageSelectButton>
+        <S.ImageSelectButton type="button" onClick={onClickFile}>
+          Upload
+        </S.ImageSelectButton>
       )}
     </>
   );

@@ -38,7 +38,7 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
 `;
 export const LoginText = styled.span`
-  margin: 0px 10px;
+  padding: 0px 10px;
   :hover {
     cursor: pointer;
   }

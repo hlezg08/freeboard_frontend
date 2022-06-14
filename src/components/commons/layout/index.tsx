@@ -10,8 +10,8 @@ interface ILayoutProps {
   children: ReactNode;
 }
 
-const HIDDEN_HEADERS = ["/"];
-const HIDDEN_BANNERS = ["/", "/login"];
+const HIDDEN_HEADERS = ["/", "/login", "/signup"];
+
 const LayoutBody = styled.div`
   width: 100%;
   background-color: white;

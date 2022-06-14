@@ -1,16 +1,17 @@
+import { KeyboardEvent } from "react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../commons/store";
-import { useMutation } from "@apollo/client";
+import { useMutation, useApolloClient } from "@apollo/client";
 import { Modal } from "antd";
-import { LOGIN_USER } from "./Login.queries";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as S from "./Login.styles";
-import { KeyboardEvent } from "react";
+import { LOGIN_USER, FETCH_USER_LOGGED_IN } from "./Login.queries";
 import InputUnderline from "../../commons/inputs/underline";
 import ButtonBlack from "../../commons/buttons/black";
+import { accessTokenState, userInfoState } from "../../../commons/store";
+import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 
 const schema = yup.object({
   email: yup
@@ -33,35 +34,47 @@ export default function Login() {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+  const { onClickMoveToPage } = useMoveToPage();
 
   const [loginUser] = useMutation(LOGIN_USER);
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [, setAccessToken] = useRecoilState(accessTokenState);
+  const client = useApolloClient();
+  const [, setUserInfo] = useRecoilState(userInfoState);
 
   const onClickSubmit = async (data) => {
     try {
       const result = await loginUser({
-        variables: {
-          email: data.email,
-          password: data.password,
+        variables: { ...data },
+      });
+
+      const accessToken = result.data.loginUser.accessToken;
+
+      // useQuery 대신 useApolloClient 사용 후 global state에 저장
+      const resultUserInfo = await client.query({
+        query: FETCH_USER_LOGGED_IN,
+        context: {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         },
       });
-      const accessToken = result.data.loginUser.accessToken;
-      // 액세스 토큰을 global state에 저장
+      const userInfo = resultUserInfo.data.fetchUserLoggedIn;
+
       setAccessToken(accessToken);
+      setUserInfo(userInfo);
       localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
       Modal.success({
         content: "로그인 성공!",
       });
+
       router.push("/boards");
     } catch (error) {
       Modal.error({
         content: error.message,
       });
     }
-  };
-
-  const onClickSignup = () => {
-    router.push(`/signup`);
   };
 
   const onEnterPress = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -105,10 +118,12 @@ export default function Login() {
 
       <S.LoginFooterWrapper>
         <S.LoginText>아이디 찾기</S.LoginText>
-        <span>|</span>
+        <S.LoginText>|</S.LoginText>
         <S.LoginText>비밀번호 찾기</S.LoginText>
-        <span>|</span>
-        <S.LoginText onClick={onClickSignup}>회원가입</S.LoginText>
+        <S.LoginText>|</S.LoginText>
+        <S.LoginText onClick={onClickMoveToPage("/signup")}>
+          회원가입
+        </S.LoginText>
       </S.LoginFooterWrapper>
     </S.Wrapper>
   );
