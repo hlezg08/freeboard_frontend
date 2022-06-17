@@ -4,6 +4,7 @@ import * as D from "./BoardDetail.styles";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
 import ButtonWhite from "../../../commons/buttons/white";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import DOMPurify from "dompurify";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   const { onClickMoveToPage, router } = useMoveToPage();
@@ -22,7 +23,13 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </D.WriterWrapper>
           <D.Hr></D.Hr>
           <D.Title>{props.data?.fetchBoard.title}</D.Title>
-          <D.Contents>{props.data?.fetchBoard.contents}</D.Contents>
+          {typeof window !== "undefined" && (
+            <D.Contents
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(props.data?.fetchBoard.contents),
+              }}
+            />
+          )}
 
           <D.ImgWrapper>
             {props.data?.fetchBoard.images.map((el: any, index: number) => {

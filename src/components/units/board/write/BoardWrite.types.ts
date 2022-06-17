@@ -27,7 +27,4 @@ export interface IBoardWriteUIProps {
   isEdit: boolean;
   isActive: boolean;
   isModalVisible: boolean;
-  zipcode?: string;
-  address?: string;
-  addressDetail?: string;
 }

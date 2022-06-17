@@ -13,15 +13,24 @@ export const BodyWrapper = styled.div`
 export const BodyItemWrapper = styled.div`
   width: auto;
   height: 180px;
-  padding: 20px;
   display: flex;
   border-bottom: 1px solid gray;
+  :hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
 `;
 export const ImageWrapper = styled.div`
-  width: 15%;
+  width: 200px;
+  padding: 20px;
+`;
+export const Image = styled.img`
+  width: 100%;
+  max-height: 150px;
 `;
 export const TextWrapper = styled.div`
   width: 75%;
+  padding: 20px 10px;
 `;
 export const ItemName = styled.div`
   font-weight: 500;
@@ -46,14 +55,16 @@ export const ItemPrice = styled.div`
   line-height: 36px;
 `;
 export const PriceWrapper = styled.div`
-  width: 10%;
+  width: 15%;
+  min-width: 150px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-right: 20px;
 `;
 
 export const ButtonWrapper = styled.div`
-  padding: 30px 0px;
+  padding: 10px 0px;
   width: 100%;
   display: flex;
   justify-content: flex-end;

@@ -1,13 +1,14 @@
 import { atom } from "recoil";
+import { v1 } from "uuid";
 export const accessTokenState = atom({
-  key: "accessTokenState",
+  key: `accessTokenState/${v1()}`,
   default: "",
 });
 export const userInfoState = atom({
-  key: "userInfoState",
+  key: `userInfoState/${v1()}`,
   default: { email: "", name: "" },
 });
 export const visitedPageState = atom({
-  key: "visitedPageState",
+  key: `visitedPageState/${v1()}`,
   default: "/",
 });

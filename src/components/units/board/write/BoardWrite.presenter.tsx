@@ -47,7 +47,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <InputDefault
             register={props.register("title")}
             type="text"
-            // defaultValue={props.data?.fetchBoard.title}
             placeholder="제목을 작성해주세요."
           />
           <S.Error>{props.formState.errors.title?.message}</S.Error>
@@ -57,7 +56,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <S.Label>내용</S.Label>
           <S.Textarea
             {...props.register("contents")}
-            // defaultValue={props.data?.fetchBoard.contents}
             placeholder="내용을 작성해주세요."
           />
           <S.Error>{props.formState.errors.contents?.message}</S.Error>
@@ -67,13 +65,14 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <S.Label>주소</S.Label>
           <S.ZipCodeWrapper>
             <S.ZipCodeInput
+              {...props.register("boardAddress.zipcode")}
               type="text"
               placeholder="07250"
-              value={
-                props.zipcode
-                  ? props.zipcode
-                  : props.data?.fetchBoard.boardAddress?.zipcode
-              }
+              // value={
+              //   props.zipcode
+              //     ? props.zipcode
+              //     : props.data?.fetchBoard.boardAddress?.zipcode
+              // }
             />
             <ButtonBlack
               type="button"
@@ -93,18 +92,19 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           </S.ZipCodeWrapper>
           {/* 모달로 도로명 주소 값 받아오기 */}
           <S.AddressInput
+            {...props.register("boardAddress.address")}
             readOnly
             type="text"
-            value={
-              props.address
-                ? props.address
-                : props.data?.fetchBoard.boardAddress?.address
-            }
+            // value={
+            //   props.address
+            //     ? props.address
+            //     : props.data?.fetchBoard.boardAddress?.address
+            // }
           />
           {/* 세부 주소 사용자 입력 */}
           <InputDefault
             register={props.register("boardAddress.addressDetail")}
-            defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
+            // defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
             type="text"
           />
         </S.InputWrapper>
@@ -113,7 +113,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <S.Label>유튜브</S.Label>
           <InputDefault
             register={props.register("youtubeUrl")}
-            defaultValue={props.data?.fetchBoard.youtubeUrl}
+            // defaultValue={props.data?.fetchBoard.youtubeUrl}
             type="text"
             placeholder="링크를 복사해주세요."
           />

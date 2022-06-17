@@ -1,15 +1,28 @@
-import * as S from "../../board/write/BoardWrite.styles";
-import { Modal } from "antd";
-import DaumPostcode from "react-daum-postcode";
-import Upload from "../../../commons/upload/Upload.container.presenter";
+import * as S from "./MarketWrite.styles";
+// import { Modal } from "antd";
+// import DaumPostcode from "react-daum-postcode";
+// import Upload from "../../../commons/upload/Upload.container.presenter";
 import InputDefault from "../../../commons/inputs/default";
 import ButtonLightpink from "../../../commons/buttons/lightpink";
+import dynamic from "next/dynamic";
+import { IMarketWriteUIProps } from "./MarketWrite.types";
+import Upload from "../../../commons/upload/Upload.container.presenter";
 import { v4 as uuidv4 } from "uuid";
 
-export default function MarketWriteUI(props) {
+const ToastEditor = dynamic(() => import("../../../commons/editor"), {
+  ssr: false,
+});
+
+export default function MarketWriteUI(props: IMarketWriteUIProps) {
   return (
     <S.Wrapper>
-      <S.Form onSubmit={props.handleSubmit(props.onClickCreateUseditem)}>
+      <S.Form
+        onSubmit={
+          props.isEdit
+            ? props.handleSubmit(props.onClickUpdateUseditem)
+            : props.handleSubmit(props.onClickCreateUseditem)
+        }
+      >
         <S.Header>{props.isEdit ? "상품 수정하기" : "상품 등록하기"}</S.Header>
         <S.InputWrapper>
           <S.Label>상품명</S.Label>
@@ -33,10 +46,7 @@ export default function MarketWriteUI(props) {
 
         <S.InputWrapper>
           <S.Label>상품 설명</S.Label>
-          <S.Textarea
-            {...props.register("contents")}
-            placeholder="상품을 설명해주세요."
-          />
+          <ToastEditor setValue={props.setValue} trigger={props.trigger} />
           <S.Error>{props.formState.errors.contents?.message}</S.Error>
         </S.InputWrapper>
 
@@ -103,14 +113,14 @@ export default function MarketWriteUI(props) {
         <S.InputWrapper>
           <S.Label>사진 첨부</S.Label>
           <S.ImageWrapper>
-            {/* {props.imageUrls.map((el: string, index: number) => (
+            {props.imageUrls.map((el: string, index: number) => (
               <Upload
                 imageUrl={el}
                 key={uuidv4()}
                 index={index}
                 onChangeFiles={props.onChangeFiles}
               />
-            ))} */}
+            ))}
           </S.ImageWrapper>
         </S.InputWrapper>
 
@@ -127,7 +137,7 @@ export default function MarketWriteUI(props) {
         <S.SubmitWrapper>
           <ButtonLightpink
             formState={props.formState}
-            // isEdit={props.isEdit}
+            isEdit={props.isEdit}
           ></ButtonLightpink>
         </S.SubmitWrapper>
       </S.Form>

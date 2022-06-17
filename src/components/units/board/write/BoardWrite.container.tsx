@@ -14,6 +14,8 @@ const schema = yup.object({
   password: yup.string().required("비밀번호는 필수 입력 사항입니다."),
   title: yup.string().required("제목은 필수 입력 사항입니다."),
   contents: yup.string().required("내용은 필수 입력 사항입니다."),
+  zipcode: yup.number(),
+  address: yup.string(),
   addressDetail: yup.string(),
   youtubeUrl: yup.string(),
 });
@@ -23,7 +25,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const { register, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState, reset, setValue } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -33,14 +35,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
       writer: props.data?.fetchBoard.writer,
       title: props.data?.fetchBoard.title,
       contents: props.data?.fetchBoard.contents,
+      youtubeUrl: props.data?.fetchBoard.youtubeUrl,
     });
   }, [props.data]);
 
   const [imageUrls, setImageUrls] = useState<string[]>(["", "", ""]);
-
-  const [zipcode, setZipcode] = useState("");
-  const [address, setAddress] = useState("");
-
   const [isActive, setIsActive] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -62,14 +61,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
             youtubeUrl: data.youtubeUrl,
             images: imageUrls,
             boardAddress: {
-              zipcode,
-              address,
+              zipcode: data.boardAddress.zipcode,
+              address: data.boardAddress.address,
               addressDetail: data.boardAddress.addressDetail,
             },
           },
         },
       });
-      console.log(result);
       Modal.success({
         content: "게시물이 등록되었습니다.",
       });
@@ -86,6 +84,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     // const currentFiles = JSON.stringify(imageUrls);
     // const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
     // const isChangeFiles = currentFiles !== defaultFiles;
+    console.log(data);
     try {
       const updateBoardInput: IUpdateBoardInput = {};
 
@@ -95,10 +94,16 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (imageUrls) updateBoardInput.images = imageUrls;
 
       // 주소 수정
-      if (zipcode || address || data.boardAddress.addressDetail) {
+      if (
+        data.boardAddress.zipcode ||
+        data.boardAddress.address ||
+        data.boardAddress.addressDetail
+      ) {
         updateBoardInput.boardAddress = {};
-        if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
-        if (address) updateBoardInput.boardAddress.address = address;
+        if (data.boardAddress.zipcode)
+          updateBoardInput.boardAddress.zipcode = data.boardAddress.zipcode;
+        if (data.boardAddress.address)
+          updateBoardInput.boardAddress.address = data.boardAddress.address;
         if (data.boardAddress.addressDetail)
           updateBoardInput.boardAddress.addressDetail =
             data.boardAddress.addressDetail;
@@ -127,12 +132,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
   };
 
   const onCompleteSearchAddress = (data: any) => {
-    setZipcode(data.zonecode);
-    setAddress(data.address);
-
+    setValue("boardAddress.zipcode", data.zonecode);
+    setValue("boardAddress.address", data.address);
     setIsModalVisible((prev) => !prev);
   };
 
+  // 사진 defaultValue
   useEffect(() => {
     if (props.data?.fetchBoard.images?.length) {
       setImageUrls([...props.data?.fetchBoard.images]);
@@ -154,8 +159,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
       isEdit={props.isEdit}
       isActive={isActive}
       isModalVisible={isModalVisible}
-      zipcode={zipcode}
-      address={address}
     />
   );
 }
