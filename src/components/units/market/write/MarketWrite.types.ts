@@ -1,3 +1,8 @@
+export interface IMarketWriteProps {
+  loading?: any;
+  data?: any;
+  isEdit: boolean;
+}
 export interface IMarketWriteUIProps {
   register: any;
   handleSubmit: any;
@@ -8,5 +13,8 @@ export interface IMarketWriteUIProps {
   imageUrls: string[];
   zipcode: string;
   address: string;
-  onClickCreateUseditem: (data: any) => void;
+  onChangeFiles: (fileUrl: string, index: number) => void;
+  onClickCreateUseditem: (data) => void;
+  onClickUpdateUseditem: (data) => void;
+  isEdit: boolean;
 }

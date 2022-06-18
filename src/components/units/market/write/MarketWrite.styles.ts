@@ -30,35 +30,29 @@ export const InputWrapper = styled.div`
   width: 100%;
   padding: 10px;
 `;
+export const LatLngWrapper = styled.div`
+  display: flex;
+  padding: 10px 0px;
+`;
+export const LocationWrapper = styled.div`
+  display: flex;
+  width: 100%;
+`;
+export const LocationTextWrapper = styled.div`
+  width: 100%;
+  padding-left: 10px;
+`;
+export const AddressWrapper = styled.div`
+  padding: 10px 0px;
+`;
 export const Label = styled.span`
   font-size: 13pt;
   padding: 10px 0px;
 `;
-export const AddressInput = styled.input`
-  width: 100%;
-  height: 45px;
-  padding: 10px;
-  border-width: 1px;
-  margin-bottom: 10px;
-`;
-export const Textarea = styled.textarea`
-  height: 300px;
-  padding: 10px;
-  resize: none;
-`;
-export const ZipCodeInput = styled.input`
-  width: 80px;
-  height: 45px;
-  text-align: center;
-  border-width: 1px;
-`;
-export const ZipCodeWrapper = styled.div`
-  display: flex;
+export const LabelSmall = styled.span`
+  font-size: 16px;
   padding-bottom: 10px;
-  width: 220px;
-  justify-content: space-between;
 `;
-
 export const ImageWrapper = styled.div`
   display: flex;
 `;

@@ -13,6 +13,7 @@ export default function BoardCommentList() {
   const { data, fetchMore } = useQuery(FETCH_BOARD_COMMENTS, {
     variables: { boardId: router.query.boardId },
   });
+
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
 
   const [isModalVisible, setIsModalVisible] = useState(false);

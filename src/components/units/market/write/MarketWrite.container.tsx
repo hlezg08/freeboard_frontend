@@ -1,19 +1,15 @@
-import MarketWriteUI from "./MarketWrite.presenter";
+import { Modal } from "antd";
 import { useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import MarketWriteUI from "./MarketWrite.presenter";
 import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./MarketWrite.queries";
-import { Modal } from "antd";
-interface IUpdateUseditemInput {
-  name?: string;
-  remarks?: string;
-  contents?: string;
-  price?: number;
-  images?: Array<string>;
-}
+import { IUpdateUseditemInput } from "../../../../commons/types/generated/types";
+import { IMarketWriteProps } from "./MarketWrite.types";
+
 const schema = yup.object({
   name: yup.string().required("상품명은 필수 입력입니다."),
   remarks: yup.string().required("한 줄 요약은 필수 입력입니다."),
@@ -24,7 +20,7 @@ const schema = yup.object({
     .matches(/(\d)/, "가격은 숫자만 입력 가능합니다."),
 });
 
-export default function MarketWrite(props) {
+export default function MarketWrite(props: IMarketWriteProps) {
   const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);

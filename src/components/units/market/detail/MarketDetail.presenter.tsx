@@ -8,7 +8,7 @@ interface IMarketDetailUIProps {
 }
 export default function MarketDetailUI(props: IMarketDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage();
-  console.log(props.data?.fetchUseditem);
+
   return (
     <>
       <D.DetailWrapper>

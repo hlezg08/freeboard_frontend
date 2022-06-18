@@ -1,13 +1,12 @@
 import * as S from "./MarketWrite.styles";
-// import { Modal } from "antd";
 // import DaumPostcode from "react-daum-postcode";
-// import Upload from "../../../commons/upload/Upload.container.presenter";
 import InputDefault from "../../../commons/inputs/default";
 import ButtonLightpink from "../../../commons/buttons/lightpink";
 import dynamic from "next/dynamic";
 import { IMarketWriteUIProps } from "./MarketWrite.types";
 import Upload from "../../../commons/upload/Upload.container.presenter";
 import { v4 as uuidv4 } from "uuid";
+import KakaoMap from "../../../commons/kakao-map";
 
 const ToastEditor = dynamic(() => import("../../../commons/editor"), {
   ssr: false,
@@ -66,48 +65,24 @@ export default function MarketWriteUI(props: IMarketWriteUIProps) {
         </S.InputWrapper>
 
         <S.InputWrapper>
-          <S.Label>주소</S.Label>
-          {/* <S.ZipCodeWrapper>
-            <S.ZipCodeInput
-              type="text"
-              placeholder="07250"
-              value={
-                props.zipcode
-                  ? props.zipcode
-                  : props.data?.fetchBoard.boardAddress?.zipcode
-              }
-            />
-            <ButtonBlack
-              type="button"
-              onClick={props.onClickSearchAddress}
-              title="우편번호 검색"
-            />
-
-            {props.isModalVisible && (
-              <Modal
-                visible={true}
-                onOk={props.onClickSearchAddress}
-                onCancel={props.onClickSearchAddress}
-              >
-                <DaumPostcode onComplete={props.onCompleteSearchAddress} />
-              </Modal>
-            )}
-          </S.ZipCodeWrapper> */}
-          {/* 모달로 도로명 주소 값 받아오기 */}
-          <S.AddressInput
-            readOnly
-            type="text"
-            // value={
-            //   props.address
-            //     ? props.address
-            //     : props.data?.fetchBoard.boardAddress?.address
-            // }
-          />
-          {/* 세부 주소 사용자 입력 */}
-          <InputDefault
-            // defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
-            type="text"
-          />
+          <S.Label>거래 위치</S.Label>
+          <S.LocationWrapper>
+            <div>
+              <KakaoMap></KakaoMap>
+            </div>
+            <S.LocationTextWrapper>
+              <S.LabelSmall>GPS</S.LabelSmall>
+              <S.LatLngWrapper>
+                <InputDefault type="text" placeholder="위도" />
+                <InputDefault type="text" placeholder="경도" />
+              </S.LatLngWrapper>
+              <S.LabelSmall>주소</S.LabelSmall>
+              <S.AddressWrapper>
+                <InputDefault type="text" />
+                <InputDefault type="text" />
+              </S.AddressWrapper>
+            </S.LocationTextWrapper>
+          </S.LocationWrapper>
         </S.InputWrapper>
 
         <S.InputWrapper>

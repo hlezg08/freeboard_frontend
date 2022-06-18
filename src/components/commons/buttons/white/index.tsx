@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-const Button = styled.button`
+const ButtonWhiteStyled = styled.button`
   width: 80px;
   height: 45px;
   background-color: white;
@@ -11,5 +11,7 @@ const Button = styled.button`
   }
 `;
 export default function ButtonWhite(props) {
-  return <Button onClick={props.onClick}>{props.title}</Button>;
+  return (
+    <ButtonWhiteStyled onClick={props.onClick}>{props.title}</ButtonWhiteStyled>
+  );
 }

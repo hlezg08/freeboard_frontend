@@ -4,9 +4,9 @@ import BoardCommentWrite from "../../../src/components/units/boardComment/write/
 export default function BoardsBoardIdPage() {
   return (
     <>
-      <BoardDetail></BoardDetail>
-      <BoardCommentWrite isEdit={false}></BoardCommentWrite>
-      <BoardCommentList></BoardCommentList>
+      <BoardDetail />
+      <BoardCommentWrite isEdit={false} />
+      <BoardCommentList />
     </>
   );
 }
