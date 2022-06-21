@@ -35,8 +35,8 @@ export const LatLngWrapper = styled.div`
   padding: 10px 0px;
 `;
 export const LocationWrapper = styled.div`
-  display: flex;
   width: 100%;
+  display: flex;
 `;
 export const LocationTextWrapper = styled.div`
   width: 100%;
@@ -45,6 +45,19 @@ export const LocationTextWrapper = styled.div`
 export const AddressWrapper = styled.div`
   padding: 10px 0px;
 `;
+export const ZipCodeInput = styled.input`
+  width: 80px;
+  height: 45px;
+  text-align: center;
+  border-width: 1px;
+`;
+export const ZipCodeWrapper = styled.div`
+  display: flex;
+  padding-bottom: 10px;
+  width: 220px;
+  justify-content: space-between;
+`;
+
 export const Label = styled.span`
   font-size: 13pt;
   padding: 10px 0px;

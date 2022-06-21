@@ -1,9 +1,11 @@
 import MarketCommentListUI from "./MarketCommentList.presenter";
 import { FETCH_USED_ITEM_QUESTIONS } from "./MarketCommentList.queries";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+
 export default function MarketCommentList() {
   const router = useRouter();
+
   const { data, fetchMore } = useQuery(FETCH_USED_ITEM_QUESTIONS, {
     variables: { useditemId: router.query.useditemId },
   });
@@ -25,6 +27,7 @@ export default function MarketCommentList() {
       },
     });
   };
+
   return (
     <MarketCommentListUI
       data={data}

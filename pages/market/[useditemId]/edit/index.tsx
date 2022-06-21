@@ -7,5 +7,5 @@ export default function BoardsBoardIdEditPage() {
   const { data, loading } = useQuery(FETCH_USED_ITEM, {
     variables: { useditemId: router.query.useditemId },
   });
-  return <MarketWrite loading={loading} isEdit={true} data={data} />;
+  return loading ? <p></p> : <MarketWrite isEdit={true} data={data} />;
 }

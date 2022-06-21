@@ -9,26 +9,40 @@ import MarketWriteUI from "./MarketWrite.presenter";
 import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./MarketWrite.queries";
 import { IUpdateUseditemInput } from "../../../../commons/types/generated/types";
 import { IMarketWriteProps } from "./MarketWrite.types";
+import { useRecoilState } from "recoil";
+import { latLngState } from "../../../../commons/store";
 
 const schema = yup.object({
-  name: yup.string().required("상품명은 필수 입력입니다."),
-  remarks: yup.string().required("한 줄 요약은 필수 입력입니다."),
-  contents: yup.string().required("내용은 필수 입력입니다."),
+  name: yup.string().required("필수 입력 사항입니다."),
+  remarks: yup.string().required("필수 입력 사항입니다."),
+  contents: yup.string().required("필수 입력 사항입니다."),
   price: yup
-    .string()
-    .required("가격은 필수 입력입니다.")
-    .matches(/(\d)/, "가격은 숫자만 입력 가능합니다."),
+    .number()
+    .required("필수 입력 사항입니다.")
+    .typeError("숫자만 입력 가능합니다."),
 });
 
 export default function MarketWrite(props: IMarketWriteProps) {
   const router = useRouter();
+  const [latLng, setLatLng] = useRecoilState(latLngState);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
-  const { register, handleSubmit, formState, setValue, trigger, reset } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
+
+  const {
+    register,
+    handleSubmit,
+    formState,
+    setValue,
+    getValues,
+    trigger,
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
+
+  const [imageUrls, setImageUrls] = useState<string[]>(["", "", ""]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     reset({
@@ -39,9 +53,14 @@ export default function MarketWrite(props: IMarketWriteProps) {
     });
   }, [props.data]);
 
-  const [imageUrls, setImageUrls] = useState<string[]>(["", "", ""]);
-  const [zipcode] = useState("");
-  const [address] = useState("");
+  const onClickSearchAddress = () => {
+    setIsModalVisible((prev) => !prev);
+  };
+  const onCompleteSearchAddress = (data: any) => {
+    setValue("useditemAddress.zipcode", data.zonecode);
+    setValue("useditemAddress.address", data.address);
+    setIsModalVisible((prev) => !prev);
+  };
 
   const onChangeFiles = (fileUrl: string, index: number) => {
     const newImageUrls = [...imageUrls];
@@ -59,6 +78,13 @@ export default function MarketWrite(props: IMarketWriteProps) {
             contents: data.contents,
             price: Number(data.price),
             images: imageUrls,
+            useditemAddress: {
+              lat: latLng.Ma,
+              lng: latLng.La,
+              zipcode: data.useditemAddress.zipcode,
+              address: data.useditemAddress.address,
+              addressDetail: data.useditemAddress.addressDetail,
+            },
           },
         },
       });
@@ -81,6 +107,27 @@ export default function MarketWrite(props: IMarketWriteProps) {
       if (data.contents) updateUseditemInput.contents = data.contents;
       if (data.price) updateUseditemInput.price = Number(data.price);
       if (imageUrls) updateUseditemInput.images = imageUrls;
+
+      if (
+        data.useditemAddress.zipcode ||
+        data.useditemAddress.address ||
+        data.useditemAddress.addressDetail
+      ) {
+        updateUseditemInput.useditemAddress = {};
+        if (data.useditemAddress.zipcode) {
+          updateUseditemInput.useditemAddress.zipcode =
+            data.useditemAddress.zipcode;
+        }
+        if (data.useditemAddress.address) {
+          updateUseditemInput.useditemAddress.address =
+            data.useditemAddress.address;
+        }
+        if (data.useditemAddress.addressDetail) {
+          updateUseditemInput.useditemAddress.addressDetail =
+            data.useditemAddress.addressDetail;
+        }
+      }
+
       const result = await updateUseditem({
         variables: {
           useditemId: router.query.useditemId,
@@ -97,6 +144,8 @@ export default function MarketWrite(props: IMarketWriteProps) {
       });
     }
   };
+
+  // 이미지 defaultValues
   useEffect(() => {
     if (props.data?.fetchUseditem.images?.length) {
       setImageUrls([...props.data?.fetchUseditem.images]);
@@ -105,19 +154,22 @@ export default function MarketWrite(props: IMarketWriteProps) {
 
   return (
     <MarketWriteUI
-      loading={props.loading}
+      data={props.data}
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
       setValue={setValue}
+      address={getValues("useditemAddress.address")}
+      getValues={getValues}
       trigger={trigger}
       imageUrls={imageUrls}
-      zipcode={zipcode}
-      address={address}
       isEdit={props.isEdit}
       onChangeFiles={onChangeFiles}
+      onClickSearchAddress={onClickSearchAddress}
+      onCompleteSearchAddress={onCompleteSearchAddress}
       onClickCreateUseditem={onClickCreateUseditem}
       onClickUpdateUseditem={onClickUpdateUseditem}
+      isModalVisible={isModalVisible}
     />
   );
 }

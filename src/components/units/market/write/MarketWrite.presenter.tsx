@@ -1,5 +1,6 @@
 import * as S from "./MarketWrite.styles";
-// import DaumPostcode from "react-daum-postcode";
+import DaumPostcode from "react-daum-postcode";
+import { Modal } from "antd";
 import InputDefault from "../../../commons/inputs/default";
 import ButtonLightpink from "../../../commons/buttons/lightpink";
 import dynamic from "next/dynamic";
@@ -7,7 +8,7 @@ import { IMarketWriteUIProps } from "./MarketWrite.types";
 import Upload from "../../../commons/upload/Upload.container.presenter";
 import { v4 as uuidv4 } from "uuid";
 import KakaoMap from "../../../commons/kakao-map";
-
+import ButtonBlack from "../../../commons/buttons/black";
 const ToastEditor = dynamic(() => import("../../../commons/editor"), {
   ssr: false,
 });
@@ -45,7 +46,11 @@ export default function MarketWriteUI(props: IMarketWriteUIProps) {
 
         <S.InputWrapper>
           <S.Label>상품 설명</S.Label>
-          <ToastEditor setValue={props.setValue} trigger={props.trigger} />
+          <ToastEditor
+            value={props.isEdit && props.data?.fetchUseditem.contents}
+            setValue={props.setValue}
+            trigger={props.trigger}
+          />
           <S.Error>{props.formState.errors.contents?.message}</S.Error>
         </S.InputWrapper>
 
@@ -68,19 +73,61 @@ export default function MarketWriteUI(props: IMarketWriteUIProps) {
           <S.Label>거래 위치</S.Label>
           <S.LocationWrapper>
             <div>
-              <KakaoMap></KakaoMap>
+              <KakaoMap
+                address={
+                  props.address ||
+                  props.data?.fetchUseditem.useditemAddress.address
+                }
+              />
             </div>
             <S.LocationTextWrapper>
-              <S.LabelSmall>GPS</S.LabelSmall>
-              <S.LatLngWrapper>
-                <InputDefault type="text" placeholder="위도" />
-                <InputDefault type="text" placeholder="경도" />
-              </S.LatLngWrapper>
               <S.LabelSmall>주소</S.LabelSmall>
+              <S.ZipCodeWrapper>
+                <S.ZipCodeInput
+                  {...props.register("useditemAddress.zipcode")}
+                  value={
+                    props.getValues("useditemAddress.zipcode") ||
+                    props.data?.fetchUseditem.useditemAddress?.zipcode
+                  }
+                  type="text"
+                  placeholder="07250"
+                />
+                <ButtonBlack
+                  type="button"
+                  onClick={props.onClickSearchAddress}
+                  title="우편번호 검색"
+                />
+              </S.ZipCodeWrapper>
+
               <S.AddressWrapper>
-                <InputDefault type="text" />
-                <InputDefault type="text" />
+                <InputDefault
+                  register={props.register("useditemAddress.address")}
+                  value={
+                    props.address ||
+                    props.data?.fetchUseditem.useditemAddress?.address
+                  }
+                  readOnly
+                  type="text"
+                />
+                {/* 세부 주소 사용자 입력 */}
+                <InputDefault
+                  register={props.register("useditemAddress.addressDetail")}
+                  defaultValue={
+                    props.data?.fetchUseditem.useditemAddress?.addressDetail
+                  }
+                  type="text"
+                />
               </S.AddressWrapper>
+              {/* 모달로 도로명 주소 값 받아오기 */}
+              {props.isModalVisible && (
+                <Modal
+                  visible={true}
+                  onOk={props.onClickSearchAddress}
+                  onCancel={props.onClickSearchAddress}
+                >
+                  <DaumPostcode onComplete={props.onCompleteSearchAddress} />
+                </Modal>
+              )}
             </S.LocationTextWrapper>
           </S.LocationWrapper>
         </S.InputWrapper>

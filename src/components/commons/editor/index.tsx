@@ -5,14 +5,15 @@ import { useEffect, useRef } from "react";
 interface IToastEditorProps {
   setValue: any;
   trigger: any;
+  value?: string;
 }
 
 function ToastEditor(props: IToastEditorProps) {
   const editorRef = useRef<Editor>(null);
 
-  // useEffect(() => {
-  //   editorRef.current.getInstance().setHTML("<p>hello</p>");
-  // }, []);
+  useEffect(() => {
+    editorRef.current.getInstance().setHTML(props.value);
+  }, []);
 
   const onChangeEditor = () => {
     if (!editorRef.current) return;

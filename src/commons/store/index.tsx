@@ -12,3 +12,7 @@ export const visitedPageState = atom({
   key: `visitedPageState/${v1()}`,
   default: "/",
 });
+export const latLngState = atom({
+  key: `latLngState/${v1()}`,
+  default: { La: 126.8966, Ma: 37.4849 },
+});

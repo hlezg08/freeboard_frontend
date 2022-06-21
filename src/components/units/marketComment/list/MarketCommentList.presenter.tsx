@@ -1,6 +1,6 @@
 import InfiniteScroll from "react-infinite-scroller";
 import styled from "@emotion/styled";
-import MarketCommentListUIItem from "./MarketCommentListItem.presenter";
+import MarketCommentListItem from "./MarketCommentListItem.container";
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -21,11 +21,11 @@ export default function MarketCommentListUI(props) {
       <Wrapper>
         <CommentWrapper>
           {props.data?.fetchUseditemQuestions.map((el: any) => (
-            <MarketCommentListUIItem
+            <MarketCommentListItem
               key={el._id}
               el={el}
               data={props.data}
-            ></MarketCommentListUIItem>
+            ></MarketCommentListItem>
           ))}
         </CommentWrapper>
       </Wrapper>

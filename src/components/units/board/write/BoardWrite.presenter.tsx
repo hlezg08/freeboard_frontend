@@ -68,11 +68,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
               {...props.register("boardAddress.zipcode")}
               type="text"
               placeholder="07250"
-              // value={
-              //   props.zipcode
-              //     ? props.zipcode
-              //     : props.data?.fetchBoard.boardAddress?.zipcode
-              // }
             />
             <ButtonBlack
               type="button"
@@ -90,21 +85,13 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
               </Modal>
             )}
           </S.ZipCodeWrapper>
-          {/* 모달로 도로명 주소 값 받아오기 */}
-          <S.AddressInput
-            {...props.register("boardAddress.address")}
+          <InputDefault
+            register={props.register("boardAddress.address")}
             readOnly
             type="text"
-            // value={
-            //   props.address
-            //     ? props.address
-            //     : props.data?.fetchBoard.boardAddress?.address
-            // }
           />
-          {/* 세부 주소 사용자 입력 */}
           <InputDefault
             register={props.register("boardAddress.addressDetail")}
-            // defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
             type="text"
           />
         </S.InputWrapper>

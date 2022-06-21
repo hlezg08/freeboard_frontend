@@ -3,8 +3,10 @@ import ButtonWhite from "../../../commons/buttons/white";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { getDateTime } from "../../../../commons/libraries/utils";
 import DOMPurify from "dompurify";
+import KakaoMap from "../../../commons/kakao-map";
 interface IMarketDetailUIProps {
   data?: any;
+  onClickDeleteUseditem: () => void;
 }
 export default function MarketDetailUI(props: IMarketDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage();
@@ -13,43 +15,44 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
     <>
       <D.DetailWrapper>
         <D.DetailBody>
-          <D.WriterWrapper>
+          <D.SellerWrapper>
             <D.Icon src="../../icons/ic-profile.svg"></D.Icon>
-            <D.WriterText>
-              <D.WriterName>
-                {props.data?.fetchUseditem.seller.name}
-              </D.WriterName>
+            <D.SellerTextWrapper>
+              <D.Title1>{props.data?.fetchUseditem.seller.name}</D.Title1>
               <D.Date>
                 Date : {getDateTime(props.data?.fetchUseditem.createdAt)}
               </D.Date>
-            </D.WriterText>
-          </D.WriterWrapper>
+            </D.SellerTextWrapper>
+          </D.SellerWrapper>
           <D.Hr></D.Hr>
           <D.ContentsWrapper>
             <D.ProductInfoWrapper>
-              <D.ProductTitle>
-                상품 이름: {props.data?.fetchUseditem.name}
-              </D.ProductTitle>
-              <D.ProductRemarks>
+              <D.Title2>상품 이름: {props.data?.fetchUseditem.name}</D.Title2>
+              <D.Title3>
                 한줄 요약: {props.data?.fetchUseditem.remarks}
-              </D.ProductRemarks>
-              <D.ProductPrice>
-                {props.data?.fetchUseditem.price}원
-              </D.ProductPrice>
+              </D.Title3>
+              <D.Title3>{props.data?.fetchUseditem.price}원</D.Title3>
             </D.ProductInfoWrapper>
             <D.Hr></D.Hr>
-            <div>상품 상세 정보</div>
+            <D.Title2>상품 상세 정보</D.Title2>
             <D.Hr></D.Hr>
-            {typeof window !== "undefined" ? (
-              <div
+            <D.Title3>
+              거래 위치 : {props.data?.fetchUseditem.useditemAddress?.address}{" "}
+              {props.data?.fetchUseditem.useditemAddress?.addressDetail}
+            </D.Title3>
+            {props.data?.fetchUseditem.useditemAddress?.lat && (
+              <KakaoMap
+                address={props.data?.fetchUseditem.useditemAddress?.address}
+              />
+            )}
+            {typeof window !== "undefined" && (
+              <D.Title3
                 dangerouslySetInnerHTML={{
                   __html: DOMPurify.sanitize(
                     props.data?.fetchUseditem.contents
                   ),
                 }}
               />
-            ) : (
-              <div></div>
             )}
             <D.ImgWrapper>
               {props.data?.fetchUseditem.images.map(

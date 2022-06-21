@@ -1,16 +1,16 @@
 import { KeyboardEvent } from "react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { useMutation, useApolloClient } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as S from "./Login.styles";
-import { LOGIN_USER, FETCH_USER_LOGGED_IN } from "./Login.queries";
+import { LOGIN_USER } from "./Login.queries";
 import InputUnderline from "../../commons/inputs/underline";
 import ButtonBlack from "../../commons/buttons/black";
-import { accessTokenState, userInfoState } from "../../../commons/store";
+import { accessTokenState } from "../../../commons/store";
 import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 
 const schema = yup.object({
@@ -37,39 +37,34 @@ export default function Login() {
   const { onClickMoveToPage } = useMoveToPage();
 
   const [loginUser] = useMutation(LOGIN_USER);
-  const [, setAccessToken] = useRecoilState(accessTokenState);
-  const client = useApolloClient();
-  const [, setUserInfo] = useRecoilState(userInfoState);
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  // const [, setUserInfo] = useRecoilState(userInfoState);
+  // const client = useApolloClient();
 
-  const onClickSubmit = async (data) => {
+  const onClickSubmit = async (value) => {
     try {
       const result = await loginUser({
-        variables: { ...data },
+        variables: { ...value },
       });
-
-      const accessToken = result.data.loginUser.accessToken;
-
+      const newAccessToken = result.data.loginUser.accessToken;
+      setAccessToken(newAccessToken);
       // useQuery 대신 useApolloClient 사용 후 global state에 저장
-      const resultUserInfo = await client.query({
-        query: FETCH_USER_LOGGED_IN,
-        context: {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      });
-      const userInfo = resultUserInfo.data.fetchUserLoggedIn;
-
-      setAccessToken(accessToken);
-      setUserInfo(userInfo);
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      // const resultUserInfo = await client.query({
+      //   query: FETCH_USER_LOGGED_IN,
+      //   context: {
+      //     headers: {
+      //       Authorization: `Bearer ${accessToken}`,
+      //     },
+      //   },
+      // });
+      // const userInfo = data?.fetchUserLoggedIn;
+      // setUserInfo(userInfo);
+      // console.log(userInfo);
 
       Modal.success({
         content: "로그인 성공!",
       });
-
-      router.push("/boards");
+      router.push("/market");
     } catch (error) {
       Modal.error({
         content: error.message,

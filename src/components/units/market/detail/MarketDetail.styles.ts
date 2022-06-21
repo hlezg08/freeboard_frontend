@@ -8,24 +8,15 @@ export const DetailWrapper = styled.div`
   height: 100%;
 `;
 
-export const WriterWrapper = styled.div`
+export const SellerWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 15px 0px;
 `;
-
-export const WriterText = styled.div`
+export const SellerTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 15px;
-`;
-export const WriterName = styled.span`
-  font-size: 24px;
-`;
-
-export const Date = styled.span`
-  font-size: 14px;
-  color: #828282;
 `;
 export const IconWrapper = styled.div`
   width: 70px;
@@ -55,15 +46,19 @@ export const ProductInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const ProductTitle = styled.span`
+
+export const Title1 = styled.span`
   font-size: 24px;
-  padding: 10px 0px;
 `;
-export const ProductRemarks = styled.span`
+export const Title2 = styled.span`
   font-size: 20px;
 `;
-export const ProductPrice = styled.span`
-  font-size: 30px;
+export const Title3 = styled.span`
+  font-size: 16px;
+`;
+export const Date = styled.span`
+  font-size: 14px;
+  color: #828282;
 `;
 export const ImgWrapper = styled.div`
   width: 100%;

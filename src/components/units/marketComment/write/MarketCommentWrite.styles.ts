@@ -3,7 +3,7 @@ import { RollbackOutlined } from "@ant-design/icons";
 interface ICommentWrapperProps {
   isEdit: boolean;
 }
-export const Wrapper = styled.div`
+export const Form = styled.form`
   display: flex;
   justify-content: center;
 `;

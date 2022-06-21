@@ -13,11 +13,11 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
 `;
-export const SubWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
+// export const SubWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+// `;
 export const Icon = styled.img`
   width: 40px;
   height: 40px;

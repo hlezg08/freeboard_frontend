@@ -12,6 +12,7 @@ export default function InputDefault(props) {
       type={props.type}
       placeholder={props.placeholder}
       defaultValue={props.defaultValue}
+      value={props.value}
       readOnly={props.readOnly}
     />
   );
