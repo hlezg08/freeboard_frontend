@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as S from "./Login.styles";
-import { LOGIN_USER } from "./Login.queries";
+import { LOGIN_USER, LOGIN_USER_EXAMPLE } from "./Login.queries";
 import InputUnderline from "../../commons/inputs/underline";
 import ButtonBlack from "../../commons/buttons/black";
 import { accessTokenState } from "../../../commons/store";
@@ -37,6 +37,7 @@ export default function Login() {
   const { onClickMoveToPage } = useMoveToPage();
 
   const [loginUser] = useMutation(LOGIN_USER);
+  const [loginUserExample] = useMutation(LOGIN_USER_EXAMPLE);
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   // const [, setUserInfo] = useRecoilState(userInfoState);
   // const client = useApolloClient();
@@ -46,8 +47,10 @@ export default function Login() {
       const result = await loginUser({
         variables: { ...value },
       });
+      localStorage.setItem("refreshToken", "true");
       const newAccessToken = result.data.loginUser.accessToken;
       setAccessToken(newAccessToken);
+
       // useQuery 대신 useApolloClient 사용 후 global state에 저장
       // const resultUserInfo = await client.query({
       //   query: FETCH_USER_LOGGED_IN,
@@ -92,6 +95,7 @@ export default function Login() {
           />
           <S.Error>{formState.errors.email?.message}</S.Error>
         </S.InputWrapper>
+
         <S.InputWrapper>
           <S.InputTitle>비밀번호</S.InputTitle>
           <InputUnderline

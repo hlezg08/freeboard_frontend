@@ -24,7 +24,7 @@ const schema = yup.object({
 
 export default function MarketWrite(props: IMarketWriteProps) {
   const router = useRouter();
-  const [latLng, setLatLng] = useRecoilState(latLngState);
+  const [latLng] = useRecoilState(latLngState);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
 

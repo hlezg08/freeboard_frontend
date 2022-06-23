@@ -15,8 +15,9 @@ export default function BoardListUI(props: IBoardListUIProps) {
       <B.Wrapper>
         <Searchbar
           refetch={props.refetch}
-          refetchBoardsCount={props.refetchBoardsCount}
+          refetchCount={props.refetchCount}
           onChangeKeyword={props.onChangeKeyword}
+          onChangeSearch={props.onChangeSearch}
         />
         <B.TableWrapper>
           <B.TableHead>

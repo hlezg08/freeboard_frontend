@@ -2,12 +2,13 @@ import { GraphQLClient } from "graphql-request";
 import { gql } from "@apollo/client";
 
 const RESTORE_ACCESS_TOKEN = gql`
-  mutation {
+  mutation restoreAccessToken {
     restoreAccessToken {
       accessToken
     }
   }
 `;
+
 export async function getAccessToken() {
   try {
     // refreshToken으로 accessToken 재발급 받기

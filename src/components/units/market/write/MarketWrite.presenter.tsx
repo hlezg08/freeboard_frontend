@@ -1,14 +1,14 @@
-import * as S from "./MarketWrite.styles";
-import DaumPostcode from "react-daum-postcode";
+import dynamic from "next/dynamic";
+import { v4 as uuidv4 } from "uuid";
 import { Modal } from "antd";
+import * as S from "./MarketWrite.styles";
+import { IMarketWriteUIProps } from "./MarketWrite.types";
 import InputDefault from "../../../commons/inputs/default";
 import ButtonLightpink from "../../../commons/buttons/lightpink";
-import dynamic from "next/dynamic";
-import { IMarketWriteUIProps } from "./MarketWrite.types";
-import Upload from "../../../commons/upload/Upload.container.presenter";
-import { v4 as uuidv4 } from "uuid";
-import KakaoMap from "../../../commons/kakao-map";
 import ButtonBlack from "../../../commons/buttons/black";
+import Upload from "../../../commons/upload/Upload.container.presenter";
+import KakaoMap from "../../../commons/kakao-map";
+import DaumPostcode from "react-daum-postcode";
 const ToastEditor = dynamic(() => import("../../../commons/editor"), {
   ssr: false,
 });

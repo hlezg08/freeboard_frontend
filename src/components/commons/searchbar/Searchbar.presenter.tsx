@@ -1,11 +1,14 @@
 import { SearchWrapper, SearchIcon, SearchInput } from "./Searchbar.styles";
-import { ISearchbarUIProps } from "./Searchbar.types";
+import { ChangeEvent } from "react";
+interface ISearchbarUIProps {
+  onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 
 export default function SearchbarUI(props: ISearchbarUIProps) {
   return (
     <>
       <SearchWrapper>
-        <SearchIcon src="../../icons/ic-search.svg" />
+        <SearchIcon />
         <SearchInput
           type="text"
           onChange={props.onChangeSearch}

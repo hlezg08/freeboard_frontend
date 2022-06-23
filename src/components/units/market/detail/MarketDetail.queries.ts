@@ -19,6 +19,7 @@ export const FETCH_USED_ITEM = gql`
         addressDetail
       }
       seller {
+        email
         name
         picture
       }

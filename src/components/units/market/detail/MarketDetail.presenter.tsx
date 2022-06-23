@@ -4,10 +4,12 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { getDateTime } from "../../../../commons/libraries/utils";
 import DOMPurify from "dompurify";
 import KakaoMap from "../../../commons/kakao-map";
+
 interface IMarketDetailUIProps {
   data?: any;
   onClickDeleteUseditem: () => void;
 }
+
 export default function MarketDetailUI(props: IMarketDetailUIProps) {
   const { onClickMoveToPage } = useMoveToPage();
 
@@ -45,7 +47,7 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
                 address={props.data?.fetchUseditem.useditemAddress?.address}
               />
             )}
-            {typeof window !== "undefined" && (
+            {typeof window !== "undefined" ? (
               <D.Title3
                 dangerouslySetInnerHTML={{
                   __html: DOMPurify.sanitize(
@@ -53,6 +55,8 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
                   ),
                 }}
               />
+            ) : (
+              <div></div>
             )}
             <D.ImgWrapper>
               {props.data?.fetchUseditem.images.map(
@@ -74,18 +78,24 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
             </D.ImgWrapper>
           </D.ContentsWrapper>
         </D.DetailBody>
-      </D.DetailWrapper>
-
-      <D.ButtonWrapper>
-        <ButtonWhite title="목록" onClick={onClickMoveToPage(`/market/`)} />
-        <ButtonWhite
-          title="수정"
-          onClick={onClickMoveToPage(
-            `/market/${props.data?.fetchUseditem._id}/edit`
+        <D.ButtonWrapper>
+          <ButtonWhite title="목록" onClick={onClickMoveToPage(`/market/`)} />
+          {props.userData?.fetchUserLoggedIn.email ===
+          props.data?.fetchUseditem.seller.email ? (
+            <>
+              <ButtonWhite
+                title="수정"
+                onClick={onClickMoveToPage(
+                  `/market/${props.data?.fetchUseditem._id}/edit`
+                )}
+              />
+              <ButtonWhite title="삭제" onClick={props.onClickDeleteUseditem} />
+            </>
+          ) : (
+            <ButtonWhite title="구매하기" />
           )}
-        />
-        <ButtonWhite title="삭제" onClick={props.onClickDeleteUseditem} />
-      </D.ButtonWrapper>
+        </D.ButtonWrapper>
+      </D.DetailWrapper>
     </>
   );
 }

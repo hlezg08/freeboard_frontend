@@ -18,8 +18,8 @@ export default function LayoutHeader() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
 
   const onClickLogout = () => {
-    // localStorage.removeItem("accessToken");
     setAccessToken("");
+    localStorage.removeItem("refreshToken");
     Modal.success({
       content: "로그아웃 되었습니다",
     });

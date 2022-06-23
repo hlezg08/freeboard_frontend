@@ -9,6 +9,8 @@ export interface IMarketWriteUIProps {
   handleSubmit: any;
   formState: any;
   setValue?: any;
+  getValues?: any;
+  address?: string;
   trigger: any;
   imageUrls: Array<string>;
   onChangeFiles: (fileUrl: string, index: number) => void;

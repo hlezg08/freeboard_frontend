@@ -4,7 +4,10 @@ import { latLngState } from "../../../commons/store";
 declare const window: typeof globalThis & {
   kakao: any;
 };
-export default function KakaoMap(props) {
+interface KaKaoMapPros {
+  address?: string;
+}
+export default function KakaoMap(props: KaKaoMapPros) {
   const [latLng, setLatLng] = useRecoilState(latLngState);
 
   useEffect(() => {
@@ -59,6 +62,7 @@ export default function KakaoMap(props) {
       });
     };
   }, [props.address]);
+
   return (
     <>
       <div id="map" style={{ width: 380, height: 250 }}></div>

@@ -22,7 +22,7 @@ export default function MarketCommentWrite(props) {
   const [createUseditemQuestion] = useMutation(CREATE_USED_ITEM_QUESTION);
   const [updateUseditemQuestion] = useMutation(UPDATE_USED_ITEM_QUESTION);
   const [length, setLength] = useState(0);
-  const { register, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, formState, getValues, reset } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
@@ -86,6 +86,7 @@ export default function MarketCommentWrite(props) {
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
+      getValues={getValues}
       isEdit={props.isEdit}
       setIsEdit={props.setIsEdit}
       length={length}

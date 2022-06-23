@@ -47,13 +47,13 @@ export const ProductInfoWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Title1 = styled.span`
+export const Title1 = styled.div`
   font-size: 24px;
 `;
-export const Title2 = styled.span`
+export const Title2 = styled.div`
   font-size: 20px;
 `;
-export const Title3 = styled.span`
+export const Title3 = styled.div`
   font-size: 16px;
 `;
 export const Date = styled.span`

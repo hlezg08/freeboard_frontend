@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { SearchOutlined } from "@ant-design/icons";
 export const SearchWrapper = styled.div`
   display: flex;
   width: 80%;
@@ -8,8 +9,9 @@ export const SearchWrapper = styled.div`
   border: none;
   font-size: 16px;
 `;
-export const SearchIcon = styled.img`
-  margin-left: 15px;
+export const SearchIcon = styled(SearchOutlined)`
+  padding: 15px;
+  font-size: 20px;
 `;
 export const SearchInput = styled.input`
   width: 100%;

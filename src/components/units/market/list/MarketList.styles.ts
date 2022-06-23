@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { CloseOutlined, HeartOutlined } from "@ant-design/icons";
+import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 export const Wrapper = styled.div`
   height: 100%;
   display: flex;
@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
   padding: 30px 60px;
 `;
 export const BodyWrapper = styled.div`
-  display: flex;
   width: 100%;
 `;
 export const ListWrapper = styled.div`
@@ -25,7 +24,7 @@ export const ListItemWrapper = styled.div`
   }
 `;
 export const ImageWrapper = styled.div`
-  width: 200px;
+  width: 180px;
   padding: 20px;
 `;
 export const Image = styled.img`
@@ -33,7 +32,7 @@ export const Image = styled.img`
   max-height: 150px;
 `;
 export const TextWrapper = styled.div`
-  width: 75%;
+  width: 70%;
   padding: 20px 10px;
   :hover {
     cursor: pointer;
@@ -62,50 +61,26 @@ export const ItemPrice = styled.div`
   line-height: 36px;
 `;
 export const PriceWrapper = styled.div`
-  width: auto;
-  min-width: 150px;
+  width: 200px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding-right: 20px;
 `;
-export const ButtonWrapper = styled.div`
+export const SearchBarButtonWrapper = styled.div`
   padding: 10px 0px;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
-export const PickIcon = styled(HeartOutlined)`
+export const PickFalseIcon = styled(HeartOutlined)`
   :hover {
     cursor: default;
   }
 `;
-
-export const TodayWrapper = styled.div`
-  position: sticky;
-  width: 180px;
-  height: 480px;
-  border: 1px solid #bdbdbd;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-export const TodayItemWrapper = styled.div`
-  width: 120px;
-  border: 1px solid #bdbdbd;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-export const TodayItemImg = styled.img`
-  width: 100px;
-  height: 100px;
-`;
-export const DeleteIcon = styled(CloseOutlined)`
-  position: absolute;
-  right: 10px;
+export const PickTrueIcon = styled(HeartFilled)`
+  color: #eb2f96;
   :hover {
-    cursor: pointer;
+    cursor: default;
   }
 `;

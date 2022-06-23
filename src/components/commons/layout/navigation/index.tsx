@@ -9,7 +9,7 @@ export default function LayoutNavigation() {
     { name: "커뮤니티", page: "/community" },
     { name: "현재 날씨", page: "/openapi" },
     { name: "게시판", page: "/boards" },
-    { name: "마이페이지", page: "/mypages" },
+    { name: "마이페이지", page: "/mypage/market" },
     { name: "중고마켓", page: "/market" },
   ];
 
