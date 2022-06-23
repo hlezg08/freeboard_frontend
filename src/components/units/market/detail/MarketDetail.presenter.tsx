@@ -4,7 +4,7 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { getDateTime } from "../../../../commons/libraries/utils";
 import DOMPurify from "dompurify";
 import KakaoMap from "../../../commons/kakao-map";
-
+import { v4 as uuid } from "uuid";
 interface IMarketDetailUIProps {
   data?: any;
   onClickDeleteUseditem: () => void;
@@ -33,11 +33,13 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
               <D.Title3>
                 한줄 요약: {props.data?.fetchUseditem.remarks}
               </D.Title3>
+              {props.data?.fetchUseditem.tags.map((el) => (
+                <D.Tag key={uuid()}>#{el}</D.Tag>
+              ))}
               <D.Title3>{props.data?.fetchUseditem.price}원</D.Title3>
             </D.ProductInfoWrapper>
             <D.Hr></D.Hr>
             <D.Title2>상품 상세 정보</D.Title2>
-            <D.Hr></D.Hr>
             <D.Title3>
               거래 위치 : {props.data?.fetchUseditem.useditemAddress?.address}{" "}
               {props.data?.fetchUseditem.useditemAddress?.addressDetail}
@@ -92,7 +94,7 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
               <ButtonWhite title="삭제" onClick={props.onClickDeleteUseditem} />
             </>
           ) : (
-            <ButtonWhite title="구매하기" />
+            <ButtonWhite title="구매하기" onClick={props.onClickShowBuyModal} />
           )}
         </D.ButtonWrapper>
       </D.DetailWrapper>

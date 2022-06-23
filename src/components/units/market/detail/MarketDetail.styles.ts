@@ -56,6 +56,10 @@ export const Title2 = styled.div`
 export const Title3 = styled.div`
   font-size: 16px;
 `;
+export const Tag = styled.div`
+  font-size: 16px;
+  color: lightgray;
+`;
 export const Date = styled.span`
   font-size: 14px;
   color: #828282;

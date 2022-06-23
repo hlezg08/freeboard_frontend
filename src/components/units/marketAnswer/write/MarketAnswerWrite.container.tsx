@@ -32,8 +32,8 @@ export default function MarketAnswerWrite(props) {
   });
 
   useEffect(() => {
-    reset({ contents: props.el.contents });
-  }, []);
+    if (props.isEdit) reset({ contents: props.el.contents });
+  }, [props.el]);
 
   const onClickRollBack = () => {
     props.setIsEdit((prev) => !prev);

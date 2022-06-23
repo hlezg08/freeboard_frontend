@@ -28,8 +28,8 @@ export default function MarketCommentWrite(props) {
   });
 
   useEffect(() => {
-    reset({ contents: props.el?.contents });
-  }, []);
+    if (props.isEdit) reset({ contents: props.el?.contents });
+  }, [props.el]);
 
   const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
     // setContents(event.target.value);

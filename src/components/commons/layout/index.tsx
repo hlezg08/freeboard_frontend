@@ -10,7 +10,7 @@ interface ILayoutProps {
   children: ReactNode;
 }
 
-const HIDDEN_HEADERS = ["/", "/login", "/signup"];
+const DISPLAY_BANNER = ["/boards"];
 
 const LayoutBody = styled.div`
   width: 100%;
@@ -19,16 +19,16 @@ const LayoutBody = styled.div`
 
 export default function Layout(props: ILayoutProps) {
   const router = useRouter();
-  const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
+  const isDisplayBanner = DISPLAY_BANNER.includes(router.asPath);
   return (
     <>
       <LayoutHeader />
-      {!isHiddenHeader && (
+      {isDisplayBanner && (
         <div>
           <LayoutBanner />
-          <LayoutNavigation />
         </div>
       )}
+      <LayoutNavigation />
       <LayoutBody>{props.children}</LayoutBody>
       <LayoutFooter />
     </>

@@ -4,9 +4,11 @@ import { FETCH_USED_ITEMS_I_PICKED } from "./MyPageMarketPick.types";
 import BoardPagination from "../../../../commons/pagination/BoardPagination.container";
 import { getDate } from "../../../../../commons/libraries/utils";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
+
 export default function MyPageMarketPick() {
   const { data, refetch } = useQuery(FETCH_USED_ITEMS_I_PICKED);
   const { onClickMoveToPage } = useMoveToPage();
+
   return (
     <S.Wrapper>
       <S.TableWrapper>
