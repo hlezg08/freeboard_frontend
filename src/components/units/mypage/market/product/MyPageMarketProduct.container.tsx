@@ -1,13 +1,18 @@
 import { useQuery } from "@apollo/client";
-import { FETCH_USED_ITEMS_I_SOLD } from "./MyPageMarketProduct.types";
+import {
+  FETCH_USED_ITEMS_I_SOLD,
+  FETCH_USED_ITEMS_COUNT_I_SOLD,
+} from "./MyPageMarketProduct.queries";
 import * as S from "./MyPageMarketProduct.styles";
 import { getDate } from "../../../../../commons/libraries/utils";
-import { useState, ChangeEvent } from "react";
 import BoardPagination from "../../../../commons/pagination/BoardPagination.container";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 export default function MyPageMarketProduct() {
   const { data, refetch } = useQuery(FETCH_USED_ITEMS_I_SOLD);
+  const { data: dataCount, refetch: refetchCount } = useQuery(
+    FETCH_USED_ITEMS_COUNT_I_SOLD
+  );
   const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>
@@ -37,9 +42,12 @@ export default function MyPageMarketProduct() {
           ))}
         </S.TableBody>
       </S.TableWrapper>
-      <div>
-        <BoardPagination refetch={refetch} />
-      </div>
+      <S.ButtonWrapper>
+        <BoardPagination
+          refetch={refetch}
+          count={dataCount?.fetchUseditemsCountISold}
+        />
+      </S.ButtonWrapper>
     </S.Wrapper>
   );
 }

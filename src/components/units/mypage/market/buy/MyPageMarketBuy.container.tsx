@@ -1,20 +1,19 @@
 import { useQuery } from "@apollo/client";
-import * as S from "./MyPageMarketPick.styles";
 import {
-  FETCH_USED_ITEMS_I_PICKED,
-  FETCH_USED_ITEMS_COUNT_I_PICKED,
-} from "./MyPageMarketPick.queries";
-import BoardPagination from "../../../../commons/pagination/BoardPagination.container";
+  FETCH_USED_ITEMS_I_BOUGHT,
+  FETCH_USED_ITEMS_COUNT_I_BOUGHT,
+} from "../product/MyPageMarketProduct.queries";
+import * as S from "../../MyPage.styles";
 import { getDate } from "../../../../../commons/libraries/utils";
+import BoardPagination from "../../../../commons/pagination/BoardPagination.container";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
-export default function MyPageMarketPick() {
-  const { data, refetch } = useQuery(FETCH_USED_ITEMS_I_PICKED);
+export default function MyPageMarketBuy() {
+  const { data, refetch } = useQuery(FETCH_USED_ITEMS_I_BOUGHT);
   const { data: dataCount, refetch: refetchCount } = useQuery(
-    FETCH_USED_ITEMS_COUNT_I_PICKED
+    FETCH_USED_ITEMS_COUNT_I_BOUGHT
   );
   const { onClickMoveToPage } = useMoveToPage();
-
   return (
     <S.Wrapper>
       <S.TableWrapper>
@@ -27,7 +26,7 @@ export default function MyPageMarketPick() {
           </S.Row>
         </S.TableHead>
         <S.TableBody>
-          {data?.fetchUseditemsIPicked.map((e: any, idx: number) => (
+          {data?.fetchUseditemsIBought.map((e: any, idx: number) => (
             <S.Row key={e._id}>
               <S.Column width="10%">{idx + 1}</S.Column>
               <S.ColumnTitle
@@ -43,10 +42,12 @@ export default function MyPageMarketPick() {
           ))}
         </S.TableBody>
       </S.TableWrapper>
-      <BoardPagination
-        refetch={refetch}
-        count={dataCount?.fetchUseditemsCountIPicked}
-      />
+      <S.ButtonWrapper>
+        <BoardPagination
+          refetch={refetch}
+          count={dataCount?.fetchUseditemsCountISold}
+        />
+      </S.ButtonWrapper>
     </S.Wrapper>
   );
 }

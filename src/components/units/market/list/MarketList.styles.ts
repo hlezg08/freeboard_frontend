@@ -73,14 +73,7 @@ export const SearchBarButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-export const PickFalseIcon = styled(HeartOutlined)`
-  :hover {
-    cursor: default;
-  }
-`;
+export const PickFalseIcon = styled(HeartOutlined)``;
 export const PickTrueIcon = styled(HeartFilled)`
   color: #eb2f96;
-  :hover {
-    cursor: default;
-  }
 `;

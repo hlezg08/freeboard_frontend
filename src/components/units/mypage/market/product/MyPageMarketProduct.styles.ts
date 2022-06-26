@@ -7,15 +7,13 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 0px;
 `;
 export const TableWrapper = styled.table`
-  width: 80%;
+  width: 100%;
   table-layout: auto;
   border-top: 1px solid #333333;
   border-bottom: 1px solid #333333;
   font-size: 18px;
-  margin: 30px 0px;
 `;
 export const TableHead = styled.thead`
   height: 45px;
@@ -42,10 +40,5 @@ export const MatchedWord = styled.span`
     props.isMatched ? "#e9998a" : "black"};
 `;
 export const ButtonWrapper = styled.div`
-  margin-left: 15px;
-`;
-export const Footer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  padding: 10px 0px;
 `;

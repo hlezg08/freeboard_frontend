@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
+import ButtonBlack from "../../../src/components/commons/buttons/black";
 import { withAuth } from "../../../src/components/commons/hocs/withAuth";
+import { useMoveToPage } from "../../../src/components/commons/hooks/useMoveToPage";
 import MypageSidebar from "../../../src/components/units/mypage/sidebar/MypageSidebar.container";
 
 const Wrapper = styled.div`
@@ -12,10 +14,16 @@ const Contents = styled.div`
 `;
 
 function MyPageProfilePage() {
+  const { onClickMoveToPage } = useMoveToPage();
   return (
     <Wrapper>
       <MypageSidebar />
-      <Contents></Contents>
+      <Contents>
+        <ButtonBlack
+          title="비밀번호 변경"
+          onClick={onClickMoveToPage(`/mypage/profile/password`)}
+        />
+      </Contents>
     </Wrapper>
   );
 }

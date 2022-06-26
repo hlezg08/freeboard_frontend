@@ -6,8 +6,9 @@ import Box from "@mui/material/Box";
 import TabPanel from "../../../src/components/commons/tabs/TabPanel";
 import { withAuth } from "../../../src/components/commons/hocs/withAuth";
 import MypageSidebar from "../../../src/components/units/mypage/sidebar/MypageSidebar.container";
-import MyPageMarketProduct from "../../../src/components/units/mypage/market/product/MyPageMarketProduct.container";
 import MyPageMarketPick from "../../../src/components/units/mypage/market/pick/MyPageMarketPick.container";
+import MyPageMarketProduct from "../../../src/components/units/mypage/market/product/MyPageMarketProduct.container";
+import MyPageMarketBuy from "../../../src/components/units/mypage/market/buy/MyPageMarketBuy.container";
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,14 +45,18 @@ function MyPageMarketPage() {
               onChange={handleChange}
               aria-label="mypage market tabs"
             >
-              <Tab label="판매 내역" {...a11yProps(0)} />
-              <Tab label="찜한 상품" {...a11yProps(1)} />
+              <Tab label="나의 상품" {...a11yProps(0)} />
+              <Tab label="구매 내역" {...a11yProps(1)} />
+              <Tab label="찜한 상품" {...a11yProps(2)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
             <MyPageMarketProduct />
           </TabPanel>
           <TabPanel value={value} index={1}>
+            <MyPageMarketBuy />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
             <MyPageMarketPick />
           </TabPanel>
         </Box>
