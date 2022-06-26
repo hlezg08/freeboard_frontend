@@ -68,6 +68,7 @@ export const ImgWrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+  flex-direction: column;
 `;
 export const Img = styled.img`
   width: 100%;

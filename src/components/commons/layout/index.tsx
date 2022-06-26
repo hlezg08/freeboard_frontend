@@ -11,7 +11,7 @@ interface ILayoutProps {
 }
 
 const DISPLAY_BANNER = ["/boards"];
-
+const HIDDEN_BANNER = ["/", "/login", "/signup"];
 const LayoutBody = styled.div`
   width: 100%;
   background-color: white;
@@ -20,6 +20,7 @@ const LayoutBody = styled.div`
 export default function Layout(props: ILayoutProps) {
   const router = useRouter();
   const isDisplayBanner = DISPLAY_BANNER.includes(router.asPath);
+  const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
   return (
     <>
       <LayoutHeader />
@@ -28,7 +29,12 @@ export default function Layout(props: ILayoutProps) {
           <LayoutBanner />
         </div>
       )}
-      <LayoutNavigation />
+      {!isHiddenBanner && (
+        <div>
+          <LayoutNavigation />
+        </div>
+      )}
+
       <LayoutBody>{props.children}</LayoutBody>
       <LayoutFooter />
     </>

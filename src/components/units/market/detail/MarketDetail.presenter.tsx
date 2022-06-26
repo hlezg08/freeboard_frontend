@@ -46,6 +46,8 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
             </D.Title3>
             {props.data?.fetchUseditem.useditemAddress?.lat && (
               <KakaoMap
+                lat={props.data?.fetchUseditem.useditemAddress?.lat}
+                lng={props.data?.fetchUseditem.useditemAddress?.lng}
                 address={props.data?.fetchUseditem.useditemAddress?.address}
               />
             )}

@@ -53,7 +53,7 @@ export default function MarketDetail() {
       const result = await createPointTransactionOfBuyingAndSelling({
         variables: { useritemId: router.query.useditemId },
       });
-      console.log(result.data?.createPointTransactionOfBuyingAndSelling.price);
+      // console.log(result.data?.createPointTransactionOfBuyingAndSelling.price);
       Modal.success({ content: "구매 완료되었습니다." });
     } catch (error) {
       Modal.error({ content: error.message });

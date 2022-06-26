@@ -8,6 +8,7 @@ export const FETCH_USED_ITEMS = gql`
       remarks
       tags
       price
+      pickedCount
       images
       seller {
         name
@@ -23,6 +24,7 @@ export const FETCH_USED_ITEMS_SOLD_OUT = gql`
       remarks
       tags
       price
+      pickedCount
       images
       seller {
         name

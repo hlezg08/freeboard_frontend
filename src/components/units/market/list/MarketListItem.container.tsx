@@ -61,7 +61,7 @@ export default function MarketListItem(props: IMarketListItemProps) {
   };
 
   return (
-    <S.ListItemWrapper onClick={onClickTodayProducts(props.el)}>
+    <S.ListItemWrapper onClick={onClickMoveToPage(`market/${props.el._id}`)}>
       <S.ImageWrapper>
         {props.el.images[0] ? (
           <Image
@@ -79,10 +79,11 @@ export default function MarketListItem(props: IMarketListItemProps) {
           />
         )}
       </S.ImageWrapper>
-      <S.TextWrapper onClick={onClickMoveToPage(`market/${props.el._id}`)}>
+      <S.TextWrapper onClick={onClickTodayProducts(props.el)}>
         <S.ItemName>{props.el.name}</S.ItemName>
-        <S.ItemRemarks>{props.el.remarks}</S.ItemRemarks>
-        <S.ItemTags>{props.el.tags}</S.ItemTags>
+        <S.ItemRemarks>요약:{props.el.remarks}</S.ItemRemarks>
+        <S.ItemTags>태그:{props.el.tags}</S.ItemTags>
+        <S.ItemRemarks>찜한 수:{props.el.pickedCount}</S.ItemRemarks>
       </S.TextWrapper>
       <S.PriceWrapper>
         {isPicked ? (

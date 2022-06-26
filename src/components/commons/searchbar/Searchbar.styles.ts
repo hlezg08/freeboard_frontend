@@ -4,6 +4,7 @@ export const SearchWrapper = styled.div`
   display: flex;
   width: 80%;
   height: 45px;
+
   background-color: #f2f2f2;
   border-radius: 5px;
   border: none;

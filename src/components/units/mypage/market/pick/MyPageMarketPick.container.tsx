@@ -25,7 +25,7 @@ export default function MyPageMarketPick() {
             <S.Row key={e._id}>
               <S.Column width="10%">{idx + 1}</S.Column>
               <S.ColumnTitle
-                onClick={onClickMoveToPage(`market/${e._id}`)}
+                onClick={onClickMoveToPage(`/market/${e._id}`)}
                 id={e._id}
                 width="50%"
               >

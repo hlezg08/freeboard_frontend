@@ -8,12 +8,14 @@ import {
 } from "./LayoutHeader.styles";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
 import { Modal } from "antd";
-import Link from "next/link";
+import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { FETCH_USER_LOGGED_IN } from "../../../units/login/Login.queries";
+import Point from "../../../units/point/Point.container";
 
 export default function LayoutHeader() {
   const { onClickMoveToPage } = useMoveToPage();
+  const [visible, setVisible] = useState(false);
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
 
@@ -23,6 +25,9 @@ export default function LayoutHeader() {
     Modal.success({
       content: "로그아웃 되었습니다",
     });
+  };
+  const onClickShowPointModal = () => {
+    setVisible(true);
   };
 
   return (
@@ -38,9 +43,9 @@ export default function LayoutHeader() {
             <LoggedInText>
               {data?.fetchUserLoggedIn.name}님 환영합니다!
             </LoggedInText>
-            <Link href="/point">
-              <a>충전</a>
-            </Link>
+            <LayoutHeaderButton onClick={onClickShowPointModal}>
+              충전
+            </LayoutHeaderButton>
             <LayoutHeaderButton onClick={onClickLogout}>
               로그아웃
             </LayoutHeaderButton>
@@ -52,6 +57,7 @@ export default function LayoutHeader() {
           </LayoutHeaderButton>
         )}
       </div>
+      {visible && <Point setVisible={setVisible} />}
     </LayoutHeaderWrapper>
   );
 }
