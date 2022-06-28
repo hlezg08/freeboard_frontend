@@ -60,11 +60,11 @@ export default function MarketWrite(props: IMarketWriteProps) {
     setIsModalVisible((prev) => !prev);
   };
 
-  const onChangeFiles = (fileUrl: string, index: number) => {
-    const newImageUrls = [...imageUrls];
-    newImageUrls[index] = fileUrl;
-    setImageUrls(newImageUrls);
-  };
+  // const onChangeFiles = (fileUrl: string, index: number) => {
+  //   const newImageUrls = [...imageUrls];
+  //   newImageUrls[index] = fileUrl;
+  //   setImageUrls(newImageUrls);
+  // };
 
   const onClickCreateUseditem = async (data) => {
     try {
@@ -172,12 +172,12 @@ export default function MarketWrite(props: IMarketWriteProps) {
       address={methods.getValues("useditemAddress.address")}
       imageUrls={imageUrls}
       setImageUrls={setImageUrls}
-      onChangeFiles={onChangeFiles}
+      //onChangeFiles={onChangeFiles}
       onClickSearchAddress={onClickSearchAddress}
       onCompleteSearchAddress={onCompleteSearchAddress}
+      isEdit={props.isEdit}
       onClickCreateUseditem={onClickCreateUseditem}
       onClickUpdateUseditem={onClickUpdateUseditem}
-      isEdit={props.isEdit}
       isModalVisible={isModalVisible}
     />
   );

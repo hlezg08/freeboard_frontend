@@ -11,8 +11,6 @@ interface KaKaoMapPros {
 }
 
 export default function KakaoMap(props: KaKaoMapPros) {
-  // const [latLng, setLatLng] = useRecoilState(latLngState);
-
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -52,6 +50,7 @@ export default function KakaoMap(props: KaKaoMapPros) {
 
               // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
               map.setCenter(coords);
+              marker.setMap(map);
             }
           });
         } else {
@@ -63,7 +62,7 @@ export default function KakaoMap(props: KaKaoMapPros) {
             map,
             position: markerPosition,
           });
-          marker.setMap(map);
+          // marker.setMap(map);
         }
       });
     };

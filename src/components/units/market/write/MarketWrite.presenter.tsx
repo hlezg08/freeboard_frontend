@@ -160,7 +160,7 @@ export default function MarketWriteUI(props: IMarketWriteUIProps) {
                 setFiles={props.setFiles}
                 key={uuidv4()}
                 index={index}
-                onChangeFiles={props.onChangeFiles}
+                // onChangeFiles={props.onChangeFiles}
               />
             ))}
           </S.ImageWrapper>

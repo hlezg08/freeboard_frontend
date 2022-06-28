@@ -16,3 +16,7 @@ export const latLngState = atom({
   key: `latLngState/${v1()}`,
   default: { La: 126.8966, Ma: 37.4849 },
 });
+export const isLoadedState = atom({
+  key: "isLoadedState",
+  default: true,
+});

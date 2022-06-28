@@ -8,15 +8,21 @@ import { createUploadLink } from "apollo-upload-client";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { onError } from "@apollo/client/link/error";
-import { accessTokenState } from "../../../commons/store";
+import { accessTokenState, isLoadedState } from "../../../commons/store";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 
 export default function ApolloSetting(props) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [isLoaded, setIsLoaded] = useRecoilState(isLoadedState);
 
   useEffect(() => {
+    // getAccessToken().then((newAccessToken) => {
+    //   setAccessToken(newAccessToken);
+    // });
+    // 권한분기 해결방법 2. 로딩하는 global state(isLoadedState) 만들어서 확인
     getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
+      setIsLoaded(true);
     });
   }, []);
 
