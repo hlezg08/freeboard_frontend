@@ -40,7 +40,8 @@ function MyPageMarketPage() {
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
-              // TabIndicatorProps={{ style: { background: "#e9998a" } }}
+              TabIndicatorProps={{ style: { background: "#e9998a" } }}
+              textColor="inherit"
               value={value}
               onChange={handleChange}
               aria-label="mypage market tabs"

@@ -1,7 +1,5 @@
-import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
-import { useState, useEffect, ChangeEvent } from "react";
-import { getDate } from "../../../../commons/libraries/utils";
+import { ChangeEvent } from "react";
 import {
   FETCH_USED_ITEMS,
   FETCH_USED_ITEMS_SOLD_OUT,
@@ -19,6 +17,7 @@ export default function MarketList() {
 
   const getDebounce = _.debounce((data: string) => {
     refetch({ search: data, page: 1 });
+    refetchSoldOut({ search: data, page: 1 });
     // onChangeKeyword(data);
   }, 200);
 

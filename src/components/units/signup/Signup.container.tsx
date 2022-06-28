@@ -1,13 +1,14 @@
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
-import * as S from "../login/Login.styles";
+import * as S from "./Signup.styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import InputUnderline from "../../commons/inputs/underline";
 import ButtonBlack from "../../commons/buttons/black";
 import { CREATE_USER } from "./Signup.queries";
+import { useMoveToPage } from "../../commons/hooks/useMoveToPage";
 
 const schema = yup.object({
   email: yup
@@ -38,6 +39,7 @@ export default function Signup() {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+  const { onClickMoveToPage } = useMoveToPage();
 
   const onClickSubmit = async (data) => {
     try {
@@ -65,51 +67,59 @@ export default function Signup() {
 
   return (
     <S.Wrapper>
-      <S.Header>SIGN UP</S.Header>
-      <S.Form onSubmit={handleSubmit(onClickSubmit)}>
-        <S.InputWrapper>
-          <S.InputTitle>이메일</S.InputTitle>
-          <InputUnderline
-            type="text"
-            register={register("email")}
-            placeholder="이메일을 입력해주세요."
-          />
-          <S.Error>{formState.errors.email?.message}</S.Error>
-        </S.InputWrapper>
+      <S.SignupWrapper>
+        <S.Header>SIGN UP</S.Header>
+        <S.Form onSubmit={handleSubmit(onClickSubmit)}>
+          <S.InputWrapper>
+            <S.InputTitle>이메일</S.InputTitle>
+            <InputUnderline
+              type="text"
+              register={register("email")}
+              placeholder="이메일을 입력해주세요."
+            />
+            <S.Error>{formState.errors.email?.message}</S.Error>
+          </S.InputWrapper>
 
-        <S.InputWrapper>
-          <S.InputTitle>이름</S.InputTitle>
-          <InputUnderline
-            type="text"
-            register={register("name")}
-            placeholder="이름을 입력해주세요."
-          />
-          <S.Error>{formState.errors.name?.message}</S.Error>
-        </S.InputWrapper>
+          <S.InputWrapper>
+            <S.InputTitle>이름</S.InputTitle>
+            <InputUnderline
+              type="text"
+              register={register("name")}
+              placeholder="이름을 입력해주세요."
+            />
+            <S.Error>{formState.errors.name?.message}</S.Error>
+          </S.InputWrapper>
 
-        <S.InputWrapper>
-          <S.InputTitle>비밀번호</S.InputTitle>
-          <InputUnderline
-            type="password"
-            register={register("password")}
-            placeholder="비밀번호를 입력해주세요."
-          />
-          <S.Error>{formState.errors.password?.message}</S.Error>
-        </S.InputWrapper>
+          <S.InputWrapper>
+            <S.InputTitle>비밀번호</S.InputTitle>
+            <InputUnderline
+              type="password"
+              register={register("password")}
+              placeholder="비밀번호를 입력해주세요."
+            />
+            <S.Error>{formState.errors.password?.message}</S.Error>
+          </S.InputWrapper>
 
-        <S.InputWrapper>
-          <S.InputTitle>비밀번호 확인</S.InputTitle>
-          <InputUnderline
-            type="password"
-            register={register("passwordConfirm")}
-            placeholder="비밀번호를 한 번 더 입력해주세요."
-          />
-          <S.Error>{formState.errors.passwordConfirm?.message}</S.Error>
-        </S.InputWrapper>
-        <S.ButtonWrapper>
-          <ButtonBlack title="회원가입" />
-        </S.ButtonWrapper>
-      </S.Form>
+          <S.InputWrapper>
+            <S.InputTitle>비밀번호 확인</S.InputTitle>
+            <InputUnderline
+              type="password"
+              register={register("passwordConfirm")}
+              placeholder="비밀번호를 한 번 더 입력해주세요."
+            />
+            <S.Error>{formState.errors.passwordConfirm?.message}</S.Error>
+          </S.InputWrapper>
+          <S.ButtonWrapper>
+            <ButtonBlack title="회원가입" />
+          </S.ButtonWrapper>
+        </S.Form>
+        <S.LoginAlreadyWrapper>
+          <S.Text>이미 아이디가 있으신가요?</S.Text>
+          <S.LoginText onClick={onClickMoveToPage(`/login`)}>
+            로그인
+          </S.LoginText>
+        </S.LoginAlreadyWrapper>
+      </S.SignupWrapper>
     </S.Wrapper>
   );
 }

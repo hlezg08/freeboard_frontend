@@ -1,27 +1,27 @@
 import styled from "@emotion/styled";
 import { KeyboardEvent } from "react";
-interface IInput01Props {
+interface IInputUnderlineProps {
   type: string;
   register: any;
   placeholder?: string;
   onKeyUp?: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
-const LoginInput = styled.input`
+const InputStyle = styled.input`
   border: none;
   width: 100%;
   height: 45px;
-  margin-top: 5px;
   border-bottom: 1px solid lightgray;
   :focus {
     outline: none;
   }
+  font-size: 16px;
 `;
 
-export default function InputUnderline(props: IInput01Props) {
+export default function InputUnderline(props: IInputUnderlineProps) {
   return (
-    <LoginInput
-      type={props.type}
+    <InputStyle
       {...props.register}
+      type={props.type}
       placeholder={props.placeholder}
       onKeyUp={props.onKeyUp}
     />

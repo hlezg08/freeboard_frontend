@@ -9,8 +9,11 @@ import {
 import { useMoveToPage } from "../../hooks/useMoveToPage";
 import { Modal } from "antd";
 import { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { FETCH_USER_LOGGED_IN } from "../../../units/login/Login.queries";
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  FETCH_USER_LOGGED_IN,
+  LOGOUT_USER,
+} from "../../../units/login/Login.queries";
 import Point from "../../../units/point/Point.container";
 
 export default function LayoutHeader() {
@@ -18,13 +21,20 @@ export default function LayoutHeader() {
   const [visible, setVisible] = useState(false);
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
+  const [logoutUser] = useMutation(LOGOUT_USER);
 
-  const onClickLogout = () => {
-    setAccessToken("");
-    localStorage.removeItem("refreshToken");
-    Modal.success({
-      content: "로그아웃 되었습니다",
-    });
+  const onClickLogout = async () => {
+    try {
+      setAccessToken("");
+      // localStorage.removeItem("refreshToken");
+      const result = await logoutUser();
+      localStorage.setItem("logout", String(result.data?.logoutUser));
+      Modal.success({
+        content: "로그아웃 되었습니다",
+      });
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
   };
   const onClickShowPointModal = () => {
     setVisible(true);

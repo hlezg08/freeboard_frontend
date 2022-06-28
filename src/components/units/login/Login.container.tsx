@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as S from "./Login.styles";
-import { LOGIN_USER, LOGIN_USER_EXAMPLE } from "./Login.queries";
+import { LOGIN_USER, LOGOUT_USER } from "./Login.queries";
 import InputUnderline from "../../commons/inputs/underline";
 import ButtonBlack from "../../commons/buttons/black";
 import { accessTokenState } from "../../../commons/store";
@@ -37,7 +37,7 @@ export default function Login() {
   const { onClickMoveToPage } = useMoveToPage();
 
   const [loginUser] = useMutation(LOGIN_USER);
-  const [loginUserExample] = useMutation(LOGIN_USER_EXAMPLE);
+  const [logoutUser] = useMutation(LOGOUT_USER);
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   // const [, setUserInfo] = useRecoilState(userInfoState);
   // const client = useApolloClient();
@@ -47,22 +47,11 @@ export default function Login() {
       const result = await loginUser({
         variables: { ...value },
       });
-      localStorage.setItem("refreshToken", "true");
+
+      // localStorage.setItem("refreshToken", "true");
+      localStorage.removeItem("logout");
       const newAccessToken = result.data.loginUser.accessToken;
       setAccessToken(newAccessToken);
-
-      // useQuery 대신 useApolloClient 사용 후 global state에 저장
-      // const resultUserInfo = await client.query({
-      //   query: FETCH_USER_LOGGED_IN,
-      //   context: {
-      //     headers: {
-      //       Authorization: `Bearer ${accessToken}`,
-      //     },
-      //   },
-      // });
-      // const userInfo = data?.fetchUserLoggedIn;
-      // setUserInfo(userInfo);
-      // console.log(userInfo);
 
       Modal.success({
         content: "로그인 성공!",
@@ -83,47 +72,49 @@ export default function Login() {
 
   return (
     <S.Wrapper>
-      <S.Header>MEMBER LOGIN</S.Header>
+      <S.LoginWrapper>
+        <S.Header>MEMBER LOGIN</S.Header>
 
-      <S.Form onSubmit={handleSubmit(onClickSubmit)}>
-        <S.InputWrapper>
-          <S.InputTitle>이메일</S.InputTitle>
-          <InputUnderline
-            onKeyUp={onEnterPress}
-            type="text"
-            register={register("email")}
-          />
-          <S.Error>{formState.errors.email?.message}</S.Error>
-        </S.InputWrapper>
+        <S.Form onSubmit={handleSubmit(onClickSubmit)}>
+          <S.InputWrapper>
+            <S.InputTitle>이메일</S.InputTitle>
+            <InputUnderline
+              onKeyUp={onEnterPress}
+              type="text"
+              register={register("email")}
+            />
+            <S.Error>{formState.errors.email?.message}</S.Error>
+          </S.InputWrapper>
 
-        <S.InputWrapper>
-          <S.InputTitle>비밀번호</S.InputTitle>
-          <InputUnderline
-            onKeyUp={onEnterPress}
-            type="password"
-            register={register("password")}
-          />
-          <S.Error>{formState.errors.password?.message}</S.Error>
-        </S.InputWrapper>
+          <S.InputWrapper>
+            <S.InputTitle>비밀번호</S.InputTitle>
+            <InputUnderline
+              onKeyUp={onEnterPress}
+              type="password"
+              register={register("password")}
+            />
+            <S.Error>{formState.errors.password?.message}</S.Error>
+          </S.InputWrapper>
 
-        <S.LoginStatusWrapper>
-          <S.Checkbox type="checkbox" />
-          <span>로그인 상태 유지</span>
-        </S.LoginStatusWrapper>
-        <S.ButtonWrapper>
-          <ButtonBlack title="로그인" />
-        </S.ButtonWrapper>
-      </S.Form>
+          <S.LoginStatusWrapper>
+            <S.Checkbox type="checkbox" />
+            <S.LoginText>로그인 상태 유지</S.LoginText>
+          </S.LoginStatusWrapper>
+          <S.ButtonWrapper>
+            <ButtonBlack title="로그인" />
+          </S.ButtonWrapper>
+        </S.Form>
 
-      <S.LoginFooterWrapper>
-        <S.LoginText>아이디 찾기</S.LoginText>
-        <S.LoginText>|</S.LoginText>
-        <S.LoginText>비밀번호 찾기</S.LoginText>
-        <S.LoginText>|</S.LoginText>
-        <S.LoginText onClick={onClickMoveToPage("/signup")}>
-          회원가입
-        </S.LoginText>
-      </S.LoginFooterWrapper>
+        <S.LoginFooterWrapper>
+          <S.LoginText>아이디 찾기</S.LoginText>
+          <S.LoginText>|</S.LoginText>
+          <S.LoginText>비밀번호 찾기</S.LoginText>
+          <S.LoginText>|</S.LoginText>
+          <S.LoginText onClick={onClickMoveToPage("/signup")}>
+            회원가입
+          </S.LoginText>
+        </S.LoginFooterWrapper>
+      </S.LoginWrapper>
     </S.Wrapper>
   );
 }

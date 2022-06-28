@@ -14,15 +14,11 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin: 30px 0px;
-  padding: 30px;
-  border: 1px solid lightgray;
-`;
-export const WriterWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  margin: 60px 0px;
+  padding: 60px;
+  background-color: white;
+  box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.07);
+  border-radius: 15px;
 `;
 export const InputWrapper = styled.div`
   display: flex;
@@ -30,19 +26,19 @@ export const InputWrapper = styled.div`
   width: 100%;
   padding: 10px;
 `;
-export const LatLngWrapper = styled.div`
-  display: flex;
-  padding: 10px 0px;
-`;
 export const LocationWrapper = styled.div`
   width: 100%;
   display: flex;
 `;
 export const LocationTextWrapper = styled.div`
-  width: 100%;
+  flex-grow: 1;
   padding-left: 10px;
 `;
 export const AddressWrapper = styled.div`
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 10px 0px;
 `;
 export const ZipCodeInput = styled.input`
@@ -50,6 +46,7 @@ export const ZipCodeInput = styled.input`
   height: 45px;
   text-align: center;
   border-width: 1px;
+  margin-right: 10px;
 `;
 export const ZipCodeWrapper = styled.div`
   display: flex;
@@ -57,29 +54,13 @@ export const ZipCodeWrapper = styled.div`
   width: 220px;
   justify-content: space-between;
 `;
-
 export const Label = styled.span`
-  font-size: 13pt;
+  font-size: 20px;
+  width: 30%;
   padding: 10px 0px;
-`;
-export const LabelSmall = styled.span`
-  font-size: 16px;
-  padding-bottom: 10px;
 `;
 export const ImageWrapper = styled.div`
   display: flex;
-`;
-export const RadioWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-export const RadioButton = styled.input`
-  width: 15px;
-  height: 15px;
-`;
-export const RadioLabel = styled.label`
-  font-size: 13pt;
-  padding: 0px 5px;
 `;
 export const SubmitWrapper = styled.div`
   display: flex;
@@ -90,4 +71,10 @@ export const SubmitWrapper = styled.div`
 export const Error = styled.div`
   color: red;
   font-size: 13px;
+`;
+export const TagsWrapper = styled.div`
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  border: 1px solid gray;
 `;

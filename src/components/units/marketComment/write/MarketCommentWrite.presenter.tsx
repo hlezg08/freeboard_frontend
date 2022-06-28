@@ -1,5 +1,5 @@
+import ButtonWhite from "../../../commons/buttons/white";
 import InputComment from "../../../commons/inputs/comment";
-import ButtonComment from "../../../commons/buttons/comment";
 import * as S from "./MarketCommentWrite.styles";
 export default function MarketCommentWriteUI(props) {
   const onClickRollBack = () => {
@@ -25,10 +25,7 @@ export default function MarketCommentWriteUI(props) {
           <span>{props.length}/100</span>
           <div>
             {props.isEdit && <S.RollBackButton onClick={onClickRollBack} />}
-            <ButtonComment
-              type="button"
-              title={props.isEdit ? "수정" : "등록"}
-            />
+            <ButtonWhite type="button" title={props.isEdit ? "수정" : "등록"} />
           </div>
         </S.CommentAttach>
       </S.CommentWrapper>

@@ -14,6 +14,7 @@ export const TableWrapper = styled.table`
   border-top: 1px solid #333333;
   border-bottom: 1px solid #333333;
   font-size: 18px;
+  background-color: white;
 `;
 export const TableHead = styled.thead`
   height: 45px;

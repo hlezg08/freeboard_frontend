@@ -5,12 +5,13 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import MarketWriteUI from "./MarketWrite.presenter";
 import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./MarketWrite.queries";
-import { IUpdateUseditemInput } from "../../../../commons/types/generated/types";
+import MarketWriteUI from "./MarketWrite.presenter";
 import { IMarketWriteProps } from "./MarketWrite.types";
 import { useRecoilState } from "recoil";
 import { latLngState } from "../../../../commons/store";
+import { IUpdateUseditemInput } from "../../../../commons/types/generated/types";
+import { UPLOAD_FILE } from "../../../commons/upload/Upload.queries";
 
 const schema = yup.object({
   name: yup.string().required("필수 입력 사항입니다."),
@@ -18,6 +19,7 @@ const schema = yup.object({
   contents: yup.string().required("필수 입력 사항입니다."),
   price: yup
     .number()
+    .positive("양수만 입력 가능합니다.")
     .required("필수 입력 사항입니다.")
     .typeError("숫자만 입력 가능합니다."),
 });
@@ -27,25 +29,21 @@ export default function MarketWrite(props: IMarketWriteProps) {
   const [latLng] = useRecoilState(latLngState);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
 
-  const {
-    register,
-    handleSubmit,
-    formState,
-    setValue,
-    getValues,
-    trigger,
-    reset,
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
+  const methods = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
+  const [tags, setTags] = useState([]);
   const [imageUrls, setImageUrls] = useState<string[]>(["", "", ""]);
+  const [files, setFiles] = useState<(File | undefined)[]>([
+    undefined,
+    undefined,
+    undefined,
+  ]);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
-    reset({
+    methods.reset({
       name: props.data?.fetchUseditem.name,
       remarks: props.data?.fetchUseditem.remarks,
       price: props.data?.fetchUseditem.price,
@@ -57,8 +55,8 @@ export default function MarketWrite(props: IMarketWriteProps) {
     setIsModalVisible((prev) => !prev);
   };
   const onCompleteSearchAddress = (data: any) => {
-    setValue("useditemAddress.zipcode", data.zonecode);
-    setValue("useditemAddress.address", data.address);
+    methods.setValue("useditemAddress.zipcode", data.zonecode);
+    methods.setValue("useditemAddress.address", data.address);
     setIsModalVisible((prev) => !prev);
   };
 
@@ -70,6 +68,15 @@ export default function MarketWrite(props: IMarketWriteProps) {
 
   const onClickCreateUseditem = async (data) => {
     try {
+      // const resultUpload = await uploadFile({ variables: { file } });
+      const resultUploadFile = await Promise.all(
+        files.map((el) => el && uploadFile({ variables: { file: el } }))
+      );
+      const resultUrls = resultUploadFile.map((el) =>
+        el ? el.data.uploadFile.url : ""
+      );
+
+      // onChangeFiles(resultUpload.data.uploadFile.url, props.index);
       const result = await createUseditem({
         variables: {
           createUseditemInput: {
@@ -77,7 +84,8 @@ export default function MarketWrite(props: IMarketWriteProps) {
             remarks: data.remarks,
             contents: data.contents,
             price: Number(data.price),
-            images: imageUrls,
+            tags,
+            images: resultUrls,
             useditemAddress: {
               lat: latLng.Ma,
               lng: latLng.La,
@@ -107,6 +115,7 @@ export default function MarketWrite(props: IMarketWriteProps) {
       if (data.contents) updateUseditemInput.contents = data.contents;
       if (data.price) updateUseditemInput.price = Number(data.price);
       if (imageUrls) updateUseditemInput.images = imageUrls;
+      if (tags) updateUseditemInput.tags = tags;
 
       if (
         data.useditemAddress.zipcode ||
@@ -154,21 +163,21 @@ export default function MarketWrite(props: IMarketWriteProps) {
 
   return (
     <MarketWriteUI
+      methods={methods}
       data={props.data}
-      register={register}
-      handleSubmit={handleSubmit}
-      formState={formState}
-      setValue={setValue}
-      address={getValues("useditemAddress.address")}
-      getValues={getValues}
-      trigger={trigger}
+      tags={tags}
+      setTags={setTags}
+      files={files}
+      setFiles={setFiles}
+      address={methods.getValues("useditemAddress.address")}
       imageUrls={imageUrls}
-      isEdit={props.isEdit}
+      setImageUrls={setImageUrls}
       onChangeFiles={onChangeFiles}
       onClickSearchAddress={onClickSearchAddress}
       onCompleteSearchAddress={onCompleteSearchAddress}
       onClickCreateUseditem={onClickCreateUseditem}
       onClickUpdateUseditem={onClickUpdateUseditem}
+      isEdit={props.isEdit}
       isModalVisible={isModalVisible}
     />
   );

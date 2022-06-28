@@ -132,9 +132,10 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
 
         <S.SubmitWrapper>
           <ButtonLightpink
-            formState={props.formState}
             isEdit={props.isEdit}
-          ></ButtonLightpink>
+            isActive={props.formState.isValid}
+            title={props.isEdit ? "수정하기" : "등록하기"}
+          />
         </S.SubmitWrapper>
       </S.Form>
     </S.Wrapper>

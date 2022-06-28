@@ -14,7 +14,7 @@ const DISPLAY_BANNER = ["/boards"];
 const HIDDEN_BANNER = ["/", "/login", "/signup"];
 const LayoutBody = styled.div`
   width: 100%;
-  background-color: white;
+  background-color: #f8f8f8;
 `;
 
 export default function Layout(props: ILayoutProps) {

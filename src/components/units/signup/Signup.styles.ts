@@ -7,9 +7,9 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const LoginWrapper = styled.div`
+export const SignupWrapper = styled.div`
   width: 740px;
-  height: 600px;
+  height: 700px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,10 +17,11 @@ export const LoginWrapper = styled.div`
   background: #ffffff;
   box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.07);
   border-radius: 15px;
-  padding: 70px;
+  padding: 50px;
 `;
 export const Header = styled.h1`
   font-size: 32px;
+  margin: 0;
 `;
 export const Form = styled.form`
   width: 500px;
@@ -52,6 +53,17 @@ export const ButtonWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  padding: 10px 0px;
+`;
+
+export const Error = styled.span`
+  color: red;
+  font-size: 14px;
+`;
+export const LoginAlreadyWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
 `;
 export const LoginText = styled.span`
   padding: 0px 10px;
@@ -61,7 +73,7 @@ export const LoginText = styled.span`
     text-decoration: underline;
   }
 `;
-export const Error = styled.span`
-  color: red;
-  font-size: 14px;
+export const Text = styled.span`
+  padding: 0px 10px;
+  font-size: 16px;
 `;

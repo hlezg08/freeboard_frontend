@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 const ButtonWhiteStyled = styled.button`
-  width: 80px;
-  height: 45px;
+  min-width: 80px;
+  width: auto;
+  height: 50px;
   background-color: white;
   border: 1px solid lightgray;
-  margin: 10px;
+  padding: 10px;
   font-size: 16px;
   :hover {
     cursor: pointer;

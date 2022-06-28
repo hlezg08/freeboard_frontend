@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import {
   FETCH_USED_ITEMS_I_BOUGHT,
   FETCH_USED_ITEMS_COUNT_I_BOUGHT,
-} from "../product/MyPageMarketProduct.queries";
+} from "../MyPageMarket.queries";
 import * as S from "../../MyPage.styles";
 import { getDate } from "../../../../../commons/libraries/utils";
 import BoardPagination from "../../../../commons/pagination/BoardPagination.container";

@@ -3,8 +3,10 @@ interface ILightPinkStyledProps {
   isActive: boolean;
 }
 interface IButtonLightpinkProps {
+  type?: any;
+  title: string;
+  isActive?: boolean;
   isEdit?: boolean;
-  formState?: any;
 }
 const LightPinkStyled = styled.button`
   align-items: center;
@@ -25,8 +27,8 @@ const LightPinkStyled = styled.button`
 
 export default function ButtonLightpink(props: IButtonLightpinkProps) {
   return (
-    <LightPinkStyled isActive={props.isEdit ? true : props.formState?.isValid}>
-      {props.isEdit ? "수정" : "등록"}하기
+    <LightPinkStyled isActive={props.isEdit ? true : props.isActive}>
+      {props.title}
     </LightPinkStyled>
   );
 }

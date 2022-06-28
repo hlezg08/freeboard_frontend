@@ -2,8 +2,8 @@ import { useQuery } from "@apollo/client";
 import {
   FETCH_USED_ITEMS_I_SOLD,
   FETCH_USED_ITEMS_COUNT_I_SOLD,
-} from "./MyPageMarketProduct.queries";
-import * as S from "./MyPageMarketProduct.styles";
+} from "../MyPageMarket.queries";
+import * as S from "../../MyPage.styles";
 import { getDate } from "../../../../../commons/libraries/utils";
 import BoardPagination from "../../../../commons/pagination/BoardPagination.container";
 import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";

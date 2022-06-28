@@ -26,6 +26,11 @@ export default function MarketCommentWrite(props) {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+  const [submited, setSubmited] = useState(false);
+
+  useEffect(() => {
+    reset({ contents: "" });
+  }, [submited]);
 
   useEffect(() => {
     if (props.isEdit) reset({ contents: props.el?.contents });
@@ -50,6 +55,7 @@ export default function MarketCommentWrite(props) {
           },
         ],
       });
+      setSubmited(true);
       Modal.success({
         content: "댓글이 등록되었습니다.",
       });

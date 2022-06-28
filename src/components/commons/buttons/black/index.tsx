@@ -5,7 +5,7 @@ interface IButtonBlackProps {
   title: string;
 }
 const SubmitButton = styled.button`
-  width: auto;
+  width: 100%;
   height: auto;
   border: none;
   border-radius: 5px;
@@ -15,6 +15,7 @@ const SubmitButton = styled.button`
   :hover {
     cursor: pointer;
   }
+  font-size: 16px;
 `;
 export default function ButtonBlack(props: IButtonBlackProps) {
   return (

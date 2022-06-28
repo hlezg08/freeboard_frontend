@@ -4,15 +4,15 @@ export interface IMarketWriteProps {
   isEdit?: boolean;
 }
 export interface IMarketWriteUIProps {
+  methods: any;
   data: any;
-  register: any;
-  handleSubmit: any;
-  formState: any;
-  setValue?: any;
-  getValues?: any;
-  address?: string;
-  trigger: any;
+  tags?: Array<string>;
+  setTags?: any;
+  files?: Array<File | undefined>;
+  setFiles?: any;
   imageUrls: Array<string>;
+  setImageUrls: any;
+  address?: string;
   onChangeFiles: (fileUrl: string, index: number) => void;
   onClickSearchAddress: () => void;
   onCompleteSearchAddress: (data) => void;

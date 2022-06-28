@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { Modal } from "antd";
 import { FETCH_USER_LOGGED_IN } from "../../../units/login/Login.queries";
 import { useState } from "react";
+import { TOGGLE_USED_ITEM_PICK } from "../list/MarketList.queries";
 
 export default function MarketDetail() {
   const router = useRouter();
@@ -21,6 +22,8 @@ export default function MarketDetail() {
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
     CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
   );
+  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
+
   const [isVisible, setIsVisible] = useState(false);
 
   const onClickDeleteUseditem = async () => {
@@ -48,15 +51,33 @@ export default function MarketDetail() {
     });
   };
   const onClickBuyUseditem = async () => {
-    console.log(router.query.useditemId);
     try {
-      const result = await createPointTransactionOfBuyingAndSelling({
+      await createPointTransactionOfBuyingAndSelling({
         variables: { useritemId: router.query.useditemId },
       });
-      // console.log(result.data?.createPointTransactionOfBuyingAndSelling.price);
       Modal.success({ content: "구매 완료되었습니다." });
     } catch (error) {
       Modal.error({ content: error.message });
+    }
+  };
+
+  const onClickPick = async () => {
+    try {
+      await toggleUseditemPick({
+        variables: {
+          useditemId: router.query.useditemId,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_USED_ITEM,
+            variables: { useditemId: router.query.useditemId },
+          },
+        ],
+      });
+    } catch (error) {
+      Modal.error({
+        content: error.message,
+      });
     }
   };
 
@@ -66,6 +87,7 @@ export default function MarketDetail() {
       userData={userData}
       onClickDeleteUseditem={onClickDeleteUseditem}
       onClickShowBuyModal={onClickShowBuyModal}
+      onClickPick={onClickPick}
       isVisible={isVisible}
     ></MarketDetailUI>
   );

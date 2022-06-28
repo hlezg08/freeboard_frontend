@@ -13,6 +13,7 @@ export const FETCH_USED_ITEMS = gql`
       seller {
         name
       }
+      createdAt
     }
   }
 `;
@@ -29,6 +30,7 @@ export const FETCH_USED_ITEMS_SOLD_OUT = gql`
       seller {
         name
       }
+      createdAt
     }
   }
 `;

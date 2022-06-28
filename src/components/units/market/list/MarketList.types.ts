@@ -2,9 +2,10 @@ import { ChangeEvent } from "react";
 export interface IMarketListUIProps {
   data?: any;
   refetch?: any;
-  onClickTodayProducts: (el: any) => () => void;
+  dataSoldOut?: any;
+  refetchSoldOut?: any;
   loadProducts: () => void;
-  todayProducts: any;
+  loadProductsSoldOut: () => void;
   onChangeKeyword?: (value: string) => void;
   onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
 }
