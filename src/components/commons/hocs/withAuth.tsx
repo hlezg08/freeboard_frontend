@@ -23,8 +23,8 @@ export const withAuth = (Component) => (props) => {
   // 의존성 배열 필요
   useEffect(() => {
     if (isLoaded && !accessToken) {
-      alert("로그인 후 이용 가능합니다.");
-      router.push("/week5/23-04-login-check");
+      Modal.info({ content: "로그인 후 이용 가능합니다." });
+      router.push("/login");
     }
   }, [isLoaded]);
 

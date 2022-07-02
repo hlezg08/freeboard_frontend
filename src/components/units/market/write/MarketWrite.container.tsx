@@ -68,15 +68,13 @@ export default function MarketWrite(props: IMarketWriteProps) {
 
   const onClickCreateUseditem = async (data) => {
     try {
-      // const resultUpload = await uploadFile({ variables: { file } });
       const resultUploadFile = await Promise.all(
         files.map((el) => el && uploadFile({ variables: { file: el } }))
       );
       const resultUrls = resultUploadFile.map((el) =>
         el ? el.data.uploadFile.url : ""
       );
-
-      // onChangeFiles(resultUpload.data.uploadFile.url, props.index);
+      console.log(resultUrls);
       const result = await createUseditem({
         variables: {
           createUseditemInput: {
@@ -108,13 +106,21 @@ export default function MarketWrite(props: IMarketWriteProps) {
   };
 
   const onClickUpdateUseditem = async (data) => {
+    console.log(imageUrls);
     try {
+      const resultUploadFile = await Promise.all(
+        files.map((el) => el && uploadFile({ variables: { file: el } }))
+      );
+      const resultUrls = resultUploadFile.map((el) =>
+        el ? el.data.uploadFile.url : ""
+      );
+      console.log(resultUrls);
       const updateUseditemInput: IUpdateUseditemInput = {};
       if (data.name) updateUseditemInput.name = data.name;
       if (data.remarks) updateUseditemInput.remarks = data.remarks;
       if (data.contents) updateUseditemInput.contents = data.contents;
       if (data.price) updateUseditemInput.price = Number(data.price);
-      if (imageUrls) updateUseditemInput.images = imageUrls;
+      if (imageUrls) updateUseditemInput.images = resultUrls;
       if (tags) updateUseditemInput.tags = tags;
 
       if (
@@ -172,7 +178,7 @@ export default function MarketWrite(props: IMarketWriteProps) {
       address={methods.getValues("useditemAddress.address")}
       imageUrls={imageUrls}
       setImageUrls={setImageUrls}
-      //onChangeFiles={onChangeFiles}
+      // onChangeFiles={onChangeFiles}
       onClickSearchAddress={onClickSearchAddress}
       onCompleteSearchAddress={onCompleteSearchAddress}
       isEdit={props.isEdit}

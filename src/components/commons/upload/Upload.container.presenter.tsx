@@ -1,6 +1,6 @@
 import * as S from "./Upload.styles";
 import { IUploadProps } from "./Upload.types";
-import { useRef, ChangeEvent } from "react";
+import { useRef, ChangeEvent, useState } from "react";
 import { checkFileValidaton } from "../../../commons/libraries/fileValidation";
 
 export default function Upload(props: IUploadProps) {
@@ -38,7 +38,14 @@ export default function Upload(props: IUploadProps) {
         accept=".jpg,.png"
       />
       {props.imageUrl ? (
-        <S.Image src={`${props.imageUrl}`} onClick={onClickFile} />
+        <S.Image
+          src={
+            props.isEdit
+              ? `https://storage.googleapis.com/${props.imageUrl}`
+              : `${props.imageUrl}`
+          }
+          onClick={onClickFile}
+        />
       ) : (
         <S.ImageSelectButton type="button" onClick={onClickFile}>
           Upload

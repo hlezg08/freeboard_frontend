@@ -18,5 +18,5 @@ export const latLngState = atom({
 });
 export const isLoadedState = atom({
   key: "isLoadedState",
-  default: true,
+  default: false,
 });

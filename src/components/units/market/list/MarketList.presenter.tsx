@@ -44,6 +44,7 @@ export default function MarketListUI(props: IMarketListUIProps) {
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
+            sx={{ width: "50%" }}
             TabIndicatorProps={{ style: { background: "#e9998a" } }}
             textColor="inherit"
             value={value}

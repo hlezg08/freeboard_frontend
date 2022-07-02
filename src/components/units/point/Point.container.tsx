@@ -3,38 +3,43 @@ import Head from "next/head";
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { Modal, Button } from "antd";
-import styled from "@emotion/styled";
+// import styled from "@emotion/styled";
 import { CREATE_POINT_TRANSACTION_OF_LOADING } from "./Point.queries";
 import { FETCH_USER_LOGGED_IN } from "../login/Login.queries";
-import { v4 as uuid } from "uuid";
+import * as S from "./Point.styles";
 declare const window: typeof globalThis & {
   IMP: any;
 };
-const ModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const PointSelect = styled.select`
-  width: 360px;
-  height: 40px;
-  border: none;
-  border-bottom: 1px solid black;
-  font-size: 18px;
-`;
+// const ModalWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
+// const PointSelect = styled.select`
+//   width: 360px;
+//   height: 40px;
+//   border: none;
+//   border-bottom: 1px solid black;
+//   font-size: 18px;
+// `;
 interface IPointProps {
   setVisible?: any;
 }
 export default function Point(props: IPointProps) {
   const router = useRouter();
-  const [price, setPrice] = useState(500);
+  const [price, setPrice] = useState(100);
+  const [isSelect, setIsSelect] = useState(false);
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [createPointTransactionOfLoading] = useMutation(
     CREATE_POINT_TRANSACTION_OF_LOADING
   );
 
+  const onClickDisplaySelect = () => {
+    setIsSelect((prev) => !prev);
+  };
   const onChangeSelect = (event) => {
     setPrice(Number(event.target.value));
+    setIsSelect(false);
   };
   const requestPay = () => {
     const IMP = window.IMP;
@@ -57,7 +62,7 @@ export default function Point(props: IPointProps) {
                 impUid: rsp.imp_uid,
               },
             });
-            // console.log(result.data?.createPointTransactionOfLoading);
+            props.setVisible(false);
             Modal.success({ content: `결제가 완료되었습니다!` });
             router.push("/market");
           } catch (error) {
@@ -70,7 +75,30 @@ export default function Point(props: IPointProps) {
     );
   };
   return (
-    <div>
+    // <Modal
+    //   visible={true}
+    //   onOk={requestPay}
+    //   onCancel={() => {
+    //     props.setVisible(false);
+    //   }}
+    //   footer={[
+    //     <Button key={uuid()} onClick={requestPay}>
+    //       충전하기
+    //     </Button>,
+    //   ]}
+    // >
+    //   <ModalWrapper>
+    //     <h2>충전하실 금액을 선택해주세요!</h2>
+    //     <PointSelect id="price-select" onChange={onChangeSelect}>
+    //       <option defaultValue="500">500원</option>
+    //       <option value="1000">1000원</option>
+    //       <option value="2000">2000원</option>
+    //       <option value="5000">5000원</option>
+    //     </PointSelect>
+    //   </ModalWrapper>
+    // </Modal>
+
+    <S.Wrapper>
       <Head>
         {/* jQuery */}
         <script
@@ -83,28 +111,33 @@ export default function Point(props: IPointProps) {
           src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
         ></script>
       </Head>
-      <Modal
-        visible={true}
-        onOk={requestPay}
-        onCancel={() => {
+      <S.CancelIcon
+        onClick={() => {
           props.setVisible(false);
         }}
-        footer={[
-          <Button key={uuid()} onClick={requestPay}>
-            충전하기
-          </Button>,
-        ]}
-      >
-        <ModalWrapper>
-          <h2>충전하실 금액을 선택해주세요!</h2>
-          <PointSelect id="price-select" onChange={onChangeSelect}>
-            <option defaultValue="500">500원</option>
-            <option value="1000">1000원</option>
-            <option value="2000">2000원</option>
-            <option value="5000">5000원</option>
-          </PointSelect>
-        </ModalWrapper>
-      </Modal>
-    </div>
+      />
+
+      <S.Title>충전하실 금액을 선택해주세요</S.Title>
+      <S.PointWrapper>
+        <S.SelectWrapper onClick={onClickDisplaySelect}>
+          <S.SelctedPrice onChange={onChangeSelect}>{price}</S.SelctedPrice>
+        </S.SelectWrapper>
+        <S.ListWrapper isSelect={isSelect}>
+          <S.List onClick={onChangeSelect} value="100">
+            100
+          </S.List>
+          <S.List onClick={onChangeSelect} value="500">
+            500
+          </S.List>
+          <S.List onClick={onChangeSelect} value="2000">
+            2000
+          </S.List>
+          <S.List onClick={onChangeSelect} value="5000">
+            5000
+          </S.List>
+        </S.ListWrapper>
+      </S.PointWrapper>
+      <S.SubmitButton onClick={requestPay}>충전하기</S.SubmitButton>
+    </S.Wrapper>
   );
 }

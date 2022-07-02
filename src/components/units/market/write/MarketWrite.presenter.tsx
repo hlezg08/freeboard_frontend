@@ -153,6 +153,7 @@ export default function MarketWriteUI(props: IMarketWriteUIProps) {
           <S.ImageWrapper>
             {props.imageUrls.map((el: string, index: number) => (
               <Upload
+                isEdit={props.isEdit}
                 imageUrl={el}
                 imageUrls={props.imageUrls}
                 setImageUrls={props.setImageUrls}

@@ -42,33 +42,35 @@ export default function LayoutHeader() {
   };
 
   return (
-    <LayoutHeaderWrapper>
-      <div onClick={onClickMoveToPage("/boards")}>
-        <LayoutHeaderLogo src="../../icons/ic-cat-footprint.png" />
-        <LayoutHeaderButton>집사마켓</LayoutHeaderButton>
-      </div>
+    <>
+      <LayoutHeaderWrapper>
+        <div onClick={onClickMoveToPage("/boards")}>
+          <LayoutHeaderLogo src="../../icons/ic-cat-footprint.png" />
+          <LayoutHeaderButton>집사마켓</LayoutHeaderButton>
+        </div>
 
-      <div>
-        {accessToken && (
-          <>
-            <LoggedInText>
-              {data?.fetchUserLoggedIn.name}님 환영합니다!
-            </LoggedInText>
-            <LayoutHeaderButton onClick={onClickShowPointModal}>
-              충전
+        <div>
+          {accessToken && (
+            <>
+              <LoggedInText>
+                {data?.fetchUserLoggedIn.name}님 환영합니다!
+              </LoggedInText>
+              <LayoutHeaderButton onClick={onClickShowPointModal}>
+                충전
+              </LayoutHeaderButton>
+              <LayoutHeaderButton onClick={onClickLogout}>
+                로그아웃
+              </LayoutHeaderButton>
+            </>
+          )}
+          {!accessToken && (
+            <LayoutHeaderButton onClick={onClickMoveToPage("/login")}>
+              로그인
             </LayoutHeaderButton>
-            <LayoutHeaderButton onClick={onClickLogout}>
-              로그아웃
-            </LayoutHeaderButton>
-          </>
-        )}
-        {!accessToken && (
-          <LayoutHeaderButton onClick={onClickMoveToPage("/login")}>
-            로그인
-          </LayoutHeaderButton>
-        )}
-      </div>
+          )}
+        </div>
+      </LayoutHeaderWrapper>
       {visible && <Point setVisible={setVisible} />}
-    </LayoutHeaderWrapper>
+    </>
   );
 }
