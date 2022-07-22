@@ -17,7 +17,7 @@ interface IUpdateUseditemQuestionInput {
 const schema = yup.object({
   contents: yup.string().required("내용은 필수 입력입니다."),
 });
-export default function MarketCommentWrite(props) {
+export default function MarketCommentWrite(props: any) {
   const router = useRouter();
   const [createUseditemQuestion] = useMutation(CREATE_USED_ITEM_QUESTION);
   const [updateUseditemQuestion] = useMutation(UPDATE_USED_ITEM_QUESTION);

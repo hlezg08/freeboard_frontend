@@ -40,7 +40,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   }, [props.data]);
 
   const [imageUrls, setImageUrls] = useState<string[]>(["", "", ""]);
-  const [isActive, setIsActive] = useState(false);
+  const [isActive] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const onChangeFiles = (fileUrl: string, index: number) => {

@@ -15,7 +15,7 @@ const CommentWrapper = styled.div`
   box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.07);
   border-radius: 15px;
 `;
-export default function MarketCommentListUI(props) {
+export default function MarketCommentListUI(props: any) {
   return (
     <InfiniteScroll
       pageStart={0}

@@ -5,6 +5,7 @@ import { IBoardDetailUIProps } from "./BoardDetail.types";
 import ButtonWhite from "../../../commons/buttons/white";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import DOMPurify from "dompurify";
+import { ChangeEvent } from "react";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   const { onClickMoveToPage, router } = useMoveToPage();
@@ -37,7 +38,11 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
                 // 배열 요소 중 빈값이 아니면 이미지 보여주기
                 el && (
                   <D.Img
-                    onError={(event) => (event.target.style.display = "none")}
+                    onError={(event: ChangeEvent<HTMLImageElement>) => {
+                      if (event.target instanceof Element) {
+                        event.target.style.display = "none";
+                      }
+                    }}
                     key={index}
                     src={`https://storage.googleapis.com/${el}`}
                   />

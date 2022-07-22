@@ -16,7 +16,7 @@ import * as yup from "yup";
 const schema = yup.object({
   contents: yup.string().required("내용은 필수 입력입니다."),
 });
-export default function MarketAnswerWrite(props) {
+export default function MarketAnswerWrite(props: any) {
   const [createUseditemQuestionAnswer] = useMutation(
     CREATE_USED_ITEM_QUESTION_ANSWER
   );
@@ -26,7 +26,7 @@ export default function MarketAnswerWrite(props) {
   // const [answer, setAnswer] = useState("");
   const [length, setLength] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const { register, handleSubmit, formState, reset } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });

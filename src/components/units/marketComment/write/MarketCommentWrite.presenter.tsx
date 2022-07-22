@@ -1,7 +1,7 @@
 import ButtonWhite from "../../../commons/buttons/white";
 import InputComment from "../../../commons/inputs/comment";
 import * as S from "./MarketCommentWrite.styles";
-export default function MarketCommentWriteUI(props) {
+export default function MarketCommentWriteUI(props: any) {
   const onClickRollBack = () => {
     props.setIsEdit((prev) => !prev);
   };

@@ -62,7 +62,7 @@ export default function KakaoMap(props: KaKaoMapPros) {
             map,
             position: markerPosition,
           });
-          // marker.setMap(map);
+          marker.setMap(map);
         }
       });
     };

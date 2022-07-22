@@ -1,10 +1,9 @@
 import * as S from "../../MyPage.styles";
 import { useQuery } from "@apollo/client";
 import { getDate } from "../../../../../commons/libraries/utils";
-import BoardPagination from "../../../../commons/pagination/BoardPagination.container";
 import { FETCH_POINT_TRANSACTIONS_OF_BUYING } from "../MyPagePoint.queries";
 export default function MyPagePointBuying() {
-  const { data, refetch } = useQuery(FETCH_POINT_TRANSACTIONS_OF_BUYING);
+  const { data } = useQuery(FETCH_POINT_TRANSACTIONS_OF_BUYING);
   //   const { data: dataCount, refetch: refetchCount } = useQuery(
   //     FETCH_USED_ITEMS_COUNT_I_SOLD
   //   );

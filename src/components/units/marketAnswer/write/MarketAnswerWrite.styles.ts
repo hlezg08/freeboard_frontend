@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import { RollbackOutlined } from "@ant-design/icons";
+interface FormProps {
+  isVisible: boolean;
+}
 export const Form = styled.form`
-  display: ${(props) => (props.isVisible ? "block" : "none")};
+  display: ${(props: FormProps) => (props.isVisible ? "block" : "none")};
   padding: 10px 0px 0px 30px;
 `;
 export const CommentAttach = styled.div`

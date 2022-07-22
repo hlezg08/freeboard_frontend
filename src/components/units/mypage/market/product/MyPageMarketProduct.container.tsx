@@ -10,9 +10,7 @@ import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 export default function MyPageMarketProduct() {
   const { data, refetch } = useQuery(FETCH_USED_ITEMS_I_SOLD);
-  const { data: dataCount, refetch: refetchCount } = useQuery(
-    FETCH_USED_ITEMS_COUNT_I_SOLD
-  );
+  const { data: dataCount } = useQuery(FETCH_USED_ITEMS_COUNT_I_SOLD);
   const { onClickMoveToPage } = useMoveToPage();
   return (
     <S.Wrapper>

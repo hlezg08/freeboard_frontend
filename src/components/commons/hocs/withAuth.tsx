@@ -8,7 +8,7 @@ import { accessTokenState, isLoadedState } from "../../../commons/store";
 export const withAuth = (Component) => (props) => {
   const router = useRouter();
   const [accessToken] = useRecoilState(accessTokenState);
-  const [isLoaded, setIsLoaded] = useRecoilState(isLoadedState);
+  const [isLoaded] = useRecoilState(isLoadedState);
 
   // useEffect(() => {
   //   if (localStorage.getItem("logout")) {

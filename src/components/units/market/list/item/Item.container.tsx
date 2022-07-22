@@ -1,18 +1,15 @@
 import * as S from "./Item.styles";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import moment from "moment";
 import "moment/locale/ko";
 import { getDate } from "../../../../../commons/libraries/utils";
-import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { TOGGLE_USED_ITEM_PICK } from "../MarketList.queries";
 
 interface IMarketListItemProps {
   el?: any;
 }
 export default function Item(props: IMarketListItemProps) {
-  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
-  const [todayProducts, setTodayProducts] = useState([]);
+  const [, setTodayProducts] = useState([]);
 
   const router = useRouter();
 
@@ -45,9 +42,11 @@ export default function Item(props: IMarketListItemProps) {
         {props.el.images[0] ? (
           <img
             style={{ width: "100%", height: "221px" }}
-            onError={(event) =>
-              (event.target.src = "../../images/error-image.png")
-            }
+            onError={(event: ChangeEvent<HTMLImageElement>) => {
+              if (event.target instanceof Element) {
+                event.target.src = "../../images/error-image.png";
+              }
+            }}
             src={`https://storage.googleapis.com/${props.el.images[0]}`}
           />
         ) : (

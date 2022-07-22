@@ -10,7 +10,12 @@ const ButtonCommentStyled = styled.button`
   border-radius: 5px;
   border: none;
 `;
-export default function ButtonComment(props) {
+interface ButtonProps {
+  onClick?: () => void;
+  title?: string;
+  type?: string;
+}
+export default function ButtonComment(props: ButtonProps) {
   return (
     <ButtonCommentStyled onClick={props.onClick}>
       {props.title}

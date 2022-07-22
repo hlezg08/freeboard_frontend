@@ -6,7 +6,7 @@ const Textarea = styled.textarea`
   padding: 10px;
   border: 1px solid lightgray;
 `;
-export default function InputComment(props) {
+export default function InputComment(props: any) {
   return (
     <Textarea
       {...props.register}

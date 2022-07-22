@@ -8,6 +8,7 @@ export interface IBoardCommentWriteProps {
 export interface IBoardCommentWriteUIProps {
   data?: any;
   isEdit: boolean;
+  setIsEdit?: any;
   length: number;
   rating: number;
   setRating: any;

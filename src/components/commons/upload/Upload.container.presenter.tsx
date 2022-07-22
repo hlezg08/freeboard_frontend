@@ -1,6 +1,6 @@
 import * as S from "./Upload.styles";
 import { IUploadProps } from "./Upload.types";
-import { useRef, ChangeEvent, useState } from "react";
+import { useRef, ChangeEvent } from "react";
 import { checkFileValidaton } from "../../../commons/libraries/fileValidation";
 
 export default function Upload(props: IUploadProps) {

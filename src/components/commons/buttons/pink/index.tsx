@@ -12,8 +12,11 @@ const ButtonPinkStyled = styled.button`
     cursor: pointer;
   }
 `;
-
-export default function ButtonPink(props) {
+interface ButtonPinkProps {
+  onClick?: () => void;
+  title?: string;
+}
+export default function ButtonPink(props: ButtonPinkProps) {
   return (
     <ButtonPinkStyled onClick={props.onClick}>{props.title}</ButtonPinkStyled>
   );

@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
 `;
-export default function MarketAnswerListItem(props) {
+export default function MarketAnswerListItem(props: any) {
   const [isEdit, setIsEdit] = useState(false);
   const [deleteUseditemQuestionAnswer] = useMutation(
     DELETE_USED_ITEM_QUESTION_ANSWER

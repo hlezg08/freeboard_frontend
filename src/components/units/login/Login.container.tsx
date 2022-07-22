@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import * as S from "./Login.styles";
-import { LOGIN_USER, LOGOUT_USER } from "./Login.queries";
+import { LOGIN_USER } from "./Login.queries";
 import InputUnderline from "../../commons/inputs/underline";
 import ButtonBlack from "../../commons/buttons/black";
 import { accessTokenState } from "../../../commons/store";
@@ -37,8 +37,7 @@ export default function Login() {
   const { onClickMoveToPage } = useMoveToPage();
 
   const [loginUser] = useMutation(LOGIN_USER);
-  const [logoutUser] = useMutation(LOGOUT_USER);
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [, setAccessToken] = useRecoilState(accessTokenState);
   // const [, setUserInfo] = useRecoilState(userInfoState);
   // const client = useApolloClient();
 

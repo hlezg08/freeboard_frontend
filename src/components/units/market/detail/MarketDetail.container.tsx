@@ -24,7 +24,7 @@ export default function MarketDetail() {
   );
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible] = useState(false);
 
   const onClickDeleteUseditem = async () => {
     try {

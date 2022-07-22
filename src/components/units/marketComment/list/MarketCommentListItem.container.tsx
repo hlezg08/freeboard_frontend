@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import { Modal } from "antd";
 import { FETCH_USED_ITEM_QUESTION_ANSWERS } from "../../marketAnswer/list/MarketAnswerList.queries";
 
-export default function MarketCommentListItem(props) {
+export default function MarketCommentListItem(props: any) {
   const router = useRouter();
   const [deleteUseditemQuestion] = useMutation(DELETE_USED_ITEM_QUESTION);
   const [isEdit, setIsEdit] = useState(false);

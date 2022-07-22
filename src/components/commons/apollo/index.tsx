@@ -11,9 +11,9 @@ import { onError } from "@apollo/client/link/error";
 import { accessTokenState, isLoadedState } from "../../../commons/store";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 
-export default function ApolloSetting(props) {
+export default function ApolloSetting(props: any) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const [isLoaded, setIsLoaded] = useRecoilState(isLoadedState);
+  const [, setIsLoaded] = useRecoilState(isLoadedState);
 
   useEffect(() => {
     // getAccessToken().then((newAccessToken) => {

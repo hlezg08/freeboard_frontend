@@ -13,7 +13,7 @@ export interface IMarketWriteUIProps {
   imageUrls: Array<string>;
   setImageUrls: any;
   address?: string;
-  onChangeFiles: (fileUrl: string, index: number) => void;
+  onChangeFiles?: (fileUrl: string, index: number) => void;
   onClickSearchAddress: () => void;
   onCompleteSearchAddress: (data) => void;
   onClickCreateUseditem: (data) => void;

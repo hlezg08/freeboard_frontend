@@ -5,5 +5,6 @@ export interface IUploadProps {
   files?: Array<File | undefined>;
   setFiles?: any;
   index: number;
-  onChangeFiles: (fileUrl: string, index: number) => void;
+  isEdit?: boolean;
+  onChangeFiles?: (fileUrl: string, index: number) => void;
 }

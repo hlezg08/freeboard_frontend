@@ -11,7 +11,12 @@ const ButtonWhiteStyled = styled.button`
     cursor: pointer;
   }
 `;
-export default function ButtonWhite(props) {
+interface ButtonWhiteProps {
+  onClick?: () => void;
+  title?: string;
+  type?: string;
+}
+export default function ButtonWhite(props: ButtonWhiteProps) {
   return (
     <ButtonWhiteStyled onClick={props.onClick}>{props.title}</ButtonWhiteStyled>
   );

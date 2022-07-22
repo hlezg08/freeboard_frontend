@@ -10,9 +10,7 @@ import { useMoveToPage } from "../../../../commons/hooks/useMoveToPage";
 
 export default function MyPageMarketPick() {
   const { data, refetch } = useQuery(FETCH_USED_ITEMS_I_PICKED);
-  const { data: dataCount, refetch: refetchCount } = useQuery(
-    FETCH_USED_ITEMS_COUNT_I_PICKED
-  );
+  const { data: dataCount } = useQuery(FETCH_USED_ITEMS_COUNT_I_PICKED);
   const { onClickMoveToPage } = useMoveToPage();
 
   return (

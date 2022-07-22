@@ -2,7 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 // import styled from "@emotion/styled";
 import { CREATE_POINT_TRANSACTION_OF_LOADING } from "./Point.queries";
 import { FETCH_USER_LOGGED_IN } from "../login/Login.queries";

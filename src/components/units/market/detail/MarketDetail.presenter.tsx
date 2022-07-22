@@ -4,14 +4,19 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import DOMPurify from "dompurify";
 import KakaoMap from "../../../commons/kakao-map";
 import { v4 as uuid } from "uuid";
-import { Avatar, Image } from "antd";
+import { Avatar } from "antd";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import moment from "moment";
 import "moment/locale/ko";
+import { ChangeEvent } from "react";
 interface IMarketDetailUIProps {
   data?: any;
   onClickDeleteUseditem: () => void;
+  userData?: any;
+  onClickPick: () => void;
+  onClickShowBuyModal: () => void;
+  isVisible: boolean;
 }
 
 export default function MarketDetailUI(props: IMarketDetailUIProps) {
@@ -39,9 +44,11 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
                 (el: any, index: number) => {
                   return (
                     <S.CarouselImage
-                      onError={(event) =>
-                        (event.target.src = "../../images/error-image.png")
-                      }
+                      onError={(event: ChangeEvent<HTMLImageElement>) => {
+                        if (event.target instanceof Element) {
+                          event.target.src = "../../images/error-image.png";
+                        }
+                      }}
                       key={index}
                       src={`https://storage.googleapis.com/${el}`}
                     />
