@@ -10,7 +10,7 @@ interface ILayoutProps {
   children: ReactNode;
 }
 
-const HIDDEN_BANNER = ["/", "/login", "/signup"];
+const HIDDEN_BANNER = ["/", "/login/", "/signup/"];
 const LayoutBody = styled.div`
   width: 100%;
   background-color: #f8f8f8;
@@ -22,15 +22,12 @@ export default function Layout(props: ILayoutProps) {
   return (
     <>
       <LayoutHeader />
-      <div>
-        <LayoutBanner />
-      </div>
       {!isHiddenBanner && (
         <div>
+          <LayoutBanner />
           <LayoutNavigation />
         </div>
       )}
-
       <LayoutBody>{props.children}</LayoutBody>
       <LayoutFooter />
     </>
