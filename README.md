@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 집사마켓 : 게시판 및 중고마켓 사이트
 
-## Getting Started
+React,Next.js 공부 후 개인적으로 만든 프로젝트입니다.
 
-First, run the development server:
+- 수행 기간 : 2022.05.09 ~ 2022.07.01
+- 이후 스타일 수정 및 리팩토링 진행 중입니다.(2022.08 기준)
 
-```bash
-npm run dev
+## 배포 URL
+
+- 배포 링크 : [https://devlynn.shop/](https://devlynn.shop/)
+
+## 실행 방법
+
+배포 서버가 원활하지 못할 경우 다음과 같이 실행해주세요.
+
+```
+git clone https://github.com/hlezg08/freeboard_frontend.git
+```
+
+```
+npm install
+npm start
 # or
+yarn install
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+테스트 계정
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- ID: catlover@gmail.com
+- PW: cat1234@
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 기술 스택
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Framework : Next.js, React
+- Language : TypeScript, JavaScript
+- API Req & Res : GraphQL, Apollo-Client
+- Deployment : AWS S3
 
-## Learn More
+## 주요 기능
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- 로그인
+- 게시판 등록, 조회, 수정, 삭제
+- 댓글 및 대댓글
+- 게시판 페이지네이션 직접 구현
+- 게시판 좋아요
+- 마켓 찜하기
+- 이미지 업로드
+- 아임포트를 활용한 결제 구현
+- 카카오맵 API를 활용한 지도 구현
+- 권한 분기 및 마이페이지
