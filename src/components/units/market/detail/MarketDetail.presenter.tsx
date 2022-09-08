@@ -32,16 +32,10 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
     <S.Wrapper>
       <S.DetailWrapper>
         <S.ItemWrapper>
-          {/* <S.ItemImageWrapper
-            onError={(event) =>
-              (event.target.src = "../../images/error-image.png")
-            }
-            src={`https://storage.googleapis.com/${props.data?.fetchUseditem.images[0]}`}
-          /> */}
           <S.CarouselWrapper>
-            <S.MySlider {...settings}>
+            <S.ImageSlider {...settings}>
               {props.data?.fetchUseditem.images.map(
-                (el: any, index: number) => {
+                (src: any, index: number) => {
                   return (
                     <S.CarouselImage
                       onError={(event: ChangeEvent<HTMLImageElement>) => {
@@ -50,12 +44,12 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
                         }
                       }}
                       key={index}
-                      src={`https://storage.googleapis.com/${el}`}
+                      src={`https://storage.googleapis.com/${src}`}
                     />
                   );
                 }
               )}
-            </S.MySlider>
+            </S.ImageSlider>
           </S.CarouselWrapper>
           <S.ContentsWrapper>
             <S.SellerWrapper>
@@ -110,7 +104,7 @@ export default function MarketDetailUI(props: IMarketDetailUIProps) {
               }}
             />
           ) : (
-            <div></div>
+            <></>
           )}
         </S.Body>
         <S.ItemButtonWrapper>

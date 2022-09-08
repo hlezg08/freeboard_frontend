@@ -39,6 +39,8 @@ export const ItemTagButton = styled.button`
 `;
 export const ItemButtonWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   width: 100%;
   justify-content: center;
 `;
@@ -91,7 +93,7 @@ export const CarouselWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-export const MySlider = styled(Slider)`
+export const ImageSlider = styled(Slider)`
   width: 100%;
   height: 290px;
   .slick-dots {
