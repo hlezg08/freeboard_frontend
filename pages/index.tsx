@@ -1,19 +1,13 @@
-import Head from "next/head";
 import * as S from "../src/commons/styles/LandingPageStyles";
 import ButtonPink from "../src/components/commons/buttons/pink";
 import { useMoveToPage } from "../src/components/commons/hooks/useMoveToPage";
 
 export default function Home() {
   const { onClickMoveToPage } = useMoveToPage();
-  const ICON_LINK = "/icons/ic-cat-footprint.png";
   const IMAGE_LINK = "./images/landing-page-kitten.png";
 
   return (
     <>
-      <Head>
-        <title>집사마켓</title>
-        <link rel="icon" href={ICON_LINK} />
-      </Head>
       <S.Body>
         <S.Wrapper>
           <S.TextWrapper>

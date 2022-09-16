@@ -5,6 +5,7 @@ import LayoutBanner from "./banner";
 import LayoutFooter from "./footer";
 import LayoutHeader from "./header";
 import LayoutNavigation from "./navigation";
+import Head from "next/head";
 
 interface ILayoutProps {
   children: ReactNode;
@@ -18,9 +19,14 @@ const LayoutBody = styled.div`
 
 export default function Layout(props: ILayoutProps) {
   const router = useRouter();
+  const ICON_LINK = "icons/ic-cat-footprint.png";
   const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
   return (
     <>
+      <Head>
+        <title>집사마켓</title>
+        <link rel="icon" href={ICON_LINK} />
+      </Head>
       <LayoutHeader />
       {!isHiddenBanner && (
         <div>
