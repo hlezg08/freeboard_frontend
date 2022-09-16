@@ -26,7 +26,6 @@ export default function LayoutHeader() {
   const onClickLogout = async () => {
     try {
       setAccessToken("");
-      // localStorage.removeItem("refreshToken");
       const result = await logoutUser();
       localStorage.setItem("logout", String(result.data?.logoutUser));
       Modal.success({

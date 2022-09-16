@@ -1,46 +1,48 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Head from "next/head";
-import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { Modal } from "antd";
-// import styled from "@emotion/styled";
+import { useMutation, useQuery } from "@apollo/client";
+import styled from "@emotion/styled";
+import { Modal, Button } from "antd";
 import { CREATE_POINT_TRANSACTION_OF_LOADING } from "./Point.queries";
 import { FETCH_USER_LOGGED_IN } from "../login/Login.queries";
-import * as S from "./Point.styles";
+
 declare const window: typeof globalThis & {
   IMP: any;
 };
-// const ModalWrapper = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// `;
-// const PointSelect = styled.select`
-//   width: 360px;
-//   height: 40px;
-//   border: none;
-//   border-bottom: 1px solid black;
-//   font-size: 18px;
-// `;
+
+const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const PointSelect = styled.select`
+  width: 360px;
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 18px;
+`;
+
 interface IPointProps {
-  setVisible?: any;
+  setVisible?: Dispatch<SetStateAction<boolean>>;
 }
-export default function Point(props: IPointProps) {
+
+export default function Point({ setVisible }: IPointProps) {
   const router = useRouter();
-  const [price, setPrice] = useState(100);
-  const [isSelect, setIsSelect] = useState(false);
+  const DEFAULT_PRICES = [500, 1000, 2000, 5000];
+  const [price, setPrice] = useState(DEFAULT_PRICES[0]);
+
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const [createPointTransactionOfLoading] = useMutation(
     CREATE_POINT_TRANSACTION_OF_LOADING
   );
 
-  const onClickDisplaySelect = () => {
-    setIsSelect((prev) => !prev);
-  };
   const onChangeSelect = (event) => {
     setPrice(Number(event.target.value));
-    setIsSelect(false);
   };
+
   const requestPay = () => {
     const IMP = window.IMP;
     IMP.init("imp49910675");
@@ -62,7 +64,7 @@ export default function Point(props: IPointProps) {
                 impUid: rsp.imp_uid,
               },
             });
-            props.setVisible(false);
+            setVisible(false);
             Modal.success({ content: `결제가 완료되었습니다!` });
             router.push("/market");
           } catch (error) {
@@ -74,70 +76,41 @@ export default function Point(props: IPointProps) {
       }
     );
   };
-  return (
-    // <Modal
-    //   visible={true}
-    //   onOk={requestPay}
-    //   onCancel={() => {
-    //     props.setVisible(false);
-    //   }}
-    //   footer={[
-    //     <Button key={uuid()} onClick={requestPay}>
-    //       충전하기
-    //     </Button>,
-    //   ]}
-    // >
-    //   <ModalWrapper>
-    //     <h2>충전하실 금액을 선택해주세요!</h2>
-    //     <PointSelect id="price-select" onChange={onChangeSelect}>
-    //       <option defaultValue="500">500원</option>
-    //       <option value="1000">1000원</option>
-    //       <option value="2000">2000원</option>
-    //       <option value="5000">5000원</option>
-    //     </PointSelect>
-    //   </ModalWrapper>
-    // </Modal>
 
-    <S.Wrapper>
+  return (
+    <>
       <Head>
-        {/* jQuery */}
         <script
           type="text/javascript"
           src="https://code.jquery.com/jquery-1.12.4.min.js"
         ></script>
-        {/* iamport.payment.js */}
         <script
           type="text/javascript"
           src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
         ></script>
       </Head>
-      <S.CancelIcon
-        onClick={() => {
-          props.setVisible(false);
-        }}
-      />
 
-      <S.Title>충전하실 금액을 선택해주세요</S.Title>
-      <S.PointWrapper>
-        <S.SelectWrapper onClick={onClickDisplaySelect}>
-          <S.SelctedPrice onChange={onChangeSelect}>{price}</S.SelctedPrice>
-        </S.SelectWrapper>
-        <S.ListWrapper isSelect={isSelect}>
-          <S.List onClick={onChangeSelect} value="100">
-            100
-          </S.List>
-          <S.List onClick={onChangeSelect} value="500">
-            500
-          </S.List>
-          <S.List onClick={onChangeSelect} value="2000">
-            2000
-          </S.List>
-          <S.List onClick={onChangeSelect} value="5000">
-            5000
-          </S.List>
-        </S.ListWrapper>
-      </S.PointWrapper>
-      <S.SubmitButton onClick={requestPay}>충전하기</S.SubmitButton>
-    </S.Wrapper>
+      <Modal
+        visible={true}
+        onOk={requestPay}
+        onCancel={() => setVisible(false)}
+        footer={[
+          <Button key={0} onClick={requestPay}>
+            충전하기
+          </Button>,
+        ]}
+      >
+        <ModalWrapper>
+          <h2>충전하실 금액을 선택해주세요!</h2>
+          <PointSelect id="price-select" onChange={onChangeSelect}>
+            {DEFAULT_PRICES.map((price) => (
+              <option key={price} value={price}>
+                {price}원
+              </option>
+            ))}
+          </PointSelect>
+        </ModalWrapper>
+      </Modal>
+    </>
   );
 }
