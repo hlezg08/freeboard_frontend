@@ -2,10 +2,10 @@ import * as S from "./MyPageSidebar.styles";
 import { useQuery } from "@apollo/client";
 import { FETCH_USER_LOGGED_IN } from "../../../units/login/Login.queries";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { Fragment, memo } from "react";
+import { Fragment } from "react";
 import { Avatar } from "@mui/material";
 
-function MypageSidebar() {
+export default function MypageSidebar() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const { onClickMoveToPage } = useMoveToPage();
   const SIDEBAR_MENUS = [
@@ -38,4 +38,3 @@ function MypageSidebar() {
     </S.SidebarWrapper>
   );
 }
-export default memo(MypageSidebar);

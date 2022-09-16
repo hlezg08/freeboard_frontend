@@ -70,5 +70,5 @@ function MyPagePointPage() {
     </Wrapper>
   );
 }
-// // 로그인이 필요할 때 === 토큰 있는지 확인 후 마이페이지 렌더링
+
 export default withAuth(MyPagePointPage);
