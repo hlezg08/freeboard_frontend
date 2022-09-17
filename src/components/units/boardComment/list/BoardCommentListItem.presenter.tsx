@@ -15,10 +15,8 @@ export default function BoardCommentListUIItem(
 
   const inputRef = useRef(null);
 
-  // 한번 focus 됐다가 사라진다..
   useEffect(() => {
     inputRef.current?.focus();
-    // console.log(inputRef.current);
   });
 
   return (

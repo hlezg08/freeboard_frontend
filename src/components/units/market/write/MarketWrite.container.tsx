@@ -74,7 +74,7 @@ export default function MarketWrite(props: IMarketWriteProps) {
       const resultUrls = resultUploadFile.map((el) =>
         el ? el.data.uploadFile.url : ""
       );
-      console.log(resultUrls);
+
       const result = await createUseditem({
         variables: {
           createUseditemInput: {
@@ -106,7 +106,6 @@ export default function MarketWrite(props: IMarketWriteProps) {
   };
 
   const onClickUpdateUseditem = async (data) => {
-    console.log(imageUrls);
     try {
       const resultUploadFile = await Promise.all(
         files.map((el) => el && uploadFile({ variables: { file: el } }))
@@ -114,7 +113,7 @@ export default function MarketWrite(props: IMarketWriteProps) {
       const resultUrls = resultUploadFile.map((el) =>
         el ? el.data.uploadFile.url : ""
       );
-      console.log(resultUrls);
+
       const updateUseditemInput: IUpdateUseditemInput = {};
       if (data.name) updateUseditemInput.name = data.name;
       if (data.remarks) updateUseditemInput.remarks = data.remarks;

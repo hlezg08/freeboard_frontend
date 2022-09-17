@@ -84,7 +84,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
     // const currentFiles = JSON.stringify(imageUrls);
     // const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
     // const isChangeFiles = currentFiles !== defaultFiles;
-    console.log(data);
     try {
       const updateBoardInput: IUpdateBoardInput = {};
 

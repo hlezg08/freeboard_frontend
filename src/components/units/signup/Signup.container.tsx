@@ -21,11 +21,10 @@ const schema = yup.object({
     .required("이름은 필수 입력 사항입니다."),
   password: yup
     .string()
-    // .matches(
-    //   /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W))(?=.*[!@#$%^*+=-]).{8,16}$/,
-    //   "비밀번호는 반드시 8~16자이며, 영문, 숫자,특수문자를 포함해야합니다."
-    // )
-    .min(4, "비밀번호는 최소 4자리 이상 입력해주세요.")
+    .matches(
+      /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W))(?=.*[!@#$%^*+=-]).{8,16}$/,
+      "비밀번호는 반드시 8~16자이며, 영문, 숫자, 특수문자를 포함해야합니다."
+    )
     .required("비밀번호는 필수 입력 사항입니다."),
   passwordConfirm: yup
     .string()
@@ -58,7 +57,6 @@ export default function Signup() {
 
       router.push(`/login`);
     } catch (error) {
-      console.log({ ...data });
       Modal.error({
         content: error.message,
       });
