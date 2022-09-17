@@ -54,7 +54,7 @@ export default function Point({ setVisible }: IPointProps) {
         amount: price,
         buyer_email: data.fetchUserLoggedIn?.email,
         buyer_name: data.fetchUserLoggedIn?.name,
-        m_redirect_url: "http://localhost:3000/",
+        m_redirect_url: "https://devlynn.shop/",
       },
       async (rsp: any) => {
         if (rsp.success) {

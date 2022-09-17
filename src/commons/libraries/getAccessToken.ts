@@ -13,7 +13,7 @@ export async function getAccessToken() {
   try {
     // refreshToken으로 accessToken 재발급 받기
     const graphQLClient = new GraphQLClient(
-      "https://backend07.codebootcamp.co.kr/graphql",
+      "https://backend07.codebootcamp.co.kr/graphql16",
       {
         credentials: "include",
       }
