@@ -11,6 +11,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Item from "./item/Item.container";
+
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
@@ -67,9 +68,9 @@ export default function MarketListUI(props: IMarketListUIProps) {
               useWindow={false}
             >
               <S.GridWrapper>
-                {props.data?.fetchUseditems.map((el: any) => (
+                {props.data?.fetchUseditems.map((item: any) => (
                   <S.GridItemWrapper key={uuid4()}>
-                    <Item el={el} />
+                    <Item item={item} />
                   </S.GridItemWrapper>
                 ))}
               </S.GridWrapper>
@@ -88,9 +89,9 @@ export default function MarketListUI(props: IMarketListUIProps) {
               useWindow={false}
             >
               <S.GridWrapper>
-                {props.dataSoldOut?.fetchUseditems.map((el: any) => (
+                {props.dataSoldOut?.fetchUseditems.map((item: any) => (
                   <S.GridItemWrapper key={uuid4()}>
-                    <Item el={el} />
+                    <Item item={item} />
                   </S.GridItemWrapper>
                 ))}
               </S.GridWrapper>

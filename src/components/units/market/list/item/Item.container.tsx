@@ -6,31 +6,28 @@ import { getDate } from "../../../../../commons/libraries/utils";
 import { useRouter } from "next/router";
 
 interface IMarketListItemProps {
-  el?: any;
+  item?: any;
 }
-export default function Item(props: IMarketListItemProps) {
+export default function Item({ item }: IMarketListItemProps) {
   const [, setTodayProducts] = useState([]);
 
   const router = useRouter();
 
   const onClickTodayProducts = () => {
-    router.push(`market/${props.el._id}`);
+    router.push(`market/${item._id}`);
     const products = JSON.parse(localStorage.getItem("products") || "[]");
-    const temp = products.filter(
-      (productsEl) => productsEl._id === props.el._id
-    );
+    const temp = products.filter((productsEl) => productsEl._id === item._id);
 
-    // 한 번  담았던 데이터는 더이상 안들어가도록
     if (temp.length === 1) return;
 
-    const { __typename, ...newEl } = props.el;
+    const { __typename, ...newEl } = item;
     products.unshift(newEl);
 
     const clickedAt = new Date();
     newEl.clickedAt = getDate(String(clickedAt));
 
     const filteredProducts = products.filter(
-      (el) => getDate(String(new Date())) === getDate(String(clickedAt))
+      (_) => getDate(String(new Date())) === getDate(String(clickedAt))
     );
     setTodayProducts(filteredProducts);
     localStorage.setItem("products", JSON.stringify(filteredProducts));
@@ -39,7 +36,7 @@ export default function Item(props: IMarketListItemProps) {
   return (
     <S.Wrapper onClick={onClickTodayProducts}>
       <S.ImageWrapper>
-        {props.el.images[0] ? (
+        {item.images[0] ? (
           <img
             style={{ width: "100%", height: "221px" }}
             onError={(event: ChangeEvent<HTMLImageElement>) => {
@@ -47,7 +44,7 @@ export default function Item(props: IMarketListItemProps) {
                 event.target.src = "../../images/error-image.png";
               }
             }}
-            src={`https://storage.googleapis.com/${props.el.images[0]}`}
+            src={`https://storage.googleapis.com/${item.images[0]}`}
           />
         ) : (
           <img
@@ -58,14 +55,13 @@ export default function Item(props: IMarketListItemProps) {
       </S.ImageWrapper>
       <S.TextWrapper>
         <S.TextDetailWrapper>
-          <S.Content1Text>{props.el.name}</S.Content1Text>
+          <S.Content1Text>{item.name}</S.Content1Text>
           <S.PickFalseIcon />
         </S.TextDetailWrapper>
-        {/* {isPicked && <S.PickTrueIcon onClick={onClickPick(props.el)} />} */}
         <S.TextDetailWrapper>
-          <S.Content1Text>{props.el.price}원</S.Content1Text>
+          <S.Content1Text>{item.price}원</S.Content1Text>
           <S.Content2Text>
-            {moment(props.el.createdAt).endOf("minute").fromNow()}
+            {moment(item.createdAt).endOf("minute").fromNow()}
           </S.Content2Text>
         </S.TextDetailWrapper>
       </S.TextWrapper>
