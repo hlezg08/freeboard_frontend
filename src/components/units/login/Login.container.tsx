@@ -92,22 +92,17 @@ export default function Login() {
 
           <S.LoginStatusWrapper>
             <S.Checkbox type="checkbox" />
-            <S.LoginText>로그인 상태 유지</S.LoginText>
+            <S.LoginText>아이디 저장</S.LoginText>
           </S.LoginStatusWrapper>
           <S.ButtonWrapper>
             <ButtonBlack title="로그인" />
           </S.ButtonWrapper>
         </S.Form>
-
-        <S.LoginFooterWrapper>
-          <S.LoginText>아이디 찾기</S.LoginText>
-          <S.LoginText>|</S.LoginText>
-          <S.LoginText>비밀번호 찾기</S.LoginText>
-          <S.LoginText>|</S.LoginText>
+        <S.ButtonWrapper>
           <S.LoginText onClick={onClickMoveToPage("/signup")}>
             회원가입
           </S.LoginText>
-        </S.LoginFooterWrapper>
+        </S.ButtonWrapper>
       </S.LoginWrapper>
     </S.Wrapper>
   );
