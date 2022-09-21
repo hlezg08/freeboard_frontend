@@ -1,14 +1,18 @@
 import styled from "@emotion/styled";
 import Slider from "react-slick";
+import { breakPoints } from "../../../../commons/styles/media";
 export const Wrapper = styled.div`
   width: 100%;
-  height: 350px;
+  height: 21.875rem;
   display: flex;
   justify-content: center;
+  @media ${breakPoints.mobile} {
+    display: none;
+  }
 `;
 export const MySlider = styled(Slider)`
   width: 100%;
-  height: 320px;
+  height: 20rem;
   .slick-dots {
     .slick-active {
       button::before {
@@ -43,5 +47,5 @@ export const MySlider = styled(Slider)`
 `;
 export const SliderImg = styled.img`
   width: 100%;
-  height: 350px;
+  height: 21.875rem;
 `;

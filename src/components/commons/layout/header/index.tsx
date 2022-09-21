@@ -1,11 +1,6 @@
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../commons/store";
-import {
-  LayoutHeaderWrapper,
-  LayoutHeaderLogo,
-  LoggedInText,
-  LayoutHeaderButton,
-} from "./LayoutHeader.styles";
+import * as S from "./LayoutHeader.styles";
 import { useMoveToPage } from "../../hooks/useMoveToPage";
 import { Modal } from "antd";
 import { useState } from "react";
@@ -42,33 +37,31 @@ export default function LayoutHeader() {
 
   return (
     <>
-      <LayoutHeaderWrapper>
-        <div onClick={onClickMoveToPage("/boards")}>
-          <LayoutHeaderLogo src="../../icons/ic-cat-footprint.png" />
-          <LayoutHeaderButton>집사마켓</LayoutHeaderButton>
-        </div>
+      <S.LayoutHeaderWrapper>
+        <S.LayoutLogoWrapper onClick={onClickMoveToPage("/boards")}>
+          <S.LogoImg src="../../icons/ic-cat-footprint.png" />
+          <S.HeaderButton>집사마켓</S.HeaderButton>
+        </S.LayoutLogoWrapper>
 
         <div>
           {accessToken && (
             <>
-              <LoggedInText>
+              <S.LoggedInText>
                 {data?.fetchUserLoggedIn.name}님 환영합니다!
-              </LoggedInText>
-              <LayoutHeaderButton onClick={onClickShowPointModal}>
+              </S.LoggedInText>
+              <S.HeaderButton onClick={onClickShowPointModal}>
                 충전
-              </LayoutHeaderButton>
-              <LayoutHeaderButton onClick={onClickLogout}>
-                로그아웃
-              </LayoutHeaderButton>
+              </S.HeaderButton>
+              <S.HeaderButton onClick={onClickLogout}>로그아웃</S.HeaderButton>
             </>
           )}
           {!accessToken && (
-            <LayoutHeaderButton onClick={onClickMoveToPage("/login")}>
+            <S.HeaderButton onClick={onClickMoveToPage("/login")}>
               로그인
-            </LayoutHeaderButton>
+            </S.HeaderButton>
           )}
         </div>
-      </LayoutHeaderWrapper>
+      </S.LayoutHeaderWrapper>
       {visible && <Point setVisible={setVisible} />}
     </>
   );
