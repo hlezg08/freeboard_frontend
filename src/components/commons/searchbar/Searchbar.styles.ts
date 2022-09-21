@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { SearchOutlined } from "@ant-design/icons";
 export const SearchWrapper = styled.div`
   display: flex;
-  width: 80%;
+  width: 100%;
   height: 45px;
 
   background-color: #f2f2f2;

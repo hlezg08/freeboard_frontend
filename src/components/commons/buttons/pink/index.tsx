@@ -12,12 +12,12 @@ const ButtonPinkStyled = styled.button`
     cursor: pointer;
   }
 `;
+
 interface ButtonPinkProps {
   onClick?: () => void;
   title?: string;
 }
-export default function ButtonPink(props: ButtonPinkProps) {
-  return (
-    <ButtonPinkStyled onClick={props.onClick}>{props.title}</ButtonPinkStyled>
-  );
+
+export default function ButtonPink({ title, onClick }: ButtonPinkProps) {
+  return <ButtonPinkStyled onClick={onClick}>{title}</ButtonPinkStyled>;
 }
