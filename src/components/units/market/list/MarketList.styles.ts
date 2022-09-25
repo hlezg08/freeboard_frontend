@@ -5,10 +5,10 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px;
+  padding: 3.75rem;
 `;
 export const SearchBarButtonWrapper = styled.div`
-  padding: 10px 0px;
+  padding: 0.625rem 0;
   width: 100%;
   display: flex;
   justify-content: space-between;

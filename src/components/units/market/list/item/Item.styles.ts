@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 export const Wrapper = styled.div`
   width: 100%;
+  max-width: 25rem;
   height: 320px;
   display: flex;
   flex-direction: column;
